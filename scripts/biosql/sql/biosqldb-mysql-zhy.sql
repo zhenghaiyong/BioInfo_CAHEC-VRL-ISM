@@ -267,6 +267,7 @@ CREATE TABLE bioentry (
 	gene_rank2	VARCHAR(28),
 	gene_rank3	VARCHAR(28),
 	gene_rank4	VARCHAR(28),
+	gene_rank5	VARCHAR(28),
 -- ZHY End
 	PRIMARY KEY (bioentry_id),
   	UNIQUE (accession,biodatabase_id,version),
