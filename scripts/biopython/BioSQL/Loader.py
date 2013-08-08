@@ -540,6 +540,7 @@ class DatabaseLoader:
 	isolate_name = ""
 	isolation_year = ""
 	isolation_country = ""
+	isolation_region = ""
 	vrl_host = ""
 	for seq_feature_num in range(len(record.features)):
 	    seq_feature = record.features[seq_feature_num]
@@ -556,7 +557,11 @@ class DatabaseLoader:
 		    elif key == 'collection_date':
 		 	isolation_year = value[0]
 		    elif key == 'country':
-		 	isolation_country = value[0]
+		 	if ":" in value[0]:
+		 	    isolation_country = value[0].split(":")[0]
+		 	    isolation_region = value[0].split(":")[1]
+		 	else:
+		 	    isolation_country = value[0]
 		    elif key == 'host':
 		 	vrl_host = value[0]
 
@@ -575,6 +580,7 @@ class DatabaseLoader:
 	 isolate_name,
 	 isolation_year,
 	 isolation_country,
+	 isolation_region,
 	 vrl_host)
         VALUES (
          %s,
@@ -583,6 +589,7 @@ class DatabaseLoader:
          %s,
          %s,
          %s,
+	 %s,
          %s,
 	 %s,
 	 %s,
@@ -594,7 +601,7 @@ class DatabaseLoader:
         #print self.dbid, taxon_id, record.name, accession, identifier, \
         #        division, description, version
 	# ZHY    is_usable, is_reverse, \
-	#	 isolate_name, isolation_year, isolation_country, vrl_host
+	#	 isolate_name, isolation_year, isolation_country, isolation_region, vrl_host
         self.adaptor.execute(sql, (self.dbid,
                                    taxon_id,
                                    record.name,
@@ -608,6 +615,7 @@ class DatabaseLoader:
 				   isolate_name,
 				   isolation_year,
 				   isolation_country,
+				   isolation_region,
 				   vrl_host))
         # now retrieve the id for the bioentry
         bioentry_id = self.adaptor.last_id('bioentry')

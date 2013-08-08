@@ -259,6 +259,7 @@ CREATE TABLE bioentry (
 	isolate_name		VARCHAR(128),
 	isolation_year		VARCHAR(28),
 	isolation_country	VARCHAR(40),
+	isolation_region	VARCHAR(40),
 	vrl_host		VARCHAR(128),
 	vrl_type		VARCHAR(28),
 	vrl_subtype		VARCHAR(28),
