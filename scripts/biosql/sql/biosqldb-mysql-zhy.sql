@@ -264,6 +264,7 @@ CREATE TABLE bioentry (
 	vrl_type		VARCHAR(28),
 	vrl_subtype		VARCHAR(28),
 	vrl_subsubtype		VARCHAR(28),
+	vrl_subsubsubtype	VARCHAR(28),
 	gene_rank1	VARCHAR(28),
 	gene_rank2	VARCHAR(28),
 	gene_rank3	VARCHAR(28),
