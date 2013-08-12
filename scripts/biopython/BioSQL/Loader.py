@@ -51,6 +51,7 @@ class DatabaseLoader:
         """Load a Biopython SeqRecord into the database.
         """
         bioentry_id = self._load_bioentry_table(record)
+        self._load_bioentry_gene(record, bioentry_id)
         self._load_bioentry_date(record, bioentry_id)
         self._load_biosequence(record, bioentry_id)
         self._load_comment(record, bioentry_id)
@@ -542,8 +543,7 @@ class DatabaseLoader:
 	isolation_country = ""
 	isolation_region = ""
 	vrl_host = ""
-	for seq_feature_num in range(len(record.features)):
-	    seq_feature = record.features[seq_feature_num]
+	for seq_feature in record.features:
 	    if seq_feature.type == 'source':
 	        for key, value in seq_feature.qualifiers.iteritems():
 		    if key not in ['isolate', 'stain', 'collection_date', 'country', 'host']:
@@ -621,6 +621,80 @@ class DatabaseLoader:
         bioentry_id = self.adaptor.last_id('bioentry')
 
         return bioentry_id
+
+    def _findAdjacencyListLeaves(self, list, node_id, leaves=[]):
+        """Find all leaves belongs to node in the adjacency list.
+        
+        list - the adjacency list/tuple with (id, parent_id) nodes
+        node_id - the node id for finding leaves
+
+        ZHY
+        """
+        is_leaf = 1
+        for num in range(len(list)):
+            node = list[num]
+            if node[1] == node_id:
+                is_leaf = 0
+                self._findAdjacencyListLeaves(list, node[0], leaves)
+        if is_leaf:
+            leaves.append(node_id)
+        return leaves
+
+    def _load_bioentry_gene(self, record, bioentry_id):
+        """Record a SeqRecord's gene information in the database (PRIVATE).
+
+        The gene information are recorded in the gene table, and the 
+        SeqRecord's gene information are recorded in the bioentry_gene
+        table.
+
+        record - a SeqRecord object with gene qualifier of gene feature
+        bioentry_id - corresponding database identifier
+
+        ZHY
+        """
+        gene_strs = []
+        for seq_feature in record.features:
+            if seq_feature.type == 'gene' and "gene" in seq_feature.qualifiers:
+                gene = seq_feature.qualifiers['gene']
+                if not isinstance(gene, list):
+                    gene = [gene]
+                gene = gene[0]
+                gene_str = gene.replace(' ','').lower()
+                # family: Birnaviridae
+                if 'vp' in gene_str:
+                    gene_str = gene_str.replace('-','vp').replace('/','vp')
+                gene_strs.append(gene_str)
+
+        if len(gene_strs) > 0:
+            gene_sql = r"SELECT gene_id, parent_id, name FROM gene " \
+                       r"WHERE biodatabase_id = %s"
+            gene_info = self.adaptor.execute_and_fetchall(gene_sql, self.dbid)
+            if len(gene_info) > 0:
+                for gene_num in range(len(gene_info)):
+                    if gene_info[gene_num][1] == 0:
+                        gene_id_root = gene_info[gene_num][0]
+                gene_find = []
+                for gene_num in range(len(gene_info)):
+                    gene_name = gene_info[gene_num][2]
+                    gene_name_str = gene_name.replace(' ','').lower()
+                    for gene_str in gene_strs:
+                        if gene_name_str in gene_str:
+                            gene_find.append([gene_info[gene_num][0],gene_info[gene_num][1],gene_info[gene_num][2]])
+                gene_find_ids = []
+                if len(gene_find) > 0:
+                    for gene_find_node in gene_find:
+                        self._findAdjacencyListLeaves(gene_info, gene_find_node[0], gene_find_ids)
+                    gene_find_ids = list(set(gene_find_ids))
+                elif len(gene_find) == 0:
+                    gene_find_ids.append(gene_id_root)
+                if len(gene_find_ids) > 0:
+                    sql = "INSERT IGNORE INTO bioentry_gene(bioentry_id, gene_id) VALUES (%s, %s)"
+                    for gene_id in gene_find_ids:
+                        self.adaptor.execute(sql, (bioentry_id, gene_id))
+            elif len(gene_info) == 0:
+                raise ValueError("Gene information is missed for biodatabase_id = %s" % (self.dbid))
+            else:
+                raise ValueError("Something is wrong for reading gene information from gene table by biodatabase_id = %s" % (self.dbid))
 
     def _load_bioentry_date(self, record, bioentry_id):
         """Add the effective date of the entry into the database.

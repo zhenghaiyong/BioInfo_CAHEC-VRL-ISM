@@ -50,11 +50,13 @@ def main(bioseqdb,biodatabase,gbfile):
     try:
         if biodatabase not in server.keys():
             server.new_database(biodatabase)
+	"""
         else:
 	    server.remove_database(biodatabase)
 	    #del server[biodatabase]
             server.adaptor.commit()
             server.new_database(biodatabase)
+    	"""
         db = server[biodatabase]
         #zhy#db.load(longrecords)
         db.load(records)

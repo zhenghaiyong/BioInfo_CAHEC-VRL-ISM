@@ -258,18 +258,13 @@ CREATE TABLE bioentry (
 	is_reverse	CHAR(1),
 	isolate_name		VARCHAR(128),
 	isolation_year		VARCHAR(28),
-	isolation_country	VARCHAR(40),
-	isolation_region	VARCHAR(40),
-	vrl_host		VARCHAR(128),
-	vrl_type		VARCHAR(28),
-	vrl_subtype		VARCHAR(28),
+	isolation_country	VARCHAR(50),
+	isolation_region	VARCHAR(50),
+	vrl_host		    VARCHAR(128),
+	vrl_type		    VARCHAR(28),
+	vrl_subtype		    VARCHAR(28),
 	vrl_subsubtype		VARCHAR(28),
 	vrl_subsubsubtype	VARCHAR(28),
-	gene_rank1	VARCHAR(28),
-	gene_rank2	VARCHAR(28),
-	gene_rank3	VARCHAR(28),
-	gene_rank4	VARCHAR(28),
-	gene_rank5	VARCHAR(28),
 -- ZHY End
 	PRIMARY KEY (bioentry_id),
   	UNIQUE (accession,biodatabase_id,version),
@@ -278,12 +273,39 @@ CREATE TABLE bioentry (
 -- the other one puts a uniqueness constraint on identifier only
 -- within a namespace.
 --  	UNIQUE (identifier)
- 	UNIQUE (identifier, biodatabase_id)
+ 	UNIQUE (identifier,biodatabase_id)
 ) ENGINE=INNODB;
 
 CREATE INDEX bioentry_name ON bioentry(name);
 CREATE INDEX bioentry_db   ON bioentry(biodatabase_id);
 CREATE INDEX bioentry_tax  ON bioentry(taxon_id);
+
+--
+-- ZHY gene
+-- 
+CREATE TABLE gene (
+       	gene_id   INT(10) UNSIGNED NOT NULL auto_increment,
+       	name      VARCHAR(50) BINARY NOT NULL,
+       	remark    TEXT,
+	parent_id     INT(10) UNSIGNED NOT NULL,
+	biodatabase_id	   INT(10) UNSIGNED NOT NULL,
+	PRIMARY KEY (gene_id)
+) ENGINE=INNODB;
+
+CREATE INDEX gene_name   ON gene(name);
+CREATE INDEX gene_parent ON gene(parent_id);
+CREATE INDEX gene_db     ON gene(biodatabase_id);
+
+--
+-- ZHY bioentry_gene
+--
+CREATE TABLE bioentry_gene (
+       	bioentry_id   INT(10) UNSIGNED NOT NULL,
+       	gene_id       INT(10) UNSIGNED NOT NULL,
+        UNIQUE (bioentry_id,gene_id)
+) ENGINE=INNODB;
+
+CREATE INDEX bioentrygene_gn ON bioentry_gene(gene_id);
 
 --
 -- bioentry-bioentry relationships: these are typed
@@ -660,6 +682,17 @@ ALTER TABLE bioentry ADD CONSTRAINT FKtaxon_bioentry
 ALTER TABLE bioentry ADD CONSTRAINT FKbiodatabase_bioentry
 	FOREIGN KEY (biodatabase_id) REFERENCES biodatabase(biodatabase_id);
 
+-- ZHY gene
+ALTER TABLE gene ADD CONSTRAINT FKbiodatabase_gene
+	FOREIGN KEY (biodatabase_id) REFERENCES biodatabase(biodatabase_id);
+
+-- ZHY bioentry_gene
+ALTER TABLE bioentry_gene ADD CONSTRAINT FKbioentry_entrygene
+	FOREIGN KEY (bioentry_id) REFERENCES bioentry(bioentry_id)
+    ON DELETE CASCADE;
+ALTER TABLE bioentry_gene ADD CONSTRAINT FKgene_entrygene
+	FOREIGN KEY (gene_id) REFERENCES gene(gene_id);
+
 -- bioentry_relationship
 
 ALTER TABLE bioentry_relationship ADD CONSTRAINT FKterm_bioentryrel
@@ -730,7 +763,7 @@ ALTER TABLE bioentry_qualifier_value ADD CONSTRAINT FKterm_entqual
 
 -- reference 
 ALTER TABLE reference ADD CONSTRAINT FKdbxref_reference
-      FOREIGN KEY ( dbxref_id ) REFERENCES dbxref ( dbxref_id ) ;
+      FOREIGN KEY (dbxref_id) REFERENCES dbxref (dbxref_id) ;
 
 -- seqfeature
 
