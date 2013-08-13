@@ -1,0 +1,1 @@
+./load_ncbi_taxonomy.pl --driver mysql --dbname bioseqdbvrl --dbuser root --dbpass pwd --verbose=2

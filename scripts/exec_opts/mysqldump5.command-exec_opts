@@ -1,0 +1,1 @@
+mysqldump5 --no-create-db --no-create-info --single-transaction --complete-insert --extended-insert --flush-logs -uroot -ppwd bioseqdbvrl > bioseqdbvrl.sql
