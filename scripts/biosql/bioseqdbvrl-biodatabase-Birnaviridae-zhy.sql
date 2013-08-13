@@ -1,44 +1,37 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4.2
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.1.71, for apple-darwin11.4.2 (i386)
 --
--- 主机: localhost
--- 生成日期: 2013 年 08 月 12 日 19:24
--- 服务器版本: 5.1.70
--- PHP 版本: 5.3.27
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: bioseqdbvrl
+-- ------------------------------------------------------
+-- Server version	5.1.70
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- 数据库: `bioseqdbvrl`
+-- Dumping data for table `biodatabase`
 --
 
--- --------------------------------------------------------
+LOCK TABLES `biodatabase` WRITE;
+/*!40000 ALTER TABLE `biodatabase` DISABLE KEYS */;
+INSERT INTO `biodatabase` (`biodatabase_id`, `name`, `authority`, `description`) VALUES (1,'Birnaviridae',NULL,NULL);
+/*!40000 ALTER TABLE `biodatabase` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- 表的结构 `biodatabase`
---
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-CREATE TABLE IF NOT EXISTS `biodatabase` (
-  `biodatabase_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
-  `authority` varchar(128) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`biodatabase_id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `db_auth` (`authority`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `biodatabase`
---
-
-INSERT INTO `biodatabase` (`biodatabase_id`, `name`, `authority`, `description`) VALUES
-(1, 'Birnaviridae', NULL, NULL);
+-- Dump completed on 2013-08-13 14:34:59
