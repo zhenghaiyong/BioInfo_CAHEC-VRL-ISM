@@ -13,12 +13,12 @@ ThinkAjax.send('__URL__/resetPwd/','ajax=1&id={$vo.id}&password='+encodeURICompo
 <table cellpadding=3 cellspacing=3>
 <tr>
 	<td class="tRight">{$Think.lang._RESET_PASSWORD_}</td>
-	<td class="tLeft" ><input type="text" name="resetPwd" > <INPUT type="button" value="{$Think.lang._RESET_PASSWORD_VALUE_}" onclick="resetPwd()" class="submit" style="height:25px"></td>
+	<td class="tLeft" ><input type="text" name="resetPwd" id="resetPwd"><input type="button" value="{$Think.lang._RESET_PASSWORD_VALUE_}" onclick="resetPwd()" class="submit" style="height:25px"></td>
 </tr>
 <tr>
 	<td class="tRight" colspan="2"><hr></td>
 </tr>
-<form method='post' id="form1" >
+<form method='post' id="form1" action="__URL__/update/">
 <tr>
 	<td class="tRight" >{$Think.lang._EDIT_USERNAME_}</td>
 	<td class="tLeft" ><input type="text" class="medium bLeftRequire"  check='^\S+$' warning="{$Think.lang._USERNAME_NOT_EMPTY_}" name="account" value="{$vo.account}"></td>
@@ -42,9 +42,8 @@ ThinkAjax.send('__URL__/resetPwd/','ajax=1&id={$vo.id}&password='+encodeURICompo
 <tr>
 	<td></td>
 	<td class="center"><input type="hidden" name="id" value="{$vo.id}" >
-	<input type="hidden" name="ajax" value="1">
-	<input type="button" value="{$Think.lang._SAVE_}" onclick="sendForm('form1','__URL__/update/')" class="small submit">
-	<input type="reset" class="submit  small" value="{$Think.lang._CANCEL_}" >
+	<input type="submit" value="{$Think.lang._SAVE_}" class="small submit">
+	<input type="reset" onclick="history.back(-1)" class="submit  small" value="{$Think.lang._CANCEL_}" >
 	</td>
 </tr>
 </table>
