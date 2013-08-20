@@ -15,9 +15,9 @@ class RoleAction extends CommonAction {
         $result = $group->setGroupApps($groupId,$id);
 
         if($result===false) {
-            $this->error('项目授权失败！');
+            $this->error(L('_APP_AUTHORIZE_FAILURE_'));
         }else {
-            $this->success('项目授权成功！');
+            $this->success(L('_APP_AUTHORIZE_SUCCESS_'));
         }
     }
 
@@ -64,9 +64,9 @@ class RoleAction extends CommonAction {
         $result = $group->setGroupModules($groupId,$id);
 
         if($result===false) {
-            $this->error('模块授权失败！');
+            $this->error(L('_MODULE_AUTHORIZE_FAILURE_'));
         }else {
-            $this->success('模块授权成功！');
+            $this->success(L('_MODULE_AUTHORIZE_SUCCESS_'));
         }
     }
 
@@ -129,9 +129,9 @@ class RoleAction extends CommonAction {
         $result = $group->setGroupActions($groupId,$id);
 
         if($result===false) {
-            $this->error('操作授权失败！');
+            $this->error(L('_ACTION_AUTHORIZE_FAILURE_'));
         }else {
-            $this->success('操作授权成功！');
+            $this->success(L('_ACTION_AUTHORIZE_SUCCESS_'));
         }
     }
 

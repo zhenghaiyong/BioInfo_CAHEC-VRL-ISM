@@ -14,31 +14,31 @@ function selectGroup(){
 //-->
 </script>
 <div class="content">
-<div class="title">新增组 [ <a href="__URL__">返回列表</a> ]</div>
+<div class="title">{$Think.lang._ADD_} [ <a href="__URL__">{$Think.lang._BACK_TO_LIST_}</a> ]</div>
 <div id="result" class="result none"></div>
 <form method=post id="form1" >
 <table cellpadding=3 cellspacing=3 >
 <tr>
-	<td class="tRight" >组名：</td>
-	<td class="tLeft" ><input type="text" class="medium bLeftRequire"  check='^\S+$' warning="组名不能为空,且不能含有空格" name="name"></td>
+	<td class="tRight" >{$Think.lang._ADD_GROUP_NAME_}</td>
+	<td class="tLeft" ><input type="text" class="medium bLeftRequire"  check='^\S+$' warning="{$Think.lang._GROUP_NAME_NOT_EMPTY_}" name="name"></td>
 </tr>
 <tr>
-	<td class="tRight">组状态：</td>
+	<td class="tRight">{$Think.lang._ADD_GROUP_STATUS_}</td>
 	<td class="tLeft"><select class="small bLeft"  name="status">
-	<option value="1">启用</option>
-	<option value="0">禁用</option>
+	<option value="1">{$Think.lang._STATUS_ON_}</option>
+	<option value="0">{$Think.lang._STATUS_OFF_}</option>
 	</select></td>
 </tr>
 <tr>
-	<td class="tRight tTop">描 述：</td>
+	<td class="tRight tTop">{$Think.lang._ADD_DESCRIPTION_}</td>
 	<td class="tLeft"><TEXTAREA class="large bLeft" name="remark"  ROWS="5" COLS="57"></TEXTAREA></td>
 </tr>
 <tr>
 	<td ></td>
 	<td class="center"><div style="width:85%;margin:5px">
 	<input type="hidden" name="ajax" value="1">
-	<div class="impBtn fLeft"><input type="button" value="保存" onclick="sendForm('form1','__URL__/insert/','tips')" class="save imgButton"></div>
-	<div class="impBtn fRig"><input type="reset" class="reset imgButton" value="清空" ></div>
+	<div class="impBtn fLeft"><input type="button" value="{$Think.lang._SAVE_}" onclick="sendForm('form1','__URL__/insert/','tips')" class="save imgButton"></div>
+	<div class="impBtn fRig"><input type="reset" class="reset imgButton" value="{$Think.lang._CLEAR_}" ></div>
 	</div></td>
 </tr>
 </table>

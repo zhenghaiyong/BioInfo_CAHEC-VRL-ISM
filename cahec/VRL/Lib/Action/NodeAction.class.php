@@ -3,7 +3,7 @@ class NodeAction extends CommonAction {
     public function _filter(&$map){
         if(!empty($_GET['group_id'])) {
             $map['group_id'] =  $_GET['group_id'];
-            $this->assign('nodeName','分组');
+            $this->assign('nodeName',L('_GROUP_'));
         }elseif(empty($_POST['search']) && !isset($map['pid']) ) {
             $map['pid']	=	0;
         }

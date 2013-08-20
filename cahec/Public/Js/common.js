@@ -86,11 +86,11 @@ function showHideSearch(){
 	if (document.getElementById('searchM').style.display=='inline')
 	{
 		document.getElementById('searchM').style.display='none';
-		document.getElementById('showText').value ='高级';
+		document.getElementById('showText').value ='More'; // ZHY 多语言 高级
 		//document.getElementById('key').style.display='inline';
 	}else {
 		document.getElementById('searchM').style.display='inline';
-		document.getElementById('showText').value ='隐藏';
+		document.getElementById('showText').value ='Hide'; // ZHY 多语言 隐藏
 		//document.getElementById('key').style.display='none';
 
 	}

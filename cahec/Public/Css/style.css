@@ -80,7 +80,7 @@ div.pic img{border:1px solid gray}
 .huge{width:350px}
 .large{width:280px}
 .medium{width:150px}
-.small{width:65px}
+.small{width:75px}
 .mini{width:35px}
 .readonly{filter:alpha(opacity=60)}
 
@@ -100,9 +100,9 @@ input, textarea, select{padding:3px 3px; 	background: #f5f5f5;
 input.focus{filter:blur(strength=50); border:1pt solid green}
 div.impBtn{background:url(../images/idx_btnbg.gif) top repeat-x; border:1px solid gray; border-right:1px solid #316835; border-bottom:1px solid #316835; filter:progid:DXImageTransform.Microsoft.Shadow(Color=gray,Direction=120,strength=3)}
 span.impBtn{background:url(../images/bgcolor.gif) top repeat-x; border:1px solid #316835}
-input.button{ height:23px; min-width:65px; margin:0; border:0; 	padding: 0 10px; letter-spacing:3px; text-align:center; background-color:transparent; background-position:5px 40%; cursor:pointer}
+input.button{ height:23px; min-width:75px; margin:0; border:0; 	padding: 0 10px; letter-spacing:2px; text-align:center; background-color:transparent; background-position:5px 40%; cursor:pointer}
 
-input.imgButton{width:65px; height:23px; margin:0; border:0; padding-top:3px  !important; padding-top:5px; padding-left:25px !important; padding-left:12px; letter-spacing:4px; font-weight:bold; background-color:transparent; background-position:5px 40%; background-repeat:no-repeat; cursor:pointer; text-align:right}
+input.imgButton{width:75px; height:23px; margin:0; border:0; padding-top:3px  !important; padding-top:5px; padding-left:5px !important; padding-left:12px; letter-spacing:2px; font-weight:bold; background-color:transparent; background-position:5px 40%; background-repeat:no-repeat; cursor:pointer; text-align:center}
 
 input.imgLink{width:28px; height:28px; margin:0; border:0; padding-top:5px; padding-left:12px; letter-spacing:4px; font-weight:bold; background-color:transparent; background-position:center; background-repeat:no-repeat; cursor:pointer}
 

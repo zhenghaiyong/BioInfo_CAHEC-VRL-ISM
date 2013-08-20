@@ -9,17 +9,17 @@
 
 <!-- 主体内容  -->
 <div class="content" >
-<div class="title">组用户列表：{vo:group|name}</div>
+<div class="title">{$Think.lang._GROUP_USER_LIST_} {vo:group|name}</div>
 <!--  功能操作区域  -->
 <div class="operate" >
-<html:imageBtn name="add" value="新增" click="add()" style="impBtn hMargin fLeft " />
-<html:imageBtn name="edit" value="编辑" click="edit()" style="impBtn hMargin fLeft " />
-<html:imageBtn name="delete" value="删除" click="del()" style="impBtn hMargin fLeft " />
+<html:imageBtn name="add" value="{$Think.lang._ADD_}" click="add()" style="impBtn hMargin fLeft " />
+<html:imageBtn name="edit" value="{$Think.lang._EDIT_}" click="edit()" style="impBtn hMargin fLeft " />
+<html:imageBtn name="delete" value="{$Think.lang._DELETE_}" click="del()" style="impBtn hMargin fLeft " />
 <!-- 查询区域 -->
 <div class="fRig">
 <form method=post action="">
 <div class="fLeft"><span id="key"><input type="text" name="name" class="medium" ></span></div>
-<html:imageBtn type="submit" name="search" value="查询" style="impBtn hMargin fLeft " />
+<html:imageBtn type="submit" name="search" value="{$Think.lang._SEARCH_}" style="impBtn hMargin fLeft " />
 </div>
 </form>
 </div>
@@ -27,7 +27,7 @@
 
 <!-- 列表显示区域  -->
 <div class="list" >
-<div id="result" class="result none"></div><html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="id:编号|10%,name:用户名,nickname:昵称,status|getStatus:状态" actionlist="edit:编辑,del:删除,forbid|resume:禁用|恢复" />
+<div id="result" class="result none"></div><html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="id:{$Think.lang._USER_ID_}|10%,name:{$Think.lang._USER_NAME_},nickname:{$Think.lang._USER_NICKNAME_},status|getStatus:{$Think.lang._USER_STATUS_}" actionlist="edit:{$Think.lang._USER_EDIT_},del:{$Think.lang._USER_DELETE_},forbid|resume:{$Think.lang._USER_FORBID_}|{$Think.lang._USER_RESUME_}" />
 </div>
 <!--  分页显示区域 -->
 <div class="page">{$page}</div>

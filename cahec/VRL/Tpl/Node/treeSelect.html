@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>节点挑选</title>
-<load href ="../Public/Css/style.css" />
+<title>{$Think.lang._NODE_SELECT_}</title>
+<load href='__PUBLIC__/Css/style.css' />
 <import file="Js.Util.JTree" /> 
 <script language="JavaScript">
 <!--
@@ -30,8 +30,8 @@ function ok(){
 <table class="order" cellpadding=0 style="margin:0" cellspacing=0 width="100%">
 <tr><td height="5" colspan="2" class="topTd" ></td></tr>
 <tr>
-	<Th colspan=2 align="center"><div class="fLeft"><input name="nodeCaption" id="nodeCaption" type="text" style="width:165px"></div>
-<html:imageBtn name="search" value="查询" click="findNode(myTree.treeNodes)" style="impBtn hMargin fLeft " /></Th>
+	<th colspan=2 align="center"><div class="fLeft"><input name="nodeCaption" id="nodeCaption" type="text" style="width:160px"></div>
+<html:imageBtn name="search" value="{$Think.lang._SEARCH_}" click="findNode(myTree.treeNodes)" style="impBtn hMargin fLeft " /></th>
 </tr>
 <tr >
 	<td width="75%" >
@@ -41,8 +41,8 @@ function ok(){
 </tr>
 <tr>
 	<td colspan=2 align="center">
-	<input type="button" class="button shadow" value="确 定" onclick="ok()" >
-	<input type="button" class="button shadow" value="取 消" onclick="window.close()" >
+	<input type="button" class="button shadow" value="{$Think.lang._TREE_ENTER_}" onclick="ok()" >
+	<input type="button" class="button shadow" value="{$Think.lang._TREE_CANCEL_}" onclick="window.close()" >
 </td>
 </tr>
 <tr><td height="5" colspan="2" class="topTd" ></td></tr>

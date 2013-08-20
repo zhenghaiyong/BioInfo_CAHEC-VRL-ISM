@@ -15,30 +15,30 @@ location.href='__URL__/userList/id/'+groupId;
 </script>
 <!-- 主体内容  -->
 <div class="content" >
-<div class="title">角色组列表</div>
+<div class="title">{$Think.lang._ROLE_GROUP_LIST_}</div>
 <!--  功能组区域  -->
 <div class="operate" >
-<html:imageBtn name="add" value="新增" click="add()" style="impBtn hMargin fLeft shadow" />
-<html:imageBtn name="edit" value="编辑" click="edit()" style="impBtn hMargin fLeft shadow" />
-<html:imageBtn name="delete" value="删除" click="del()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="add" value="{$Think.lang._ADD_}" click="add()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="edit" value="{$Think.lang._EDIT_}" click="edit()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="delete" value="{$Think.lang._DELETE_}" click="del()" style="impBtn hMargin fLeft shadow" />
 <!-- 查询区域 -->
 <div class="fRig">
 <form method=post action="__URL__">
-<div class="fLeft"><span id="key"><input type="text" title="组名查询" name="name" class="medium" ></span></div>
-<html:imageBtn name="search" type="submit" value="查询" style="impBtn hMargin fLeft shadow" />
-<html:imageBtn name="adv" value="高级" id="showText" click="showHideSearch()" style="impBtn hMargin fLeft shadow" />
+<div class="fLeft"><span id="key"><input type="text" title="{$Think.lang._GROUP_NAME_SEARCH_}" name="name" class="medium" ></span></div>
+<html:imageBtn name="search" type="submit" value="{$Think.lang._SEARCH_}" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="adv" value="{$Think.lang._ADVANCED_}" id="showText" click="showHideSearch()" style="impBtn hMargin fLeft shadow" />
 </div>
 <!-- 高级查询区域 -->
 <div  id="searchM" class=" none search cBoth" >
 <table cellpadding="1" cellspacing="3" width="100%">
 <tr>
-	<td class="tRight">状态：</td>
+	<td class="tRight">{$Think.lang._ADVANCED_STATUS_}</td>
 	<td><select class="small bLeft" name="status_sign">
-	<option value="">选择</option>
-	<option value="1">正常</option>
-	<option value="0">禁止</option>
+	<option value="">{$Think.lang._ADVANCED_SELECT_}</option>
+	<option value="1">{$Think.lang._ADVANCED_NORMAL_}</option>
+	<option value="0">{$Think.lang._ADVANCED_FORBID_}</option>
 	</select></td>
-	<td class="tRight">描述：</td>
+	<td class="tRight">{$Think.lang._ADVANCED_DESCRIPTION_}</td>
 	<td ><input type="text" name="remark" class="large "></td>
 </tr>
 </table>
@@ -50,7 +50,7 @@ location.href='__URL__/userList/id/'+groupId;
 
 <!-- 列表显示区域  -->
 <div class="list" >
-<div id="result" class="result none"></div><html:list id="checkList" style="list" name="action" checkbox="true" action="true" datasource="list" show="id:编号|10%,name:组名:edit,status|getStatus:状态,remark:描述" actionlist="status|showStatus=$action['id'],id|app|授权,id|user|用户列表" />
+<div id="result" class="result none"></div><html:list id="checkList" style="list" name="action" checkbox="true" action="true" datasource="list" show="id:{$Think.lang._ID_}|10%,name:{$Think.lang._GROUP_NAME_}:edit,status|getStatus:{$Think.lang._STATUS_},remark:{$Think.lang._DESCRIPTION_}" actionlist="status|showStatus=$action['id'],id|app|{$Think.lang._AUTHORIZE_},id|user|{$Think.lang._USER_LIST_}" />
 </div>
 <!--  分页显示区域 -->
 <div class="page">{$page}</div>

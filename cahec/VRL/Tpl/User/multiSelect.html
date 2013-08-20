@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户挑选</title>
-<load href ="../Public/css/style.css" />
-<load href="../Public/js/Common.js" />
+<title>{$Think.lang._USER_SELECT_}</title>
+<load href ="__PUBLIC__/Css/style.css" />
+<load href="__PUBLIC__/Js/Common.js" />
 <script language="JavaScript">
 <!--
 function ok(){
@@ -28,10 +28,10 @@ function ok(){
 <body style="margin:0;overflow:hidden">
 <form METHOD="POST" style="margin:0" name = "form1" action="">
 <div align="center">
-<div align="center"><table class="select"><tr><td height="5" colspan="3" class="topTd" ></td></tr><tr><Th width="44%" >系统用户列表</Th><Th ></Th><Th width="44%">选择用户列表</Th></tr><tr><td><div class="solid"><select id="sourceSelect" name="" ondblclick="addItem()" onchange="" multiple="multiple" class="multiSelect" size="16" ><volist name="list" id="vo">
+  <div align="center"><table class="select"><tr><td height="5" colspan="3" class="topTd" ></td></tr><tr><Th width="44%" >{$Think.lang._SYSTEM_USER_LIST_}</Th><Th ></Th><Th width="44%">{$Think.lang._SELECT_USER_LIST_}</Th></tr><tr><td><div class="solid"><select id="sourceSelect" name="" ondblclick="addItem()" onchange="" multiple="multiple" class="multiSelect" size="16" ><volist name="list" id="vo">
 <option value="{$vo.id}">{$vo.nickname}</option></volist></select>
-</div></td><td valign="middle"><div style="margin-top:35px"><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="添加" onclick="addItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="全选" onclick="addAllItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="移除" onclick="delItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="全删" onclick="delAllItem()" class="button"></div></div></td>	<td><div class="solid"><select id="targetSelect" name="userList" ondblclick="delItem()" onchange="" multiple="multiple" class="multiSelect" size="16" ></select></div></td></tr>
-<tr><td colspan="3" class="tCenter"><div  style="width:65%;" ><html:imageBtn name="save" type="submit" value="保存" click="ok()" style="impBtn vMargin fLeft " /><html:imageBtn name="reset"  value="取消" click="window.close()" style="impBtn vMargin fRig " /></div></td></tr>
+</div></td><td valign="middle"><div style="margin-top:35px"><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="{$Think.lang._SELECT_ADD_}" onclick="addItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="{$Think.lang._SELECT_ALL_}" onclick="addAllItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="{$Think.lang._SELECT_REMOVE_}" onclick="delItem()" class="button"></div><div class="impBtn vMargin fLeft " ><input type="button" id=""  name="" value="{$Think.lang._SELECT_NONE_}" onclick="delAllItem()" class="button"></div></div></td>	<td><div class="solid"><select id="targetSelect" name="userList" ondblclick="delItem()" onchange="" multiple="multiple" class="multiSelect" size="16" ></select></div></td></tr>
+<tr><td colspan="3" class="tCenter"><div  style="width:80%;" ><html:imageBtn name="save" type="submit" value="{$Think.lang._SAVE_}" click="ok()" style="impBtn vMargin fLeft" /><html:imageBtn name="reset"  value="{$Think.lang._CANCEL_}" click="window.close()" style="impBtn vMargin fRig" /></div></td></tr>
 <tr><td height="5" colspan="3" class="bottomTd" ></td></tr>
 </table>
 </div>

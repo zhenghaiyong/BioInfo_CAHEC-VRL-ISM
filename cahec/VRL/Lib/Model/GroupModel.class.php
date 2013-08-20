@@ -2,7 +2,7 @@
 // 配置类型模型
 class GroupModel extends CommonModel {
     protected $_validate = array(
-        array('name','require','名称必须'),
+        array('name','require','Please input Name'), // ZHY 多语言 名称必须
         );
 
     protected $_auto		=	array(

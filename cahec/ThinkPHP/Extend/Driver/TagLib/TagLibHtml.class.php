@@ -431,14 +431,14 @@ class TagLibHtml extends TagLib{
             }
             $showname[2] = isset($showname[2])?$showname[2]:$showname[0];
             if($sort) {
-                $parseStr .= '<a href="javascript:sortBy(\''.$property[0].'\',\'{$sort}\',\''.ACTION_NAME.'\')" title="按照'.$showname[2].'{$sortType} ">'.$showname[0].'<eq name="order" value="'.$property[0].'" ><img src="../Public/images/{$sortImg}.gif" width="12" height="17" border="0" align="absmiddle"></eq></a></th>';
+                $parseStr .= '<a href="javascript:sortBy(\''.$property[0].'\',\'{$sort}\',\''.ACTION_NAME.'\')" title="{$Think.lang._ACCORDING_TO_}'.$showname[2].'{$sortType} ">'.$showname[0].'<eq name="order" value="'.$property[0].'" ><img src="../Public/images/{$sortImg}.gif" width="12" height="17" border="0" align="absmiddle"></eq></a></th>'; // ZHY 多语言
             }else{
                 $parseStr .= $showname[0].'</th>';
             }
 
         }
         if(!empty($action)) {//如果指定显示操作功能列
-            $parseStr .= '<th >操作</th>';
+            $parseStr .= '<th >{$Think.lang._OPERATE_}</th>'; // ZHY 多语言
         }
 
         $parseStr .= '</tr>';

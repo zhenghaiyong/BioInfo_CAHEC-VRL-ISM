@@ -2,28 +2,28 @@
 <div id="main" class="main" >
 <div class="content">
 <div id="result" class="result none"></div>
-<div class="title">编辑资料</div>
+<div class="title">{$Think.lang._CHANGE_PROFILE_}</div>
 <div class="fLeft" style="width:90%;float:left">
 <form method='post'  id="form1" action="__URL__/change/">
 <table cellpadding=3 cellspacing=3>
 <tr>
-	<td class="tRight" >昵称：</td>
+	<td class="tRight">{$Think.lang._NICKNAME_}</td>
 	<td class="tLeft" ><input type="text" class="medium bLeft"  name="nickname" value="{$vo.nickname}"></td>
 </tr>
 <tr>
-	<td class="tRight">Email：</td>
+	<td class="tRight">{$Think.lang._EMAIL_}</td>
 	<td class="tLeft"><input type="text" class="large bLeft"  name="email" value="{$vo.email}"></td>
 </tr>
 <tr>
-	<td class="tRight tTop">备  注：</td>
+	<td class="tRight tTop">{$Think.lang._REMARK_}</td>
 	<td class="tLeft"><TEXTAREA class="large bLeft"  name="remark" rows="5" cols="57">{$vo.remark}</textarea></td>
 </tr>
 <tr>
 	<td></td>
 	<td class="center">
 	<input type="hidden" name="id" value="{$vo.id}">
-	<input type="submit" value="保 存" class="submit small">
-	<input type="reset" class="small submit hMargin" value="清 空" >
+	<input type="submit" class="submit small hMargin" value="{$Think.lang._UPDATE_}">
+	<input type="reset" class="submit small hMargin" value="{$Think.lang._CLEAR_}" >
 	</td>
 </tr>
 </table>

@@ -70,6 +70,14 @@ class Page {
      +----------------------------------------------------------
      */
     public function show() {
+        // ZHY 多语言
+        $this->config['header'] = L('_PAGE_RECORDS_');
+        $this->config['prev'] = L('_PREVIOUS_PAGE_');
+        $this->config['next'] = L('_NEXT_PAGE_');
+        $this->config['first'] = L('_FIRST_PAGE_');
+        $this->config['last'] = L('_LAST_PAGE_');
+        $this->config['theme'] = ' %totalRow% %header% %nowPage%/%totalPage% '.L('_PAGE_').' %upPage% %downPage% %first%  %prePage%  %linkPage%  %nextPage% %end%';
+        // ZHY 多语言
         if(0 == $this->totalRows) return '';
         $p = C('VAR_PAGE');
         $nowCoolPage      = ceil($this->nowPage/$this->rollPage);
@@ -100,7 +108,7 @@ class Page {
             $prePage = "";
         }else{
             $preRow =  $this->nowPage-$this->rollPage;
-            $prePage = "<a href='".$url."&".$p."=$preRow' >上".$this->rollPage."页</a>";
+            $prePage = "<a href='".$url."&".$p."=$preRow' >".L('_PREVIOUS_').$this->rollPage.L('_PAGE_')."</a>";
             $theFirst = "<a href='".$url."&".$p."=1' >".$this->config['first']."</a>";
         }
         if($nowCoolPage == $this->coolPages){
@@ -109,7 +117,7 @@ class Page {
         }else{
             $nextRow = $this->nowPage+$this->rollPage;
             $theEndRow = $this->totalPages;
-            $nextPage = "<a href='".$url."&".$p."=$nextRow' >下".$this->rollPage."页</a>";
+            $nextPage = "<a href='".$url."&".$p."=$nextRow' >".L('_NEXT_').$this->rollPage.L('_PAGE_')."</a>";
             $theEnd = "<a href='".$url."&".$p."=$theEndRow' >".$this->config['last']."</a>";
         }
         // 1 2 3 4 5

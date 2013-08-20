@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<TITLE>权限组挑选</title>
-<load type="css" href ="__PUBLIC__/css/blue.css" />
+<title>{$Think.lang._AUTH_GROUP_SELECT_}</title>
+<load type="css" href ="__PUBLIC__/Css/blue.css" />
 <script language="JavaScript">
 <!--
 function ok(){
@@ -34,14 +34,14 @@ function ok(){
 <table class="order" cellpadding=0 style="margin:0" cellspacing=0 width="100%">
 <tr><td height="3" colspan="2" class="topTd" ></td></tr>
 <tr>
-	<th colspan=2 align="center"><div class="fLeft"><input name="name" type="text" style="width:165px"></div>
-<html:imageBtn name="search" value="查询" click="form1.submit()" style="impBtn hMargin fLeft " /></th>
+	<th colspan=2 align="center"><div class="fLeft"><input name="name" type="text" style="width:158px"></div>
+<html:imageBtn name="search" value="{$Think.lang._SEARCH_}" click="form1.submit()" style="impBtn hMargin fLeft " /></th>
 </tr>
 <tr >
 	<td width="75%" align="right">
 	<div class="solid">
 	<select class="multiSelect" ondblclick="ok()" name="group" size="15">
-	<option value="0">无上级组</option>
+	<option value="0">{$Think.lang._NO_PARENT_GROUP_}</option>
 <voList name="list" id="group" >
 <option value="{$group.id}">{$group.name}</option>
 </voList>
@@ -49,9 +49,9 @@ function ok(){
 </tr>
 <tr>
 	<td colspan=2 align="center">
-	<div style="width:65%">
-<input type="submit" value="确 定" onClick="ok()" class="submit hMargin " /> 
-<input name="reset" type="reset" value="取 消" onClick="window.close()" class="submit small " />
+	<div style="width:100%">
+<input type="submit" value="{$Think.lang._ROLE_ENTER_}" onClick="ok()" class="submit hMargin " /> 
+<input name="reset" type="reset" value="{$Think.lang._ROLE_CANCEL_}" onClick="window.close()" class="submit small " />
 </div>
 </td>
 </tr>

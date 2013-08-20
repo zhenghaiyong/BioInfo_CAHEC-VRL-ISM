@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html>
 <head>
-<title>页面提示</title>
+<title>{$Think.lang._SUCCESS_INFO_}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv='Refresh' content='{$waitSecond};URL={$jumpUrl}'>
 <load href ="__PUBLIC__/Css/style.css" />
@@ -27,12 +27,12 @@
 	</present>
 	<present name="closeWin" >
 		<tr class="row">
-		<td>系统将在 <span id="wait" style="color:blue;font-weight:bold">{$waitSecond}</span> 秒后自动关闭，如果不想等待,直接点击 <a id="href" href="{$jumpUrl}">这里</a> 关闭</td>
+		<td>{$Think.lang._SYSTEM_WILL_CLOSE_} <span id="wait" style="color:blue;font-weight:bold">{$waitSecond}</span> {$Think.lang._CLOSE_NOT_WAIT_CLICK_} <a id="href" href="{$jumpUrl}">{$Think.lang._HERE_}</a> {$Think.lang._CLOSE_}</td>
 	</tr>
 	</present>
 	<notpresent name="closeWin" >
 	<tr class="row">
-		<td>系统将在 <span id="wait" style="color:blue;font-weight:bold">{$waitSecond}</span> 秒后自动跳转,如果不想等待,直接点击 <a id="href" href="{$jumpUrl}">这里</a> 跳转</td>
+		<td>{$Think.lang._SYSTEM_WILL_JUMP_} <span id="wait" style="color:blue;font-weight:bold">{$waitSecond}</span> {$Think.lang._JUMP_NOT_WAIT_CLICK_} <a id="href" href="{$jumpUrl}">{$Think.lang._HERE_}</a> {$Think.lang._JUMP_}</td>
 	</tr>
 	</notpresent>
 	<tr>

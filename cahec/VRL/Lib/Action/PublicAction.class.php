@@ -3,7 +3,7 @@ class PublicAction extends Action {
     // 检查用户是否登录
     protected function checkUser() {
         if(!isset($_SESSION[C('USER_AUTH_KEY')])) {
-            $this->error('没有登录','Public/login');
+            $this->error(L('_NOT_LOGIN_'),'login');
         }
     }
 
@@ -77,16 +77,16 @@ class PublicAction extends Action {
     // 后台首页 查看系统信息
     public function main() {
         $info = array(
-            '操作系统'=>PHP_OS,
-            '运行环境'=>$_SERVER["SERVER_SOFTWARE"],
-            'PHP运行方式'=>php_sapi_name(),
-            'ThinkPHP版本'=>THINK_VERSION.' [ <a href="http://thinkphp.cn" target="_blank">查看最新版本</a> ]',
-            '上传附件限制'=>ini_get('upload_max_filesize'),
-            '执行时间限制'=>ini_get('max_execution_time').'秒',
-            '服务器时间'=>date("Y年n月j日 H:i:s"),
-            '北京时间'=>gmdate("Y年n月j日 H:i:s",time()+8*3600),
-            '服务器域名/IP'=>$_SERVER['SERVER_NAME'].' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]',
-            '剩余空间'=>round((@disk_free_space(".")/(1024*1024)),2).'M',
+            L('_PHP_OS_')=>PHP_OS,
+            L('_SERVER_SOFTWARE_')=>$_SERVER["SERVER_SOFTWARE"],
+            L('_PHP_SERVER_API_')=>php_sapi_name(),
+            L('_THINKPHP_VERSION_')=>THINK_VERSION.' [ <a href="http://thinkphp.cn" target="_blank">'.L('_CHECK_LATEST_VERSION_').'</a> ]',
+            L('_UPLOAD_MAX_FILESIZE_')=>ini_get('upload_max_filesize'),
+            L('_MAX_EXECUTION_TIME_')=>ini_get('max_execution_time').L('_SECOND_'),
+            L('_SERVER_DATETIME_')=>date("Y-n-j H:i:s"),
+            L('_BEIJING_DATETIME_')=>gmdate("Y-n-j H:i:s",time()+8*3600),
+            L('_SERVER_NAME_') . '[ IP ]'=>$_SERVER['SERVER_NAME'].' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]',
+            L('_DISK_FREE_SPACE_')=>round((@disk_free_space(".")/(1024*1024)),2).'M',
             'register_globals'=>get_cfg_var("register_globals")=="1" ? "ON" : "OFF",
             'magic_quotes_gpc'=>(1===get_magic_quotes_gpc())?'YES':'NO',
             'magic_quotes_runtime'=>(1===get_magic_quotes_runtime())?'YES':'NO',
@@ -115,20 +115,20 @@ class PublicAction extends Action {
             unset($_SESSION[C('USER_AUTH_KEY')]);
             unset($_SESSION);
             session_destroy();
-            $this->success('登出成功！',__URL__.'/login/');
+            $this->success(L('_SIGN_OUT_SUCCESS_'),__URL__.'/login/');
         }else {
-            $this->error('已经登出！');
+            $this->error(L('_ALREADY_SIGN_OUT_'));
         }
     }
 
     // 登录检测
     public function checkLogin() {
         if(empty($_POST['account'])) {
-            $this->error('帐号错误！');
+            $this->error(L('_ACCOUNT_EMPTY_'));
         }elseif (empty($_POST['password'])){
-            $this->error('密码必须！');
+            $this->error(L('_PASSWORD_EMPTY_'));
         }elseif (empty($_POST['verify'])){
-            $this->error('验证码必须！');
+            $this->error(L('_VERIFICATION_EMPTY_'));
         }
         //生成认证条件
         $map            =   array();
@@ -136,16 +136,16 @@ class PublicAction extends Action {
         $map['account']	= $_POST['account'];
         $map["status"]	=	array('gt',0);
         if(session('verify') != md5($_POST['verify'])) {
-            $this->error('验证码错误！');
+            $this->error(L('_VERIFICATION_ERROR_'));
         }
         import ( '@.ORG.Util.RBAC' );
         $authInfo = RBAC::authenticate($map);
         //使用用户名、密码和状态的方式进行认证
         if(false === $authInfo) {
-            $this->error('帐号不存在或已禁用！');
+            $this->error(L('_ACCOUNT_NOT_EXIST_OR_DISABLE_'));
         }else {
             if($authInfo['password'] != md5($_POST['password'])) {
-                $this->error('密码错误！');
+                $this->error(L('_PASSWORD_ERROR_'));
             }
             $_SESSION[C('USER_AUTH_KEY')]	=	$authInfo['id'];
             $_SESSION['email']	=	$authInfo['email'];
@@ -168,16 +168,17 @@ class PublicAction extends Action {
 
             // 缓存访问权限
             RBAC::saveAccessList();
-            $this->success('登录成功！',__APP__.'/Index/index');
+            $this->success(L('_SIGN_IN_SUCCESS_'),__APP__.'/Index/index');
 
         }
     }
+
     // 更换密码
     public function changePwd() {
         $this->checkUser();
         //对表单提交处理进行处理或者增加非表单数据
         if(md5($_POST['verify'])	!= $_SESSION['verify']) {
-            $this->error('验证码错误！');
+            $this->error(L('_VERIFICATION_ERROR_'));
         }
         $map	=	array();
         $map['password']= pwdHash($_POST['oldpassword']);
@@ -189,11 +190,11 @@ class PublicAction extends Action {
         //检查用户
         $User    =   M("User");
         if(!$User->where($map)->field('id')->find()) {
-            $this->error('旧密码不符或者用户名错误！');
+            $this->error(L('_OLD_PASSWORD_ERROR_OR_ACCOUNT_ERROR_'));
         }else {
             $User->password	=	pwdHash($_POST['password']);
             $User->save();
-            $this->success('密码修改成功！');
+            $this->success(L('_CHANGE_PASSWORD_SUCCESS_'));
          }
     }
 
@@ -220,9 +221,9 @@ class PublicAction extends Action {
         }
         $result	=	$User->save();
         if(false !== $result) {
-            $this->success('资料修改成功！');
+            $this->success(L('_CHANGE_PROFILE_SUCCESS_'));
         }else{
-            $this->error('资料修改失败!');
+            $this->error(L('_CHANGE_PROFILE_FAILURE_'));
         }
     }
 }

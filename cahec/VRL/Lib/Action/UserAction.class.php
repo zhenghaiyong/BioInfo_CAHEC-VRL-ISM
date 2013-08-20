@@ -11,16 +11,16 @@ class UserAction extends CommonAction {
     // 检查帐号
     public function checkAccount() {
         if(!preg_match('/^[a-z]\w{4,}$/i',$_POST['account'])) {
-            $this->error( '用户名必须是字母，且5位以上！');
+            $this->error(L('_USERNAME_MUST_BE_LETTERS_ERROR_'));
         }
         $User = M("User");
         // 检测用户名是否冲突
         $name  =  $_REQUEST['account'];
         $result  =  $User->getByAccount($name);
         if($result) {
-            $this->error('该用户名已经存在！');
+            $this->error(L('_USERNAME_EXIST_ERROR_'));
         }else {
-            $this->success('该用户名可以使用！');
+            $this->success(L('_USERNAME_OK_'));
         }
     }
 
@@ -34,9 +34,9 @@ class UserAction extends CommonAction {
             // 写入帐号数据
             if($result	 =	 $User->add()) {
                 $this->addRole($result);
-                $this->success('用户添加成功！');
+                $this->success(L('_USER_ADD_SUCCESS_'));
             }else{
-                $this->error('用户添加失败！');
+                $this->error(L('_USER_ADD_FAILURE_'));
             }
         }
     }
@@ -55,16 +55,16 @@ class UserAction extends CommonAction {
         $id  =  $_POST['id'];
         $password = $_POST['password'];
         if(''== trim($password)) {
-            $this->error('密码不能为空！');
+            $this->error(L('_PASSWORD_NOT_EMPTY_'));
         }
         $User = M('User');
         $User->password	=	md5($password);
         $User->id			=	$id;
         $result	=	$User->save();
         if(false !== $result) {
-            $this->success("密码修改为$password");
+            $this->success(L('_PASSWORD_RESET_TO_')."$password");
         }else {
-            $this->error('重置密码失败！');
+            $this->error(L('_PASSWORD_RESET_FAILURE_'));
         }
     }
 }

@@ -9,17 +9,17 @@
 
 <!-- 主体内容  -->
 <div class="content" >
-<div class="title">后台用户列表</div>
+<div class="title">{$Think.lang._USER_LIST_}</div>
 <!--  功能操作区域  -->
 <div class="operate" >
-<html:imageBtn name="add" value="新增" click="add()" style="impBtn hMargin fLeft shadow" />
-<html:imageBtn name="edit" value="编辑" click="edit()" style="impBtn hMargin fLeft shadow" />
-<html:imageBtn name="delete" value="删除" click="del()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="add" value="{$Think.lang._ADD_}" click="add()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="edit" value="{$Think.lang._EDIT_}" click="edit()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="delete" value="{$Think.lang._DELETE_}" click="del()" style="impBtn hMargin fLeft shadow" />
 <!-- 查询区域 -->
 <div class="fRig">
 <form method='post' action="__URL__">
-<div class="fLeft"><span id="key"><input type="text" name="account" title="帐号查询" class="medium" ></span></div>
-<html:imageBtn type="submit" name="search" value="查询" style="impBtn hMargin fLeft shadow" />
+<div class="fLeft"><span id="key"><input type="text" name="account" title="{$Think.lang._USERNAME_SEARCH_}" class="medium" ></span></div>
+<html:imageBtn type="submit" name="search" value="{$Think.lang._SEARCH_}" style="impBtn hMargin fLeft shadow" />
 </div>
 <!-- 高级查询区域 -->
 <div  id="searchM" class=" none search cBoth" >
@@ -30,7 +30,7 @@
 
 <!-- 列表显示区域  -->
 <div class="list" >
-<html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="id:编号|8%,account:用户名:edit,nickname:昵称,create_time|toDate='Y-m-d H#i#s':添加时间,last_login_time|toDate='Y-m-d H#i#s':上次登录,login_count:登录次数,status|getStatus:状态" actionlist="status|showStatus=$user['id']" />
+<html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="id:{$Think.lang._ID_}|8%,account:{$Think.lang._USERNAME_}:edit,nickname:{$Think.lang._NICKNAME_},create_time|toDate='Y-m-d H#i#s':{$Think.lang._CREATE_TIME_},last_login_time|toDate='Y-m-d H#i#s':{$Think.lang._LAST_LOGINTIME_},login_count:{$Think.lang._LOGIN_TIMES_},status|getStatus:{$Think.lang._STATUS_}" actionlist="status|showStatus=$user['id']" />
 </div>
 <!--  分页显示区域 -->
 <div class="page">{$page}</div>

@@ -2,7 +2,7 @@
 // 角色模型
 class RoleModel extends CommonModel {
     public $_validate = array(
-        array('name','require','名称必须'),
+        array('name','require','Please input Name'), // ZHY 多语言 名称必须
         );
 
     public $_auto		=	array(

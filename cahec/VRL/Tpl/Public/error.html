@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html>
 <head>
-<title>错误信息</title>
+<title>{$Think.lang._ERROR_INFO_}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="{$publicCss}" rel="stylesheet" type="text/css">
 </head>
@@ -12,20 +12,20 @@
 		<td height='5'  class="topTd" ></td>
 	</tr>
 	<tr class="row" >
-		<th  class="tCenter red"><img SRC='../Public/images/update.gif' class='img' align='absmiddle' BORDER='0'> {$error|htmlspecialchars|nl2br}</th>
+		<th  class="tCenter red"><img src='../Public/images/update.gif' class='img' align='absmiddle' border='0'>{$error|htmlspecialchars|nl2br}</th>
 	</tr>
 	<tr>
-		<td height='5'  class="topTd" ></td>
+		<td height='5'  class="topTd"></td>
 	</tr>
 	<tr>
 		<td class="tCenter row" >
-		您可以选择 [ <a href="{$FCS.SERVER.PHP_SELF}">重试</a> ] [ <a href="javascript:history.back()">返回</a> ] 或者 [ <a href="__URL__?m=index&a=index">回到首页</a> ]</td>
+		{$Think.lang._YOU_CAN_CHOOSE_} [ <a href="{$FCS.SERVER.PHP_SELF}">{$Think.lang._RETRY_}</a> ] [ <a href="javascript:history.back()">{$Think.lang._BACK_}</a> ] {$Think.lang._OR_} [ <a href="__URL__?m=index&a=index">{$Think.lang._BACK_TO_HOME_}</a> ]</td>
 	</tr>
 	<tr>
 		<td height='5'  class="bottomTd"></td>
 	</tr>
 </table>
-<div class='logo'> ThinkPHP <sup style='color:gray;font-size:9pt'>{$Think.THINK_VERSION}</sup><span style='color:silver'> { Fast,Compatible & Simple OOP PHP Framework }</span>
+<div class='logo'> ThinkPHP <sup style='color:gray;font-size:9pt'>{$Think.THINK_VERSION}</sup><span style='color:silver'> { Fast, Compatible & Simple OOP PHP Framework }</span>
 </div>
 </body>
 </html>

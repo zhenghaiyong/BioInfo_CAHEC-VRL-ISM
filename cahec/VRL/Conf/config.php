@@ -30,5 +30,10 @@ return array(
     'RBAC_USER_TABLE'           =>  'vrl_role_user',
     'RBAC_ACCESS_TABLE'         =>  'vrl_access',
     'RBAC_NODE_TABLE'           =>  'vrl_node',
-    'SHOW_PAGE_TRACE'           =>  1//显示调试信息
+    'SHOW_PAGE_TRACE'           =>  1,  //显示调试信息
+    // 多语言
+    'LANG_SWITCH_ON'            =>  true,
+    'DEFAULT_LANG'              =>  'en-us',  //默认语言
+    'LANG_AUTO_DETECT'          =>  false,  //自动侦测语言
+    'LANG_LIST'                 =>  'en-us,zh-cn',  //必须写可允许的语言列表
 );

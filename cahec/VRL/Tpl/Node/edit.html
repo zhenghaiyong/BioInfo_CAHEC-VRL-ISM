@@ -1,22 +1,22 @@
 <include file="Public:header" />
 <div id="main" class="main" >
 <div class="content">
-<div class="title">编辑<eq name="vo.level"  value="1">应用</eq><eq name="vo.level" value="2">模块</eq><eq name="vo.level"  value="3">操作</eq> [ <a href="__URL__">返回列表</a> ]</div>
+<div class="title">{$Think.lang._EDIT_} <eq name="vo.level"  value="1">{$Think.lang._APP_}</eq> <eq name="vo.level" value="2">{$Think.lang._MODULE_}</eq> <eq name="vo.level"  value="3">{$Think.lang._OPERATE_}</eq> [ <a href="__URL__">{$Think.lang._BACK_TO_LIST_}</a> ]</div>
 <form method='post'  id="form1" action="__URL__/update/">
 <table cellpadding=3 cellspacing=3 >
 <tr>
-	<td class="tRight" ><eq name="vo.level"  value="1">应用</eq><eq name="vo.level" value="2">模块</eq><eq name="vo.level"  value="3">操作</eq>名：</td>
-	<td class="tLeft" ><input type="text" class="medium bLeftRequire" check='Require' warning="<eq name="vo.level" value="1">应用</eq><eq name="vo.level" value="2">模块</eq><eq name="vo.level" value="3">操作</eq>名称不能为空,且不能含有空格"  name="name" value="{$vo.name}"></td>
+	<td class="tRight" ><eq name="vo.level"  value="1">{$Think.lang._APP_}</eq> <eq name="vo.level" value="2">{$Think.lang._MODULE_}</eq> <eq name="vo.level"  value="3">{$Think.lang._OPERATE_}</eq> {$Think.lang._EDIT_NAME_}</td>
+	<td class="tLeft" ><input type="text" class="medium bLeftRequire" check='Require' warning="<eq name="vo.level" value="1">{$Think.lang._APP_}</eq><eq name="vo.level" value="2">{$Think.lang._MODULE_}</eq><eq name="vo.level" value="3">{$Think.lang._OPERATE_}</eq>{$Think.lang._NAME_NOT_EMPTY_}"  name="name" value="{$vo.name}"></td>
 </tr>
 <tr>
-	<td class="tRight" >显示名：</td>
-	<td class="tLeft" ><input type="text" class="medium bLeftRequire" check='Require' warning="显示名称必须" name="title" value="{$vo.title}"></td>
+	<td class="tRight" >{$Think.lang._EDIT_SHOW_NAME_}</td>
+	<td class="tLeft" ><input type="text" class="medium bLeftRequire" check='Require' warning="{$Think.lang._SHOW_NAME_EMPTY_}" name="title" value="{$vo.title}"></td>
 </tr>
 <tr>
-	<td class="tRight" >分 组：</td>
+	<td class="tRight" >{$Think.lang._EDIT_GROUP_}</td>
 	<td class="tLeft" >
 	<SELECT class="medium bLeft" name="group_id">
-	<option value="">未分组</option>
+	<option value="">{$Think.lang._NO_GROUP_}</option>
 	<volist name="list" id="group">
 	<option value="{$group.id}" <eq name="group.id" value="$vo['group_id']">selected</eq>>{$group.title}</option>
 	</volist>
@@ -24,22 +24,22 @@
 	</td>
 </tr>
 <tr>
-	<td class="tRight">状态：</td>
+	<td class="tRight">{$Think.lang._EDIT_STATUS_}</td>
 	<td class="tLeft"><SELECT class="small bLeft"  name="status">
-	<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
-	<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+	<option <eq name="vo.status" value="1" >selected</eq> value="1">{$Think.lang._STATUS_ON_}</option>
+	<option <eq name="vo.status" value="0" >selected</eq> value="0">{$Think.lang._STATUS_OFF_}</option>
 	</SELECT></td>
 </tr>
 <tr>
-	<td class="tRight tTop">描 述：</td>
+	<td class="tRight tTop">{$Think.lang._EDIT_DESCRIPTION_}</td>
 	<td class="tLeft"><TEXTAREA class="large bLeft" name="remark"  rows="5" cols="57">{$vo.remark}</textarea></td>
 </tr>
 <tr>
 	<td></td>
 	<td class="center"><div style="width:85%;margin:5px"><input type="hidden" name="id" value="{$vo.id}" >
 	<input type="hidden" name="pid" value="{$vo.pid}">
-	<div class="impBtn fLeft"><input type="submit" value="保存" class="save imgButton"></div>
-	<div class="impBtn fRig"><input type="reset" onclick="history.back(-1)" class="reset imgButton" value="取消" ></div>
+	<div class="impBtn fLeft"><input type="submit" value="{$Think.lang._SAVE_}" class="save imgButton"></div>
+	<div class="impBtn fRig"><input type="reset" onclick="history.back(-1)" class="reset imgButton" value="{$Think.lang._CANCEL_}" ></div>
 	</div></td>
 </tr>
 </table>

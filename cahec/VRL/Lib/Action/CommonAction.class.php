@@ -146,7 +146,7 @@ class CommonAction extends Action {
             $page = $p->show();
             //列表排序显示
             $sortImg = $sort; //排序图标
-            $sortAlt = $sort == 'desc' ? '升序排列' : '倒序排列'; //排序提示
+            $sortAlt = $sort == 'desc' ? L('_ASCENDING_ORDER_') : L('_DESCENDING_ORDER_'); //排序提示
             $sort = $sort == 'desc' ? 1 : 0; //排序方式
             //模板赋值显示
             $this->assign('list', $voList);
@@ -169,10 +169,10 @@ class CommonAction extends Action {
         //保存当前数据对象
         $list = $model->add();
         if ($list !== false) { //保存成功
-            $this->success('新增成功!',cookie('_currentUrl_'));
+            $this->success(L('_ADD_SUCCESS_'),cookie('_currentUrl_'));
         } else {
             //失败提示
-            $this->error('新增失败!');
+            $this->error(L('_ADD_FAILURE_'));
         }
     }
 
@@ -199,10 +199,10 @@ class CommonAction extends Action {
         $list = $model->save();
         if (false !== $list) {
             //成功提示
-            $this->success('编辑成功!',cookie('_currentUrl_'));
+            $this->success(L('_SAVE_SUCCESS_'),cookie('_currentUrl_'));
         } else {
             //错误提示
-            $this->error('编辑失败!');
+            $this->error(L('_SAVE_FAILURE_'));
         }
     }
 
@@ -228,12 +228,12 @@ class CommonAction extends Action {
                 $condition = array($pk => array('in', explode(',', $id)));
                 $list = $model->where($condition)->setField('status', - 1);
                 if ($list !== false) {
-                    $this->success('删除成功！');
+                    $this->success(L('_DELETE_SUCCESS_'));
                 } else {
-                    $this->error('删除失败！');
+                    $this->error(L('_DELETE_FAILURE_'));
                 }
             } else {
-                $this->error('非法操作');
+                $this->error(L('_ILLEGAL_OPERATION_'));
             }
         }
     }
@@ -248,12 +248,12 @@ class CommonAction extends Action {
             if (isset($id)) {
                 $condition = array($pk => array('in', explode(',', $id)));
                 if (false !== $model->where($condition)->delete()) {
-                    $this->success('删除成功！');
+                    $this->success(L('_DELETE_SUCCESS_'));
                 } else {
-                    $this->error('删除失败！');
+                    $this->error(L('_DELETE_FAILURE_'));
                 }
             } else {
-                $this->error('非法操作');
+                $this->error(L('_ILLEGAL_OPERATION_'));
             }
         }
         $this->forward();
@@ -267,7 +267,7 @@ class CommonAction extends Action {
             if (false !== $model->where('status=1')->delete()) {
                 $this->success(L('_DELETE_SUCCESS_'),$this->getReturnUrl());
             } else {
-                $this->error(L('_DELETE_FAIL_'));
+                $this->error(L('_DELETE_FAILURE_'));
             }
         }
         $this->forward();
@@ -293,9 +293,9 @@ class CommonAction extends Action {
         $condition = array($pk => array('in', $id));
         $list = $model->forbid($condition);
         if ($list !== false) {
-            $this->success('状态禁用成功',$this->getReturnUrl());
+            $this->success(L('_STATUS_FORBID_SUCCESS'),$this->getReturnUrl());
         } else {
-            $this->error('状态禁用失败！');
+            $this->error(L('_STATUS_FORBID_FAILURE_'));
         }
     }
 
@@ -306,9 +306,9 @@ class CommonAction extends Action {
         $id = $_GET [$pk];
         $condition = array($pk => array('in', $id));
         if (false !== $model->checkPass($condition)) {
-            $this->success('状态批准成功！',$this->getReturnUrl());
+            $this->success(L('_STATUS_PASS_SUCCESS_'),$this->getReturnUrl());
         } else {
-            $this->error('状态批准失败！');
+            $this->error(L('_STATUS_PASS_FAILURE_'));
         }
     }
 
@@ -319,9 +319,9 @@ class CommonAction extends Action {
         $id = $_GET [$pk];
         $condition = array($pk => array('in', $id));
         if (false !== $model->recycle($condition)) {
-            $this->success('状态还原成功！',$this->getReturnUrl());
+            $this->success(L('_STATUS_RECYCLE_SUCCESS_'),$this->getReturnUrl());
         } else {
-            $this->error('状态还原失败！');
+            $this->error(L('_STATUS_RECYCLE_FAILURE_'));
         }
     }
 
@@ -356,9 +356,9 @@ class CommonAction extends Action {
         $id = $_GET [$pk];
         $condition = array($pk => array('in', $id));
         if (false !== $model->resume($condition)) {
-            $this->success('状态恢复成功！',$this->getReturnUrl());
+            $this->success(L('_STATUS_RESUME_SUCCESS_'),$this->getReturnUrl());
         } else {
-            $this->error('状态恢复失败！');
+            $this->error(L('_STATUS_RESUME_FAILURE_'));
         }
     }
 
@@ -384,7 +384,7 @@ class CommonAction extends Action {
             $model->commit();
             if ($result !== false) {
                 //采用普通方式跳转刷新页面
-                $this->success('更新成功');
+                $this->success(L('_UPDATE_SUCCESS_'));
             } else {
                 $this->error($model->getError());
             }

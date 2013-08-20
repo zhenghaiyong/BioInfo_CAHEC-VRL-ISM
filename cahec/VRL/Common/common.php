@@ -22,21 +22,21 @@ function toDate($time, $format = 'Y-m-d H:i:s') {
 function getStatus($status, $imageShow = true) {
 	switch ($status) {
 		case 0 :
-			$showText = '禁用';
-			$showImg = '<IMG SRC="__PUBLIC__/Images/locked.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="禁用">';
+			$showText = L('_STATUS_LOCKED_');
+			$showImg = '<IMG SRC="__PUBLIC__/Images/locked.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="'.L('_STATUS_LOCKED_').'">';
 			break;
 		case 2 :
-			$showText = '待审';
-			$showImg = '<IMG SRC="__PUBLIC__/Images/prected.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="待审">';
+			$showText = L('_STATUS_PENDING_');
+			$showImg = '<IMG SRC="__PUBLIC__/Images/pending.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="'.L('_STATUS_PENDING_').'">';
 			break;
 		case - 1 :
-			$showText = '删除';
-			$showImg = '<IMG SRC="__PUBLIC__/Images/del.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="删除">';
+			$showText = L('_STATUS_DELETE_');
+			$showImg = '<IMG SRC="__PUBLIC__/Images/del.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="'.L('_STATUS_DELETE_').'">';
 			break;
 		case 1 :
 		default :
-			$showText = '正常';
-			$showImg = '<IMG SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="正常">';
+			$showText = L('_STATUS_OK_');
+			$showImg = '<IMG SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="'.L('_STATUS_OK_').'">';
 
 	}
 	return ($imageShow === true) ?  $showImg  : $showText;
@@ -45,7 +45,7 @@ function getStatus($status, $imageShow = true) {
 
 function getNodeGroupName($id) {
 	if (empty ( $id )) {
-		return '未分组';
+		return L('_NO_GROUP_');
 	}
 	if (isset ( $_SESSION ['nodeGroupList'] )) {
 		return $_SESSION ['nodeGroupList'] [$id];
@@ -60,16 +60,16 @@ function getNodeGroupName($id) {
 function showStatus($status, $id) {
 	switch ($status) {
 		case 0 :
-			$info = '<a href="javascript:resume(' . $id . ')">恢复</a>';
+			$info = '<a href="javascript:resume(' . $id . ')">'.L('_STATUS_RESUME_').'</a>';
 			break;
 		case 2 :
-			$info = '<a href="javascript:pass(' . $id . ')">批准</a>';
+			$info = '<a href="javascript:pass(' . $id . ')">'.L('_STATUS_PASS_').'</a>';
 			break;
 		case 1 :
-			$info = '<a href="javascript:forbid(' . $id . ')">禁用</a>';
+			$info = '<a href="javascript:forbid(' . $id . ')">'.L('_STATUS_FORBID_').'</a>';
 			break;
 		case - 1 :
-			$info = '<a href="javascript:recycle(' . $id . ')">还原</a>';
+			$info = '<a href="javascript:recycle(' . $id . ')">'.L('_STATUS_RECYCLE_').'</a>';
 			break;
 	}
 	return $info;
@@ -78,7 +78,7 @@ function showStatus($status, $id) {
 
 function getGroupName($id) {
 	if ($id == 0) {
-		return '无上级组';
+		return L('_NO_PARENT_GROUP_');
 	}
 	if ($list = F ( 'groupName' )) {
 		return $list [$id];

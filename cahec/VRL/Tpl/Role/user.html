@@ -9,7 +9,7 @@
 <import  file="Js.Form.MultiSelect" />
 <!-- 主体内容  -->
 <div class="content" >
-<div class="title">组用户列表 [ <a href="__URL__">返 回</a> ]</div>
+<div class="title">{$Think.lang._GROUP_USER_LIST_} [ <a href="__URL__">{$Think.lang._BACK_}</a> ]</div>
 <!--  功能组区域  -->
 <script language="JavaScript">
 <!--
@@ -23,7 +23,7 @@ function goType(type){
 </script>
 <div id="result" class="result none"></div>
 <form method=post id="form1">
-<table class="select" style="width:265px" ALIGN='center'><tr><td height="3" colspan="3" class="topTd" ></td></tr><tr><th class="tRight">当前组：<html:select name="groupId" change="location.href = '__URL__/user/id/'+this.options[this.selectedIndex].value;" first="选择组" style="medium" options="groupList" selected="selectGroupId" />
+<table class="select" style="width:300px" ALIGN='center'><tr><td height="3" colspan="3" class="topTd" ></td></tr><tr><th class="tRight">{$Think.lang._CURRENT_GROUP_}<html:select name="groupId" change="location.href = '__URL__/user/id/'+this.options[this.selectedIndex].value;" first="{$Think.lang._SELECT_GROUP_}" style="medium" options="groupList" selected="selectGroupId" />
 </th></tr>
 <tr><td >
 <html:select name="groupUserId[]" id="sourceS" options="userList" selected="groupUserList"  multiple="true" style="multiSelect" size="15" />
@@ -31,10 +31,10 @@ function goType(type){
 </tr>
 <tr>
 <td  class="row tCenter" >
-<input type="button" onclick="allSelect()" value="全 选" class="submit  ">&nbsp;
-<input type="button" onclick="InverSelect()" value="反 选" class="submit  ">&nbsp;
-<input type="button" onclick="allUnSelect()" value="全 否" class="submit ">&nbsp;
-<input type="button" onclick="saveAccess()" value="保 存" class="submit ">&nbsp;
+<input type="button" onclick="allSelect()" value="{$Think.lang._ALL_SELECT_}" class="submit  ">&nbsp;
+<input type="button" onclick="InverSelect()" value="{$Think.lang._INVERSE_SELECT_}" class="submit  ">&nbsp;
+<input type="button" onclick="allUnSelect()" value="{$Think.lang._ALL_UNSELECT_}" class="submit ">&nbsp;
+<input type="button" onclick="saveAccess()" value="{$Think.lang._SAVE_}" class="submit ">&nbsp;
 <input type="hidden" name="groupId" VALUE="{$Think.get.id}" >
 <input type="hidden" name="ajax" VALUE="1">
 </td>
