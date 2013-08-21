@@ -180,6 +180,11 @@ class CommonAction extends Action {
         $this->edit();
     }
 
+	// ZHY _before_add()
+	function add() {
+		$this->display();
+	}
+
     function edit() {
         $name = $this->getActionName();
         $model = M($name);

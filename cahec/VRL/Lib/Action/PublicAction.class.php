@@ -11,8 +11,24 @@ class PublicAction extends Action {
     public function top() {
         C('SHOW_RUN_TIME',false);			// 运行时间显示
         C('SHOW_PAGE_TRACE',false);
-        $model	=	M("Group");
-        $list	=	$model->where('status=1')->getField('id,title');
+		// ZHY 根据用户（user）角色（role）权限（node）读取组名（group）
+		if(isset($_SESSION[C('USER_AUTH_KEY')])) {
+			$user_id = $_SESSION[C('USER_AUTH_KEY')];
+			$public = D('public');
+			$node_id = $public->getNodeList($user_id); // role_user access
+			for($i=0;$i<count($node_id);$i++) {
+				$results[] = $public->getGroupList($node_id[$i]['node_id']); // node group
+      		}
+			$result = array_filter($results);
+			sort($result);
+			$result=dimReduce($result);
+			for($i=0;$i<count($result);$i++) {
+				$list[$result[$i]['id']]=$result[$i]['title'];
+			}
+	    }
+		// ZHY
+        //$model	=	M("Group");
+        //$list	=	$model->where('status=1')->getField('id,title');
         $this->assign('nodeGroupList',$list);
         $this->display();
     }

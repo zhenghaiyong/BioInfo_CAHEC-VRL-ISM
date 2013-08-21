@@ -86,7 +86,7 @@ CREATE TABLE `vrl_group` (
   `sort` smallint(3) unsigned NOT NULL DEFAULT '0',
   `show` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `vrl_group` (
 
 LOCK TABLES `vrl_group` WRITE;
 /*!40000 ALTER TABLE `vrl_group` DISABLE KEYS */;
-INSERT INTO `vrl_group` (`id`, `name`, `title`, `create_time`, `update_time`, `status`, `sort`, `show`) VALUES (2,'App','System',1222841259,0,1,0,0);
+INSERT INTO `vrl_group` (`id`, `name`, `title`, `create_time`, `update_time`, `status`, `sort`, `show`) VALUES (2,'System','System',1222841259,0,1,0,0),(5,'Search','Search',0,0,1,0,0),(7,'Manage','Manage',0,0,1,0,0);
 /*!40000 ALTER TABLE `vrl_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +228,7 @@ CREATE TABLE `vrl_user` (
 
 LOCK TABLES `vrl_user` WRITE;
 /*!40000 ALTER TABLE `vrl_user` DISABLE KEYS */;
-INSERT INTO `vrl_user` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`) VALUES (1,'admin','ADMIN','21232f297a57a5a743894a0e4a801fc3','',1376984598,'0.0.0.0',893,'8888','liu21st@gmail.com','备注信息',1222907803,1326266696,1,0,''),(2,'demo','DEMO','fe01ce2a7fbac8fafaed7c982a04e229','',1376985345,'0.0.0.0',91,'8888','','',1239783735,1376983882,1,0,''),(3,'search','SEARCH','06a943c59f33a34bb5924aaf72cd2995','',1376985332,'0.0.0.0',18,'','','',1253514375,1376983907,1,0,''),(4,'manage','MANAGE','70682896e24287b0476eff2a14c148f0','',1376985311,'0.0.0.0',17,'','','',1253514575,1376983928,1,0,'');
+INSERT INTO `vrl_user` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`) VALUES (1,'admin','ADMIN','21232f297a57a5a743894a0e4a801fc3','',1377070274,'0.0.0.0',894,'8888','liu21st@gmail.com','备注信息',1222907803,1326266696,1,0,''),(2,'demo','DEMO','fe01ce2a7fbac8fafaed7c982a04e229','',1376985345,'0.0.0.0',91,'8888','','',1239783735,1376983882,1,0,''),(3,'search','SEARCH','06a943c59f33a34bb5924aaf72cd2995','',1376985332,'0.0.0.0',18,'','','',1253514375,1376983907,1,0,''),(4,'manage','MANAGE','70682896e24287b0476eff2a14c148f0','',1376985311,'0.0.0.0',17,'','','',1253514575,1376983928,1,0,'');
 /*!40000 ALTER TABLE `vrl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-20 16:12:27
+-- Dump completed on 2013-08-21 15:36:15

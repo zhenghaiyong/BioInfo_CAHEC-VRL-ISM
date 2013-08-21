@@ -96,4 +96,13 @@ function getGroupName($id) {
 function pwdHash($password, $type = 'md5') {
 	return hash ( $type, $password );
 }
+
+// ZHY 数组降维函数
+function dimReduce($array) {
+	static $tmp = array();
+	for($i=0;$i<count($array);$i++){
+		$tmp[] = $array[$i][0];
+	}
+	return $tmp;
+}
 ?>
