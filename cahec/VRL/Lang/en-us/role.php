@@ -13,6 +13,9 @@ return array(
 	// setAction
 	'_ACTION_AUTHORIZE_FAILURE_' => 'Authorize Action failure!',
 	'_ACTION_AUTHORIZE_SUCCESS_' => 'Authorize Action success!',
+	// setUser
+	'_USER_AUTHORIZE_FAILURE_' => 'Authorize User failure!',
+	'_USER_AUTHORIZE_SUCCESS_' => 'Authorize User success!',
 	// index.html
 	'_ROLE_GROUP_LIST_' => 'Role Group List',
 	'_GROUP_NAME_SEARCH_' => 'Search by Group Name',

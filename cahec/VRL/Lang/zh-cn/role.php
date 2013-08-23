@@ -13,6 +13,9 @@ return array(
 	// setAction
 	'_ACTION_AUTHORIZE_FAILURE_' => '操作授权失败！',
 	'_ACTION_AUTHORIZE_SUCCESS_' => '操作授权成功！',
+	// setUser
+	'_USER_AUTHORIZE_FAILURE_' => '用户授权成功！',
+	'_USER_AUTHORIZE_SUCCESS_' => '用户授权失败！',
 	// index.html
 	'_ROLE_GROUP_LIST_' => '角色组列表',
 	'_GROUP_NAME_SEARCH_' => '组名查询',

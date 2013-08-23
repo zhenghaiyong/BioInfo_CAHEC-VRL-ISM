@@ -210,9 +210,9 @@ class RoleAction extends CommonAction {
         $group->delGroupUser($groupId);
         $result = $group->setGroupUsers($groupId,$id);
         if($result===false) {
-            $this->error('授权失败！');
+            $this->error(L('_USER_AUTHORIZE_FAILURE_'));
         }else {
-            $this->success('授权成功！');
+            $this->success(L('_USER_AUTHORIZE_SUCCESS_'));
         }
     }
 
