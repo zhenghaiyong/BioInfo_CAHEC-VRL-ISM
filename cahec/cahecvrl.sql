@@ -39,7 +39,7 @@ CREATE TABLE `vrl_access` (
 
 LOCK TABLES `vrl_access` WRITE;
 /*!40000 ALTER TABLE `vrl_access` DISABLE KEYS */;
-INSERT INTO `vrl_access` (`role_id`, `node_id`, `level`, `pid`, `module`) VALUES (2,1,1,0,NULL),(2,40,2,1,NULL),(3,1,1,0,NULL),(2,30,2,1,NULL),(2,50,3,40,NULL),(3,50,3,40,NULL),(1,50,3,40,NULL),(3,7,2,1,NULL),(3,39,3,30,NULL),(2,39,3,30,NULL),(2,49,3,30,NULL),(4,1,1,0,NULL),(4,2,2,1,NULL),(4,3,2,1,NULL),(4,4,2,1,NULL),(4,5,2,1,NULL),(4,6,2,1,NULL),(4,7,2,1,NULL),(4,11,2,1,NULL),(5,25,1,0,NULL),(5,51,2,25,NULL),(1,1,1,0,NULL),(1,39,3,30,NULL),(1,40,2,1,NULL),(1,49,3,30,NULL),(3,69,2,1,NULL),(3,30,2,1,NULL),(3,40,2,1,NULL),(1,37,3,30,NULL),(1,36,3,30,NULL),(1,35,3,30,NULL),(1,34,3,30,NULL),(1,33,3,30,NULL),(1,32,3,30,NULL),(1,31,3,30,NULL),(2,32,3,30,NULL),(2,31,3,30,NULL),(7,1,1,0,NULL),(1,30,2,1,NULL),(7,40,2,1,NULL),(7,30,2,1,NULL),(7,50,3,40,NULL),(7,39,3,30,NULL),(7,49,3,30,NULL);
+INSERT INTO `vrl_access` VALUES (2,1,1,0,NULL),(2,40,2,1,NULL),(3,1,1,0,NULL),(2,30,2,1,NULL),(2,50,3,40,NULL),(3,50,3,40,NULL),(1,50,3,40,NULL),(3,7,2,1,NULL),(3,39,3,30,NULL),(2,39,3,30,NULL),(2,49,3,30,NULL),(4,1,1,0,NULL),(4,2,2,1,NULL),(4,3,2,1,NULL),(4,4,2,1,NULL),(4,5,2,1,NULL),(4,6,2,1,NULL),(4,7,2,1,NULL),(4,11,2,1,NULL),(5,25,1,0,NULL),(5,51,2,25,NULL),(1,1,1,0,NULL),(1,39,3,30,NULL),(1,40,2,1,NULL),(1,49,3,30,NULL),(3,69,2,1,NULL),(3,30,2,1,NULL),(3,40,2,1,NULL),(1,37,3,30,NULL),(1,36,3,30,NULL),(1,35,3,30,NULL),(1,34,3,30,NULL),(1,33,3,30,NULL),(1,32,3,30,NULL),(1,31,3,30,NULL),(2,32,3,30,NULL),(2,31,3,30,NULL),(7,1,1,0,NULL),(1,30,2,1,NULL),(7,40,2,1,NULL),(7,30,2,1,NULL),(7,50,3,40,NULL),(7,39,3,30,NULL),(7,49,3,30,NULL),(1,83,2,1,NULL),(1,84,3,83,NULL),(2,83,2,1,NULL),(2,84,3,83,NULL);
 /*!40000 ALTER TABLE `vrl_access` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `vrl_group` (
 
 LOCK TABLES `vrl_group` WRITE;
 /*!40000 ALTER TABLE `vrl_group` DISABLE KEYS */;
-INSERT INTO `vrl_group` (`id`, `name`, `title`, `create_time`, `update_time`, `status`, `sort`, `show`) VALUES (2,'System','System',1222841259,0,1,0,0),(5,'Search','Search',0,0,1,0,0),(7,'Manage','Manage',0,0,1,0,0);
+INSERT INTO `vrl_group` VALUES (2,'System','System',1222841259,0,1,0,0),(5,'Search','Search',0,0,1,0,0),(7,'Manage','Manage',0,0,1,0,0);
 /*!40000 ALTER TABLE `vrl_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `vrl_node` (
   KEY `pid` (`pid`),
   KEY `status` (`status`),
   KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `vrl_node` (
 
 LOCK TABLES `vrl_node` WRITE;
 /*!40000 ALTER TABLE `vrl_node` DISABLE KEYS */;
-INSERT INTO `vrl_node` (`id`, `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES (49,'read','查看',1,'',NULL,30,3,0,0),(40,'Index','默认模块',1,'',1,1,2,0,0),(39,'index','列表',1,'',NULL,30,3,0,0),(37,'resume','恢复',1,'',NULL,30,3,0,0),(36,'forbid','禁用',1,'',NULL,30,3,0,0),(35,'foreverdelete','删除',1,'',NULL,30,3,0,0),(34,'update','更新',1,'',NULL,30,3,0,0),(33,'edit','编辑',1,'',NULL,30,3,0,0),(32,'insert','写入',1,'',NULL,30,3,0,0),(31,'add','新增',1,'',NULL,30,3,0,0),(30,'Public','公共模块',1,'',2,1,2,0,0),(69,'Form','数据管理',1,'',1,1,2,0,2),(7,'User','用户管理',1,'',4,1,2,0,2),(6,'Role','角色管理',1,'',3,1,2,0,2),(2,'Node','节点管理',1,'',2,1,2,0,2),(1,'VRL','后台管理',1,'',NULL,0,1,0,0),(50,'main','空白首页',1,'',NULL,40,3,0,0);
+INSERT INTO `vrl_node` VALUES (49,'read','查看',1,'',NULL,30,3,0,0),(40,'Index','默认模块',1,'',1,1,2,0,0),(39,'index','列表',1,'',NULL,30,3,0,0),(37,'resume','恢复',1,'',NULL,30,3,0,0),(36,'forbid','禁用',1,'',NULL,30,3,0,0),(35,'foreverdelete','删除',1,'',NULL,30,3,0,0),(34,'update','更新',1,'',NULL,30,3,0,0),(33,'edit','编辑',1,'',NULL,30,3,0,0),(32,'insert','写入',1,'',NULL,30,3,0,0),(31,'add','新增',1,'',NULL,30,3,0,0),(30,'Public','公共模块',1,'',2,1,2,0,0),(69,'Form','数据管理',1,'',1,1,2,0,2),(7,'User','用户管理',1,'',4,1,2,0,2),(6,'Role','角色管理',1,'',3,1,2,0,2),(2,'Node','节点管理',1,'',2,1,2,0,2),(1,'VRL','后台管理',1,'',NULL,0,1,0,0),(50,'main','空白首页',1,'',NULL,40,3,0,0),(83,'Query','Sequences Query',1,'',1,1,2,0,5),(84,'result','Show Results',1,'',NULL,83,3,0,5);
 /*!40000 ALTER TABLE `vrl_node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `vrl_role` (
 
 LOCK TABLES `vrl_role` WRITE;
 /*!40000 ALTER TABLE `vrl_role` DISABLE KEYS */;
-INSERT INTO `vrl_role` (`id`, `name`, `pid`, `status`, `remark`, `ename`, `create_time`, `update_time`) VALUES (1,'Manage',0,1,'','',1208784792,1376983518),(2,'Search',0,1,'','',1215496283,1376983533),(7,'Demo',0,1,'',NULL,1254325787,1376983541);
+INSERT INTO `vrl_role` VALUES (1,'Manage',0,1,'','',1208784792,1376983518),(2,'Search',0,1,'','',1215496283,1376983533),(7,'Demo',0,1,'',NULL,1254325787,1376983541);
 /*!40000 ALTER TABLE `vrl_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `vrl_role_user` (
 
 LOCK TABLES `vrl_role_user` WRITE;
 /*!40000 ALTER TABLE `vrl_role_user` DISABLE KEYS */;
-INSERT INTO `vrl_role_user` (`role_id`, `user_id`) VALUES (4,'27'),(4,'26'),(4,'30'),(5,'31'),(3,'22'),(3,'1'),(1,'4'),(2,'3'),(7,'2');
+INSERT INTO `vrl_role_user` VALUES (4,'27'),(4,'26'),(4,'30'),(5,'31'),(3,'22'),(3,'1'),(1,'4'),(2,'3'),(7,'2');
 /*!40000 ALTER TABLE `vrl_role_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +228,7 @@ CREATE TABLE `vrl_user` (
 
 LOCK TABLES `vrl_user` WRITE;
 /*!40000 ALTER TABLE `vrl_user` DISABLE KEYS */;
-INSERT INTO `vrl_user` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`) VALUES (1,'admin','ADMIN','21232f297a57a5a743894a0e4a801fc3','',1377070274,'0.0.0.0',894,'8888','liu21st@gmail.com','备注信息',1222907803,1326266696,1,0,''),(2,'demo','DEMO','fe01ce2a7fbac8fafaed7c982a04e229','',1376985345,'0.0.0.0',91,'8888','','',1239783735,1376983882,1,0,''),(3,'search','SEARCH','06a943c59f33a34bb5924aaf72cd2995','',1376985332,'0.0.0.0',18,'','','',1253514375,1376983907,1,0,''),(4,'manage','MANAGE','70682896e24287b0476eff2a14c148f0','',1376985311,'0.0.0.0',17,'','','',1253514575,1376983928,1,0,'');
+INSERT INTO `vrl_user` VALUES (1,'admin','ADMIN','21232f297a57a5a743894a0e4a801fc3','',1380944611,'0.0.0.0',903,'8888','liu21st@gmail.com','备注信息',1222907803,1326266696,1,0,''),(2,'demo','DEMO','fe01ce2a7fbac8fafaed7c982a04e229','',1380946235,'0.0.0.0',92,'8888','','',1239783735,1376983882,1,0,''),(3,'search','SEARCH','06a943c59f33a34bb5924aaf72cd2995','',1380946247,'0.0.0.0',21,'','','',1253514375,1376983907,1,0,''),(4,'manage','MANAGE','70682896e24287b0476eff2a14c148f0','',1380944952,'0.0.0.0',20,'','','',1253514575,1376983928,1,0,'');
 /*!40000 ALTER TABLE `vrl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-21 15:36:15
+-- Dump completed on 2013-10-05 12:19:38

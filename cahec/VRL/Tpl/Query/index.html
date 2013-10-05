@@ -1,0 +1,286 @@
+{// 引入标签库 }
+<tagLib name="html" />
+{// 加载头部公共文件 }
+<include file="Public:header" />
+<load href="__PUBLIC__/Css/NCBI/select2.css" />
+<load href="__PUBLIC__/Js/NCBI/notify.1.js" />
+<load href="__PUBLIC__/Js/NCBI/select_query.js" />
+<!-- 菜单区域  -->
+
+<!-- 主页面开始 -->
+<div id="main" class="main" >
+<!-- 主体内容  -->
+<div class="content" >
+<div class="title">{$Think.lang._VRL_QUERY_}</div>
+<!-- form  -->
+<form method=post action="__URL__/result">
+<fieldset class="nolegend" id="viruses">
+<legend>Define search set:</legend>
+<fieldset class="nolegend formline" id="selects">
+<!-- Family -->
+<span class="field" id="field_family"><label>
+	<span><strong>Family</strong></span>
+	<select size="4" name="family" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<volist name="family" id="vo">
+		<option value="{$vo.name}">{$vo.name}</option>
+		</volist>
+	</select>
+</label></span>
+<!-- Gene -->
+<span class="field" id="field_gene"><label>
+	<span><strong>Gene</strong></span>
+	<select size="4" name="gene" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<optgroup label="Genome">
+		<option value="Segment A">Segment A</option>
+		<option value="Segment B">Segment B</option>
+		</optgroup>
+		<optgroup label="Segment A">
+		<option value="Ployprotein">Ployprotein</option>
+		<option value="Others">Others</option>
+		</optgroup>
+		<optgroup label="Segment B">
+		<option value="VP1">VP1</option>
+		<option value="Others">Others</option>
+		</optgroup>
+		<optgroup label="Ployprotein">
+		<option value="VP2">VP2</option>
+		<option value="VP3">VP3</option>
+		<option value="VP4">VP4</option>
+		<option value="VP4">Others</option>
+		</optgroup>
+	</select>
+</label></span>
+<!-- Host -->
+<span class="field" id="field_host"><label>
+	<span><strong>Host</strong></span>
+	<select size="4" name="host" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<volist name="host" id="vo">
+		<option value="{$vo.vrl_host}">{$vo.vrl_host}</option>
+		</volist>
+	</select>
+</label></span>
+<!-- County -->
+<span class="field" id="field_country"><label>
+	<span><strong>Country</strong></span>
+	<select size="4" name="country" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<volist name="country" id="vo">
+		<option value="{$vo.isolation_country}">{$vo.isolation_country}</option>
+		</volist>
+        <!-- 
+		<optgroup label="regions">
+			<option value="N">Northern temperate</option>
+			<option value="S">Southern temperate</option>
+			<option value="T">Tropical</option>
+		</optgroup>
+		<optgroup label="continents">
+			<option value="1">Africa</option>
+			<option value="2">Asia</option>
+			<option value="0">Europe</option>
+			<option value="3">North America</option>
+			<option value="5">Oceania</option>
+			<option value="4">South America</option>
+		</optgroup>
+		<optgroup label="countries">
+			<option value="Afghanistan">Afghanistan</option>
+			<option value="Albania">Albania</option>
+		</optgroup>
+        -->
+	</select>
+</label></span>
+<!-- Protein -->
+<!--
+<script type="text/javascript">segment={p:{any:[{v:"PB2",t:"PB2"},{v:"PB1",t:"PB1"},{v:"PB1-F2",t:"PB1-F2"},{v:"PA",t:"PA"},{v:"PA-X",t:"PA-X"},{v:"P3",t:"P3"},{v:"HA",t:"HA"},{v:"HE",t:"HE"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"M1",t:"M1"},{v:"M2",t:"M2"},{v:"BM2",t:"BM2"},{v:"CM2",t:"CM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],a:[{v:"PB2",t:"PB2"},{v:"PB1",t:"PB1"},{v:"PB1-F2",t:"PB1-F2"},{v:"PA",t:"PA"},{v:"PA-X",t:"PA-X"},{v:"HA",t:"HA"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"M1",t:"M1"},{v:"M2",t:"M2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],b:[{v:"PB1",t:"PB1"},{v:"PB2",t:"PB2"},{v:"PA",t:"PA"},{v:"HA",t:"HA"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"NB",t:"NB"},{v:"M1",t:"M1"},{v:"BM2",t:"BM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],c:[{v:"PB1",t:"PB1"},{v:"PB2",t:"PB2"},{v:"P3",t:"P3"},{v:"HE",t:"HE"},{v:"NP",t:"NP"},{v:"M1",t:"M1"},{v:"CM2",t:"CM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}]}, n:{any:[{v:"1",t:"1 (PB1/PB2)"},{v:"2",t:"2 (PB2/PB1)"},{v:"3",t:"3 (PA/PA-X/P3)"},{v:"4",t:"4 (HA/HE)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA/NP)"},{v:"7",t:"7 (MP/NS)"},{v:"8",t:"8 (NS)"}],a:[{v:"1",t:"1 (PB2)"},{v:"2",t:"2 (PB1)"},{v:"3",t:"3 (PA/PA-X)"},{v:"4",t:"4 (HA)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA)"},{v:"7",t:"7 (MP)"},{v:"8",t:"8 (NS)"}],b:[{v:"1",t:"1 (PB1)"},{v:"2",t:"2 (PB2)"},{v:"3",t:"3 (PA)"},{v:"4",t:"4 (HA)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA)"},{v:"7",t:"7 (MP)"},{v:"8",t:"8 (NS)"}],c:[{v:"1",t:"1 (PB2)"},{v:"2",t:"2 (PB1)"},{v:"3",t:"3 (P3)"},{v:"4",t:"4 (HE)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (MP)"},{v:"7",t:"7 (NS)"}]}};</script>
+<span class="field" id="field_protein"><label>
+	<span><strong>Protein</strong></span>
+	<select size="4" name="segment" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any">any</option>
+		<option value="PB2" class="a">PB2</option>
+		<option value="PB1" class="a">PB1</option>
+		<option value="PB1-F2" class="a">PB1-F2</option>
+		<option value="PA" class="a">PA</option>
+		<option value="PA-X" class="a">PA-X</option>
+		<option value="HA" class="a">HA</option>
+		<option value="NP" class="a">NP</option>
+		<option value="NA" class="a">NA</option>
+		<option value="M1" class="a">M1</option>
+		<option value="M2" class="a">M2</option>
+		<option value="NS1" class="a">NS1</option>
+		<option value="NS2" class="a">NS2</option>
+	</select>
+</label></span>
+-->
+<!-- Type -->
+<span class="field" id="field_type"><label>
+	<span><strong>Type</strong></span>
+    <select size="4" name="type" onchange="VirusChanged(this, 'P')">
+		<option value="any" selected>any</option>
+    	<option value="a">A</option>
+		<option value="b">B</option>
+		<option value="c">C</option>
+	</select>
+</label></span>
+<!-- Subtype -->
+<!--
+<span class="field" id="field_subtype"><strong>Subtype</strong> <br />
+<label id="field_subtypeh"><strong>H</strong>
+	<select size="4" name="subtype_h" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select>
+</label>
+<label id="field_subtypen"><strong>N</strong>
+	<select size="4" name="subtype_n" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
+		<option value="any" selected>any</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select>
+</label>
+</span>
+-->
+<span class="field" id="field_subtype"><label>
+	<span><strong>Subtype</strong></span>
+    <select size="4" name="subtype" onchange="VirusChanged(this, 'P')">
+		<option value="any" selected>any</option>
+    	<option value="a">A</option>
+		<option value="b">B</option>
+		<option value="c">C</option>
+	</select>
+</label></span>
+<!-- Subsubtype -->
+<span class="field" id="field_subsubtype"><label>
+	<span><strong>Subsubtype</strong></span>
+    <select size="4" name="subsubtype" onchange="VirusChanged(this, 'P')">
+		<option value="any" selected>any</option>
+    	<option value="a">A</option>
+		<option value="b">B</option>
+		<option value="c">C</option>
+	</select>
+</label></span>
+<!-- Subsubsubtype -->
+<span class="field" id="field_subsubsubtype"><label>
+	<span><strong>Subsubsubtype</strong></span>
+    <select size="4" name="subsubsubtype" onchange="VirusChanged(this, 'P')">
+		<option value="any" selected>any</option>
+    	<option value="a">A</option>
+		<option value="b">B</option>
+		<option value="c">C</option>
+	</select>
+</label></span>
+</fieldset>
+
+<div id="block0">
+<!-- Collection date -->
+<fieldset class="nolegend" id="cdate-from-to">
+<table class="fields">
+<thead>
+<tr>
+	<th></th>
+	<th colspan="3"><span>Collection date</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<th><label for="fyear">From:</label></th>
+    <td><input type="text" name="fyear" id="fyear" size="3" maxlength="4" value=""></td>
+	<td><input type="text" name="fmonth" id="fmonth" size="1" maxlength="2" value=""></td>
+    <td><input type="text" name="fday" id="fday" size="1" maxlength="2" value=""></td>
+</tr>
+<tr>
+	<th><label for="tyear">To:</label></th>
+	<td><input type="text" name="tyear" id="tyear" size="3" maxlength="4" value=""></td>
+    <td><input type="text" name="tmonth" id="tmonth" size="1" maxlength="2" value=""></td>
+    <td><input type="text" name="tday" id="tday" size="1" maxlength="2" value=""></td>
+</tr>
+<tr class="labels">
+	<th></th>
+    <th><label for="fyear">Year</label></th>
+    <th><label for="fmonth">Month</label></th>
+    <th><label for="fday">Day</label></th>
+</tr>
+</tbody>
+</table>
+</fieldset>
+<!-- Release date -->
+<!--
+<fieldset class="nolegend daterange" id="pdate-from-to">
+<table class="fields">
+<thead>
+<tr>
+	<th colspan="3"><span>Release date </span><a href="/genomes/FLU/help.html#release_date" class="helper" title="What is the release date date range?"><span> </span><em>What is the release date date range?</em></a>
+	</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td><input type="text" name="fpyear" id="fpyear" size="3" maxlength="4" value=""></td>
+    <td><input type="text" name="fpmonth" id="fpmonth" size="1" maxlength="2" value=""></td>
+    <td><input type="text" name="fpday" id="fpday" size="1" maxlength="2" value=""></td>
+</tr>
+<tr>
+	<td><input type="text" name="tpyear" id="tpyear" size="3" maxlength="4" value=""></td>
+    <td><input type="text" name="tpmonth" id="tpmonth" size="1" maxlength="2" value=""></td>
+    <td><input type="text" name="tpday" id="tpday" size="1" maxlength="2" value=""></td>
+</tr>
+<tr class="labels">
+	<th><label for="fpyear">Year</label></th>
+    <th><label for="fpmonth">Month</label></th>
+    <th><label for="fpday">Day</label></th>
+</tr>
+</tbody>
+</table>
+</fieldset>
+-->
+<!-- Sequence length -->
+<fieldset class="nolegend" id="length-min-max">
+<table class="fields">
+<thead><tr><th colspan="2"><label for="flen"><strong>Sequence length</strong></label></th></tr></thead>
+<tbody>
+<tr>
+	<th><label for="flen">Min.:</label></th>
+	<td><input type="text" name="flen" id="flen" size="6" maxlength="6" value=""></td>
+</tr>
+<tr>
+	<th><label for="tlen">Max.:</label></th>
+	<td><input type="text" name="tlen" id="tlen" size="6" maxlength="6" value=""></td>
+</tr>
+</tbody>
+</table>
+<!--
+<div id="full-length-div">
+<label id="full-length-only"><input type="checkbox" name="sonly" onclick="oNotifier.Notify(this,'check-splus-sonly')"><strong>Full-length</strong> only <a href="/genomes/FLU/help.html#fulllength" class="helper" title="What is full-length sequences?"><span> </span><em>What is full-length sequences?</em></a></label><br><label id="full-length-plus"><input type="checkbox" name="splus" onclick="oNotifier.Notify(this,'check-splus-sonly')"><strong>Full-length</strong> plus <a href="/genomes/FLU/help.html#fulllength" class="helper" title="What is full-length sequences?"><span> </span><em>What is full-length sequences?</em></a></label>
+</div>
+-->
+</fieldset>
+</div>
+
+<!-- Buttons -->
+<div class="buttons">
+<span class="action" style="float:left"><input type="button" name="cmd_qb" value="Add query" onclick="oNotifier.Notify(this, 'cmd_add', 'add_query')"></span>
+<!--
+<span class="default combined" id="cmd_get_query_group" style="float:left"><input type="button" name="cmd_get_query" value="Show results" onclick="oNotifier.Notify(this, 'cmd_show', 'show_query')"></span>
+-->
+<span class="default combined" id="cmd_get_query_group" style="float:left"><input type="submit" value="Show results"></span>
+</div>
+<!--
+<span class="cancel" style="float:right"><input type="button" name="cmd_clear" value="Clear form" onclick="oNotifier.Notify(this, 'cmd_add', 'clear')"></span>
+-->
+<span class="cancel" style="float:right"><input type="reset" value="Clear form"></span>
+
+</fieldset>
+</form>
+<!-- form -->
+</div>
+<!-- 主体内容结束 -->
+</div>
+<!-- 主页面结束 -->

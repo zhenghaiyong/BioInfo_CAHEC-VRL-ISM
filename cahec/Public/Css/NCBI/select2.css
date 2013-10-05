@@ -1,0 +1,1454 @@
+/*@import "reset.css"; */
+
+
+body {
+    /*background-color: #CCCCCC;*/
+    font: 62.5%/1.3846 arial,helvetica,clean,sans-serif;
+}
+
+td { vertical-align: baseline }
+
+/* Forms */
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=file]:focus,
+select:focus,
+textarea:focus {
+	background: #FF9;
+}
+
+textarea {
+	overflow: auto; /* Remove textarea scrollbar in IE */
+}
+
+abbr {
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+input[readonly],
+input[readonly]:focus {
+	background:#DDD;
+}
+
+input[type=radio], input[type=checkbox]  { padding: 0; margin: 0 .25em .15em 0; vertical-align: middle }
+table input[type=radio], table input[type=checkbox] { vertical-align: middle }
+
+#builder td, #builder th,
+table.zebra td, table.zebra th { padding: .2em .25em; }
+
+input[type=submit], input[type=button] {
+	*overflow: visible; /* fixes extra padding for IE */
+	*padding: 0 .5em;
+}
+
+/* Commands */
+
+.next {
+	background: url(i/i_next.gif) no-repeat right;
+}
+
+.back {
+	background: url(i/i_back.gif) no-repeat left;
+}
+
+.next, .default, .back, .cancel, .action, .ahtung {
+	display: inline-block;
+	*padding: 3px;
+	*margin-top: -3px;
+	*margin-left: -3px;
+}
+/*
+.default.combined,
+.next input,
+.default input {
+	outline: YellowGreen solid 1px;
+}
+
+.combined input {
+	outline: none;
+}
+.combined input[type=submit] {
+	margin: 0;
+	outline: YellowGreen solid 1px;
+}
+
+.next,
+.default {
+	background-color: YellowGreen;
+}
+
+.combined {
+	background: none;
+}
+
+
+.back input,
+.cancel input {
+	xoutline: #2388E4 solid 1px;
+}
+
+.back,
+.cancel {
+	background-color: #2388E4;
+}
+
+.action input {
+	outline: MediumSeaGreen solid 1px;
+}
+
+.action {
+	background-color: MediumSeaGreen;
+}
+
+.ahtung input {
+	outline: red solid 1px;
+}
+
+.ahtung {
+	background-color: red;
+}
+*/
+/* Helper links */
+
+.helper, .helper1 {
+	padding-left: 16px;
+	background:url(i/i_help.gif) center left no-repeat;
+	list-style: none;
+	color: green;
+	font-size: 0.8em;
+	}
+.helper span {
+	visibility: hidden;
+	display: inline-block !important;
+	width: 0;
+	}
+.helper em {
+	position: absolute;
+	left: -5000px;
+	}
+.helper { cursor: help; text-decoration: none; }
+a.helper { cursor: pointer }
+
+.helper.info {
+	background:url(i/i_info.gif) center left no-repeat;
+	color: #000;
+	cursor: default;
+}
+.helper.warn {
+	background:url(i/i_warn.gif) center left no-repeat;
+	color: red;
+	cursor: default;
+}
+
+
+
+
+
+/* Pipe list */
+.pipelist3l,
+.pipelist3r {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+/*	width: 100%;*/
+	}
+
+/* Pipe list - left aligned */
+.pipelist3l li {
+	float: left;
+	padding: 0 1em 0 .5em;
+	border-left: 1px solid #000;
+	margin-left: -.5em;
+	list-style: none;
+	}
+.pipelist3l li:first-child {
+	padding-left: .5em;
+	}
+
+/* Pipe list - right aligned */
+.pipelist3r li {
+	float: right;
+	padding: 0 .5em 0 1em;
+	border-right: 1px solid #000;
+	margin-right: -.5em;
+	}
+.pipelist3r li:first-child {
+	padding-right: .5em;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+html, body {
+	font-family: Calibri, "Lucida Grande", Tahoma, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color: white;
+}
+
+html { font-size: 100.01% }
+body { font-size: 1em }
+
+input, textarea, select, option, optgroup {
+	font-family: Calibri, "Lucida Grande", Tahoma, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 1em;
+}
+*/
+
+
+.content {
+	padding: 1.231em 1.231em 1.231em 1.231em;
+	clear: both;
+}
+
+#accession,
+#query,
+#builder {
+    background-color: #E2E2E2;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 1em 1em 1em 0.2em;
+    xxxwidth: 95%;
+    margin: 1em 0 1em 0;
+	clear:both
+}
+
+
+fieldset>.fieldset,
+fieldset>form {
+	padding: .5em;
+}
+
+#container1 {
+	overflow: hidden;
+	padding-bottom: .5em;
+	position: relative;
+}
+
+/*#explanation {
+	float: left;
+	margin-right: 13em;
+}*/
+
+#container1 p {
+	line-height: 1.35;
+}
+
+#page_help {
+	xfloat: right;
+	text-align: right;
+	position: absolute;
+	top:0;
+	right: 0;
+}
+
+#permalink {
+	float: right;
+	text-align: right;
+}
+
+
+
+fieldset li,
+.formline {
+	line-height: 1.5;
+}
+
+ul.fltfrom
+{
+	width: 55em;
+	clear: both;
+}
+
+.fltfrom li 
+{
+	float: left;
+	width: 25em;
+	clear: none;
+}
+
+#viruses {
+	/*margin-bottom: .5em;*/
+}
+
+
+
+#selects,
+#block0 {
+	float: left;
+	margin-bottom: .5em;
+}
+
+#field_disease {
+	width: 4em;
+	overflow: hidden;
+}
+
+#field_disease select {
+	width: 5.5em;
+}
+
+#field_family, #field_family select {
+	width: auto;
+}
+#field_gene, #field_gene select {
+	width: auto;
+}
+#field_host, #field_host select {
+	width: auto;
+}
+#field_country, #field_country select {
+	width: auto;
+}
+#field_protein, #field_protein select {
+	width: 6em;
+}
+#field_type {
+	width: 2.5em;
+	/*overflow: hidden;*/
+}
+#field_type select {
+	width: 2.5em;
+}
+#field_subtype select {
+	width: 4.2em;
+}
+#field_subsubtype select {
+	width: 6em;
+}
+#field_subsubsubtype select {
+	width: 7.7em;
+}
+
+#field_family,
+#field_gene,
+#field_host,
+#field_country,
+#field_protein,
+#field_type,
+#field_subtype {
+	height: 8.5em;
+}
+
+#field_family select:focus,
+#field_family select:active,
+#field_gene select:focus,
+#field_gene select:active,
+#field_host select:focus,
+#field_host select:active,
+#field_country select:focus,
+#field_protein select:focus,
+#field_subtype select:focus {
+	height: 12em;
+	position: absolute;
+}
+
+#field_subtypeh,
+#field_subtypen {
+	float: left;
+	width: 5.5em;
+}
+
+#field_subtypeh strong,
+#field_subtypen strong {
+	float:left;
+	margin-right: .25em;
+}
+
+#field_subtype select {
+	float: left;
+}
+
+
+
+
+
+fieldset {
+	margin-bottom: .5em
+}
+
+#accession fieldset {
+	margin-bottom: 0;
+}
+
+/*#accession fieldset span {
+	width: 16em;
+	height: 2.8em;
+	display: block;
+*/
+}
+#accession textarea {
+	width: 14em;
+	height: 2.4em;
+	float: left;
+}
+/*#accession textarea:focus {
+	position: absolute;
+	height: 10em;
+}*/
+
+fieldset.nolegend {
+	margin-bottom: 0;
+}
+
+fieldset .formline,
+fieldset.formline {
+	clear: both;
+}
+
+fieldset.nolegend .formline label span {
+	xxxdisplay: block;
+}
+
+fieldset.nolegend .formline label span + * {
+	display: block;
+}
+
+fieldset .formline .field {
+	float: left;
+}
+
+fieldset .field {
+	margin-right: 1em;
+}
+
+/*
+h2,
+legend {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: DarkOrange;
+	padding-bottom:.2em;
+}
+*/
+
+
+
+table.fields th {
+	text-align: left;
+    background-color:white;
+    border:0px;
+}
+
+table.fields tbody tr.labels th {
+	text-align: center;
+}
+
+table.fields tbody tr.labels th label {
+	line-height: normal;
+	position: relative;
+	top: -.4em;
+	color: #999;
+	font-size: .8em;
+}
+
+/*
+table.fields input#fyear,
+table.fields input#tyear,
+table.fields input#fpyear,
+table.fields input#tpyear {
+	width: 5ex;
+}
+
+table.fields input#fmonth,
+table.fields input#tmonth,
+table.fields input#fpmonth,
+table.fields input#tpmonth,
+table.fields input#fday,
+table.fields input#tday,
+table.fields input#fpday,
+table.fields input#tpday {
+	width: 3ex;
+}
+*/
+table.fields label {
+	font-weight: normal;
+}
+
+table.fields input {
+	margin-bottom: .5em;
+}
+
+table.fields input,
+table.fields label {
+	margin-right: .5em;
+}
+
+table.fields td:last-child input,
+table.fields td:last-child label {
+	margin-right: 0;
+}
+
+#reqsegments, #fulldate {
+	clear: both;
+}
+#reqsegments label,
+#fulldate label {
+	margin-right: .5em;
+	white-space: nowrap;
+}
+
+
+#field_subtype {
+	margin-right: .5em;
+}
+
+
+fieldset table label,
+fieldset#query table span {
+	line-height: 1.5;
+}
+
+#block0,
+#cdate-from-to,
+#pdate-from-to,
+#length-min-max,
+#full-length-div 
+{
+	float: left;
+}
+
+#cdate-from-to {
+	margin-right: 1em;
+}
+
+
+#subtype-string .field {
+	margin-right: 1.5em;
+}
+#subtype-string .field+.field {
+	margin-right: 0;
+}
+
+
+
+.buttons {
+	float: left;
+	clear: both;
+	margin-bottom: .5em;
+	margin-top: .5em;
+}
+.buttons span {
+	margin-right: 1em;
+}
+
+#builder .buttons {
+	xxposition: relative;
+	xxxposition: absolute;
+	xxxtop: 0;
+	xxtop: -3em;
+	xxmargin-top: -3em;
+	clear: none;
+	float: none;
+	xxmargin-bottom: -2.5em;
+	xxbackground-color: Red;
+}
+
+
+#undertable {
+	margin-top: -2.7em;
+	position: relative;
+	float: left;
+	min-height: 5em;
+	width: 100%;
+}
+
+
+#builder tfoot th {
+	text-align: right;
+}
+table.zebra .number {
+	text-align: right;
+}
+/*#builder table .lastcol {
+	padding-right:.25em;
+}*/
+
+
+#filter {
+	clear: both;
+}
+
+#filter li {
+	/* text-indent: -1.2em;
+	margin-left: 1.2em; */
+	line-height: 1.2;
+	margin-bottom: .25em;
+	float: left;
+}
+/*
+#filter #seq-from li,
+#filter #lab li {
+	text-indent: 0;
+}
+#filter #lab ul {
+	margin-left: 1.2em;
+}
+#filter #seq-from li li,
+#filter #lab li {
+	margin-bottom: 0;
+	margin-left: 0;
+}
+#filter #seq-from li li,
+#filter #lab li li {
+	text-indent: 0;
+	margin-left: 0;
+}
+#filter #lab {
+	overflow: hidden;
+}
+*/
+
+
+/*#builder {
+	clear: both;
+	background-color: #EEEEEE;
+}*/
+
+th, td {
+	vertical-align: top;
+}
+
+
+
+table.zebra th.sorted1,
+table.zebra th.sorted2,
+table.zebra th.sorted3 {
+	background-color: #ddd;
+}
+table.zebra th a {
+	xxxtext-decoration: none;
+	xxxcolor: #000;
+	padding-top: 2px;
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+table.zebra .sorted1 th a:hover,
+table.zebra .sorted1 th a:focus {
+	background-image: url(i/i_sort_asc1_00f.gif);
+}
+table.zebra .sorted2 th a:hover,
+table.zebra .sorted2 th a:focus {
+	background-image: url(i/i_sort_asc2_00f.gif);
+}
+table.zebra .sorted3 th a:hover,
+table.zebra .sorted3 th a:focus {
+	background-image: url(i/i_sort_asc3_00f.gif);
+}
+table.zebra .sorted1 th.sortadd a:hover,
+table.zebra .sorted1 th.sortadd a:focus {
+	background-image: url(i/i_sort_asc2_00f.gif);
+}
+table.zebra .sorted2 th.sortadd a:hover,
+table.zebra .sorted2 th.sortadd a:focus {
+	background-image: url(i/i_sort_asc3_00f.gif);
+}
+table.zebra .sorted2 th.asc.sortrem a:hover,
+table.zebra .sorted2 th.asc.sortrem a:focus,
+table.zebra .sorted3 th.asc.sortrem a:hover,
+table.zebra .sorted3 th.asc.sortrem a:focus {
+	background-image: url(i/i_sort_ascx_00f.gif);
+}
+table.zebra .sorted2 th.desc.sortrem a:hover,
+table.zebra .sorted2 th.desc.sortrem a:focus,
+table.zebra .sorted3 th.desc.sortrem a:hover,
+table.zebra .sorted3 th.desc.sortrem a:focus {
+	background-image: url(i/i_sort_descx_00f.gif);
+}
+
+
+
+
+table.zebra th.sorted1.asc a {
+	background-image: url(i/i_sort_asc1_00f.gif);
+}
+table.zebra th.sorted2.asc a {
+	background-image: url(i/i_sort_asc2_00f.gif);
+}
+table.zebra th.sorted3.asc a {
+	background-image: url(i/i_sort_asc3_00f.gif);
+}
+table.zebra th.sorted1.desc a {
+	background-image: url(i/i_sort_desc1_00f.gif);
+}
+table.zebra th.sorted2.desc a {
+	background-image: url(i/i_sort_desc2_00f.gif);
+}
+table.zebra th.sorted3.desc a {
+	background-image: url(i/i_sort_desc3_00f.gif);
+}
+table.zebra th.sorted1.desc a:hover,
+table.zebra th.sorted1.desc a:focus {
+	background-image: url(i/i_sort_asc1_00f.gif);
+}
+table.zebra th.sorted1.asc a:hover,
+table.zebra th.sorted1.asc a:focus {
+	background-image: url(i/i_sort_desc1_00f.gif);
+}
+table.zebra th.sorted2.desc a:hover,
+table.zebra th.sorted2.desc a:focus {
+	background-image: url(i/i_sort_asc2_00f.gif);
+}
+table.zebra th.sorted2.asc a:hover,
+table.zebra th.sorted2.asc a:focus {
+	background-image: url(i/i_sort_desc2_00f.gif);
+}
+table.zebra th.sorted3.desc a:hover,
+table.zebra th.sorted3.desc a:focus {
+	background-image: url(i/i_sort_asc3_00f.gif);
+}
+table.zebra th.sorted3.asc a:hover,
+table.zebra th.sorted3.asc a:focus {
+	background-image: url(i/i_sort_desc3_00f.gif);
+}
+
+
+/*
+table.zebra col.sorted {
+	background-color: #ff9;
+}
+*/
+
+.actions {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#builder-table tbody.altrow,
+#builder-table thead {
+	background-color: #E4ECF6;/*#CCCCCC;*/
+}
+
+#builder-table,
+table.zebra td,
+table.zebra th {
+	text-align: center;
+}
+
+#builder-table a.details,
+#query-table a.details
+ {
+	display: none;
+}
+
+.js-on #builder-table a.details,
+.js-on #query-table a.details
+ {
+	display: inline;
+	text-decoration: none;
+	border-bottom: 1px dashed blue;
+}
+
+.js-on #builder-table tbody.collapsed tr+tr,
+.js-on #query-table tbody.collapsed tr+tr
+ {
+	display: none;
+}
+
+.js-on #results-table tbody a.collapser {
+	padding-right: 14px;
+	background-repeat: no-repeat;
+	background-position: 100% 70%;
+	background-image: url(i/i_opened_round_00f.gif);
+	text-decoration: none;
+	border-bottom: 1px dashed blue;
+}
+
+.js-on #results-table tbody.collapsed a.collapser {
+	background-image: url(i/i_closed_round_00f.gif);
+}
+
+.js-on #results-table tbody.locked a.collapser {
+	color: #aaa;
+	background-image: url(i/i_opened_round_bbb.gif);
+	cursor: default;
+	border-bottom: none;
+}
+
+#builder-table tbody tr+tr div 
+{
+	line-height:1.35;
+}
+
+.default-val {
+	color: #999;
+}
+
+/*
+#builder-table tbody:hover { background-color: #0FF }
+.js-on #builder-table tbody.highlight:hover,
+.js-on #builder-table tbody.altrow.highlight:hover { background-color: #FF0 }
+*/
+
+.js-on #results-table tbody.collapsed tr+tr, /* normal browsers */
+.js-on #results-table tbody.collapsed tr.rest /* IE 6 */
+{
+	display:none;
+}
+
+
+#query-table {
+	margin-bottom: .5em;
+	clear: both;
+}
+
+
+/* very fast and dirty fix for IE 8 */
+#defline .showhide { margin-left: .5em; margin-left/*\**/: 9em\9 }
+#defline .showhide { *margin-left: .5em }
+#defline .showhide a:visited { color: blue }
+
+#defline.hidden {
+	display: none;
+}
+
+#defline div {
+	margin-top: .25em;
+}
+
+#defline_div a,
+#defline_div a:visited
+{
+	text-decoration: none;
+	border-bottom: 1px dashed blue;
+	margin-right:.4em;
+	color:blue;
+}
+
+#defline_div p
+{
+	margin-bottom:.3em;
+	margin-top:.3em;
+}
+
+#message.hidden
+{
+	display:none;
+}
+/*
+#content.noalignment #queryx #message
+{
+	display:block;
+}
+
+#content.noalignment #alnbuttons button
+{
+	display:none;
+}
+*/
+
+
+
+#defline #defed {
+	display: block;
+	padding: .5em 9em 0 4em;
+}
+#defed label strong {
+	width: 4em;
+	position: relative;
+	float: left;
+	margin-right: -4em;
+	left: -4em;
+}
+#defed label .deftextfield {
+	float: left;
+	width: 100%;
+}
+#defed label .deftextfield input {
+	width: 100%;
+}
+#defed .defcontrols {
+	width: 9.5em;
+	position: relative;
+	float: left;
+	margin-left: -9.5em;
+	right: -10em;
+	text-align: center;
+}
+#defed .suggestions {
+	/*clear: both;*/
+	display: block;
+}
+#defed .suggestions a {
+	font-family: Calibri, "Lucida Grande", Tahoma, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: .8em;
+	text-decoration: none;
+	margin: 0 .15em;
+	white-space: nowrap;
+	border-bottom: 1px dashed blue;
+	color: #000;
+}
+#defed .suggestions a:hover {
+	color: blue;
+	cursor: default;
+}
+
+
+.js-on #queryx.collapsed #query-table,
+.js-on #additional.collapsed #additional_div,
+.js-on #defline.collapsed #defed {
+	display: none;
+}
+
+#queryx.collapsed .showhide{
+	margin-bottom: .5em;
+}
+
+
+p.showhide a,
+span.showhide a{
+	text-decoration: none;
+	border-bottom: 1px dashed blue;
+}
+
+.showhide .slash,
+.collapsed .showhide .mhide,
+.showhide .mshow {
+	display: none;
+}
+.collapsed .showhide .mshow {
+	display: inline;
+}
+
+
+
+table.zebra thead {
+	background-color: #eee;
+}
+table.zebra tr.altrow {
+	background-color: #f9f9f9;
+}
+
+table.zebra tbody.altrow tr.altrow,
+table.zebra tr.group.altrow { background-color: #f0f2f9 }
+table.zebra tbody.altrow tr,
+table.zebra tr.group { background-color: #e4ecf6 }
+
+
+
+
+
+/*.js-on #builder-table tbody.highlight { background-color: #ff9 }
+.js-on #builder-table tbody.altrow.highlight { background-color: #ff6 }*/
+.js-on #builder-table tbody.altrow tr { background-color: transparent }
+
+
+
+
+#results-table tbody tr.highlight,
+#results-table tbody tr a,
+#results-table tbody tr.highlight.group.gfirst td.vname,
+#results-table tbody tr.highlight.group.gfirst td.vdate,
+#results-table tbody tr.highlight.group.gfirst td.vcountry,
+#results-table tbody tr.highlight.group.gfirst td.vserotype,
+#results-table tbody tr.highlight.group.gfirst td.vhost {
+	color: #000;
+}
+
+#results-table tbody tr,
+#results-table tbody tr a,
+#results-table tbody tr.group.highlight td.vname,
+#results-table tbody tr.gfirst td.vname,
+#results-table tbody.group tr+tr td.vname,
+#results-table tbody tr.group.highlight td.vdate,
+#results-table tbody tr.gfirst td.vdate,
+#results-table tbody.group tr+tr td.vdate,
+#results-table tbody tr.group.highlight td.vcountry,
+#results-table tbody tr.gfirst td.vcountry,
+#results-table tbody.group tr+tr td.vcountry,
+#results-table tbody tr.group.highlight td.vserotype,
+#results-table tbody tr.gfirst td.vserotype,
+#results-table tbody.group tr+tr td.vserotype,
+#results-table tbody tr.group.highlight td.vhost,
+#results-table tbody tr.gfirst td.vhost,
+#results-table tbody.group tr+tr td.vhost {
+	color: #aaa;
+}
+
+#results-table .vname,
+#results-table .vdate,
+#results-table .vaccession,
+#results-table .vserotype,
+#results-table .vsegment {
+	text-align: left;
+}
+#results-table .vlength,
+#results-table .vage {
+	text-align: right;
+}
+
+#results-table tbody tr.highlight a {
+	color: Blue;
+}
+
+
+
+
+
+
+
+
+tbody.busy input {
+	visibility: hidden;
+}
+/*
+tbody.busy input[type=checkbox]:before {
+	visibility: hidden;
+	width: 15px;
+	height: 15px;
+	background-color: #e4ecf6;
+	border: 1px solid blue;
+	content: "";
+	position: absolute;
+	z-index: 999;
+}*/
+tbody.busy td.lastcol,
+tr.busy td.lastcol {
+	background: url(http://www.ncbi.nlm.nih.gov/core/lw/2.0/img/ani/indicator.gif) no-repeat left center;
+}
+
+
+
+
+img.busy {display:none;}
+.busy img.busy { display:inline; }
+#wait {
+	text-align:center;
+	color:#333;
+	font-weight:bold;
+	background-image: url(http://www.ncbi.nlm.nih.gov/core/lw/2.0/img/ani/progressbar_long.gif);
+	position:absolute;
+	top:38px;
+	width:100%;
+}
+
+
+
+.message {
+	background-repeat: no-repeat;
+	background-position: 0 .3em;
+	padding-left: 34px;
+	font-style: italic;	
+	margin-bottom: .5em;
+}
+
+#builder .message {
+/*
+	xxxfloat: right;
+	text-align: left;
+	margin-left: 22em;
+	margin-right: .25em;
+*/
+	xxxbackground-color: blue;
+	xxxfloat:right;
+	xxmargin-top: -3em;
+	xxxmargin-left: 23em;
+	margin-right: 29%;
+	min-height: 28px;
+}
+
+.message.warning {
+	background-image: url(i/i-msg-warning-fs8.png);
+}
+.message.info {
+	background-image: url(i/i-msg-info-fs8.png);
+}
+.message.error {
+	background-image: url(i/i-msg-error-fs8.png);
+}
+
+.my-fasta { margin-top: 1em }
+
+
+
+
+
+
+
+
+
+
+
+#ncbi-branding {
+	float: left;
+	width: 140px;
+	background-color: #369;
+	position: relative;
+}
+
+#ncbi-logo {
+	background: url(http://www.ncbi.nlm.nih.gov/corehtml/left.GIF) no-repeat 50% 50%;
+	height: 70px;
+	display: block;
+	position: relative;
+	text-indent: -9999px;
+}
+
+#influenza-branding,
+#virusvariation-branding {
+	float: left;
+	width: 100%;
+	margin-left: -140px;
+}
+
+#influenza-logo {
+	background: url(http://www.ncbi.nlm.nih.gov/genomes/FLU/DatasetExplorer/fluSequenceBaner_Resource.gif) no-repeat 50% 50%;
+	width: 620px;
+	margin-left: 140px;
+}
+#virusvariation-logo {
+	background: url(http://www.ncbi.nlm.nih.gov/genomes/VirusVariation/vv_logo2.png) no-repeat 50% 50%;
+	width: 700px;
+	margin-left: 140px;
+}
+
+#influenza-logo a,
+#virusvariation-logo a {
+	height: 70px;
+	display: block;
+	position: relative;
+	text-indent: -9999px;
+}
+
+#old-style-ncbi-menu {
+	width: 100%;
+	position: relative;
+}	
+#old-style-ncbi-menu li {
+	float: left;
+	text-align: center;
+	line-height: 1.25em;
+	width: 26%; /* help */
+}
+#old-style-ncbi-menu li.menu-search {
+	width: 36%; /* search */
+}
+#old-style-ncbi-menu li.menu-map {
+	width: 38%; /* site map */
+}
+#old-style-ncbi-menu a {
+	background: #7A9DBE url(i/bg-old-ncbi-menu.gif) repeat-x 50% 100%;
+	display: block;
+	border-right: 1px solid #369;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 9px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
+#old-style-ncbi-menu a:hover,
+#ncbi-logo:hover + #old-style-ncbi-menu > li:first-child a {
+	background-color: #369;
+	background-image: none;
+}
+
+
+
+
+#old-style-menu {
+	margin-left: 140px;
+}
+#old-style-menu ul {
+	width: 100%;
+	display: table;
+}
+#old-style-menu li {
+	*float: left;
+	*width: 18.6%;
+	display: table-cell;
+	background: #b2ceea url(http://www.ncbi.nlm.nih.gov/coreweb/template1/pix/top3_mainmenu_mid_bg.gif) repeat-x 50% 50%;
+	text-align: center;
+	line-height: 1.25em;
+}
+#old-style-menu li.narrow {
+	*width: 12.4%;
+}
+#old-style-menu li+li a {
+	border-left: 1px solid #369;
+}
+#old-style-menu a {
+	padding: 0 .25em;
+	text-decoration: none;
+	white-space: nowrap;
+	display: block;
+	color: #5966AA;
+}
+#old-style-menu a:hover {
+	color: #431972;
+}
+#old-style-menu li.current a {
+	color: #000;
+	font-weight: bold;
+}
+
+
+/* Add your own sequence window */
+form.add_fasta textarea {
+    width:100%;
+}
+form.add_fasta .buttons {
+    margin-top: 1em;
+}
+
+div.error {
+    padding:1em;
+    color:Red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.pgraph {
+	margin-top: 1.35em;
+	font-size: .85em;
+	font-family: Calibri, "Lucida Grande", Tahoma, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+.pgraph span {
+	line-height: .5 !important;
+}
+.pgraph abbr {
+	border: none;
+	display: block;
+}
+.pgraph td {
+	border: 2px solid #000;
+	text-align: center;
+	font-size: .85em;
+	padding: 0;
+	xxxline-height: 1.5;
+	xxx*line-height: 1.2;
+}
+.pgraph td a {
+	display: block;
+	background-color: #fff;
+	color: #000;
+	text-decoration: none;
+	position: relative; /* IE6 fix */
+	padding: .28em 0;
+}
+.pgraph thead {
+	padding-bottom: 2px;
+}
+.pgraph th.struct,
+.pgraph th.nonstruct{
+	border-top: 1px solid #666;
+	padding: 0;
+}
+.pgraph th.struct abbr,
+.pgraph th.nonstruct abbr {
+	border-left: 1px solid #666;
+	margin-bottom: .5em;
+	line-height: .5;
+}
+.pgraph th.nonstruct abbr {
+	border-right: 1px solid #666;
+}
+.pgraph th span {
+	position: relative;
+	top: -1em;
+	color: #666;
+}
+.pgraph .struct a {
+	background-color: #ddd;
+}
+.pgraph td a,
+.pgraph td abbr {
+	cursor: crosshair;
+}
+.pgraph .selproc td a,
+.pgraph .selproc td abbr {
+	cursor: e-resize;
+}
+.pgraph .reg_C { width: 3% }
+.pgraph .reg_M, .pgraph .reg_prM { width: 4% }
+.pgraph .reg_E { width: 15% }
+.pgraph .reg_NS1  { width: 11% }
+.pgraph .reg_NS2A { width: 6% }
+.pgraph .reg_NS2B { width: 4% }
+.pgraph .reg_NS3  { width: 19% }
+.pgraph .reg_NS4A { width: 4% }
+.pgraph .reg_2K   { width: 1% }
+.pgraph .reg_NS4B { width: 7% }
+.pgraph .reg_NS5, .pgraph .reg_NS5B  { width: 26% }
+
+.pgraph .reg_2K abbr {
+	width: 1px;
+	position: relative;
+	top: 1.6em;
+}
+.pgraph .reg_UTR5 a,
+.pgraph .reg_UTR3 a {
+	background-color: transparent;
+}
+.pgraph .reg_UTR5 {
+	border: none;
+}
+.pgraph .reg_UTR5 a {
+	border: 2px solid #000;
+	margin-top: -1px;
+	margin-bottom: -1px;
+	border-right: none;
+	padding:0.5em 0;
+	-webkit-border-radius: 10px 0 0 10px;
+	-moz-border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 0 10px;
+}
+.pgraph .reg_UTR3 {
+	border: none;
+}
+.pgraph .reg_UTR3 a {
+	border: 2px solid #000;
+	margin-top: -1px;
+	margin-bottom: -1px;
+	border-left: none;
+	padding:0.5em 0;
+	-webkit-border-radius: 0 10px 10px 0;
+	-moz-border-radius: 0 10px 10px 0;
+	border-radius: 0 10px 10px 0;
+}
+.pgraph .reg_UTR5 abbr,
+.pgraph .reg_UTR3 abbr {
+	position: relative;
+	margin: 0;
+	line-height: 1;
+}
+.pgraph .reg_UTR5 abbr,
+.pgraph .reg_UTR3 abbr {
+	padding: 0 .5em;
+}
+.pgraph td a:hover {
+	background-color: #00c;
+	color: #fff;	
+}
+.pgraph td.selected a {
+	background-color: Highlight;
+	color: HighlightText;
+}
+.pgraph td.reg_2K.selected abbr,
+.pgraph td.reg_2K a:hover abbr {
+	color: Highlight;
+}
+
+
+/*#field_subtype, #field_subtype select {
+	width: 4em;
+}*/
+
+#field_subtype select {
+	float: none;
+}
+
+
+#completeonly {
+	clear: left;
+}
+
+optgroup.separator {
+	color:#aaa; 
+}
+
+
+
+/* NEW HEADER */
+
+h1, h2, h3, h4, h5, strong, th, b, legend {
+    font-weight: bold;
+}
+
+h1{font-size: 1.3846em; line-height:1.5; margin:1em 0 .5em; } /* font-size of 18px, line-height of 27px */
+h2{font-size: 1.2307em; line-height:1.125; margin: 1.125em 0 .5625em;} /* font-size of 16px, line-height of 18px */
+h3,legend{font-size: 1.0769em; line-height:1.2857; margin:.6428em 0 .6428em; } /* font-size of 14px, line-height of 18px */
+h4,h5,h6,h3.inline{font-size: 1em; margin:1.3846em 0 .6923em; } /* line-height of 18px */
+h5{font-style:italic;font-weight:normal;}
+
+h4{color:#59331f;}
+h3,legend{color:#724128;}
+h2{color:#985735;}
+h1{color:#000;}
+
+
+.header{background:#d5d5d5 url(http://static.pubmed.gov/portal/portal3rc.fcgi/3379798/img/2375536) repeat-x scroll left bottom; position: relative;z-index:20 }
+.header a{text-decoration:none}
+.header a:hover{text-decoration:underline}
+
+.search{margin:0 0 0 380px; padding:1.2em 0 .7em;}
+
+.searchlinks{margin:.2em 0 0 9.6em;_zoom:1;text-align: right;}
+.searchlinks li{margin-right:1.2em;zoom:1}
+.searchlinks .help{position:absolute;right:1em;margin-right:0;_margin-top:-.1em}
+.searchlinks .hidden{display:none}
+.searchlinks .visible{display:inline}
+
+.inline_list li {
+    display: inline;
+    margin-right: 0.3em;
+}
+
+
+
+
+.res_logo{width:11.539em;left:1.231em;padding-top:.4em;position:absolute}
+.res_logo h1, .search h2{color:#333;font-weight:normal;margin:0}
+.res_logo h1 a{color:#333;display:block;padding:.3em 0;text-shadow:1px 1px 1px rgba(240,240,240,.9)}
+.res_tagline{display:none}
+.res_logo h1 a,.res_logo h1 a:hover,.res_logo h1 a:visited{text-decoration:none}
+
+
+.grid {
+    clear: both;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 800px;
+    text-align: left;
+    width: 100%;
+}
+.grid, #appheader {
+    font-size: 1.3em;
+}
+
+.twelve_col {
+    width: 98.9999%;
+}
+.col {
+    background-color: #FFFFFF;
+    float: left;
+    margin-right: 1%;
+    overflow: hidden;
+}
+.shadow {
+    box-shadow: 0.4em 0.4em 0.5em rgba(0, 0, 0, 0.3);
+}
+
+.vvlogo 
+{
+    background: url("i/reslogo.png") no-repeat scroll left top transparent;
+    display: block;
+    height: 32px;
+    text-indent: -9999px;
+    width: 350px;
+	xxxbackground-size: contain;
+}

@@ -105,4 +105,40 @@ function dimReduce($array) {
 	}
 	return $tmp;
 }
+
+// ZHY 查找邻接表数据叶节点
+function findAdjacencyListLeaves($list, $id='id', $pid='pid', $node_id, &$leaves) {
+	$is_leaf = 1;
+	foreach($list as $key=>$value) {
+		if($list[$key][$pid] == $node_id) {
+			$is_leaf = 0;
+			findAdjacencyListLeaves($list,$id,$pid,$list[$key][$id],$leaves);
+		}
+	}
+	if($is_leaf) {
+		$leaves[]=$node_id;
+	}
+	return $leaves;
+}
+
+// ZHY
+// http://www.cnblogs.com/ybbqg/archive/2012/04/16/2452033.html
+/**  According to the array paging
+ *  @param array $array
+ *  @param int $limit
+ *  @return array
+ */
+/*
+function arrayPage($array, $limit) {
+    $count = count($array);
+    if ($count) {
+        import('ORG.Util.Page');//引入分页类
+        $p = new Page($count, $limit);
+        $data['list'] = array_slice($array, $p->firstRow, $p->listRows);
+        $data['page'] = $p->show();
+        return $data;
+    }
+}
+*/
+
 ?>

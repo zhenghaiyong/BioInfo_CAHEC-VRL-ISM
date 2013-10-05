@@ -1,6 +1,7 @@
 <?php
 return array(
     'URL_MODEL'                 =>  2, // 如果你的环境不支持PATHINFO 请设置为3
+	'URL_PATHINFO_DEPR'         =>  '/',
     'DB_TYPE'                   =>  'mysql',
     'DB_HOST'                   =>  'localhost',
     'DB_NAME'                   =>  'cahecvrl',
@@ -36,4 +37,16 @@ return array(
     'DEFAULT_LANG'              =>  'en-us',  //默认语言
     'LANG_AUTO_DETECT'          =>  false,  //自动侦测语言
     'LANG_LIST'                 =>  'en-us,zh-cn',  //必须写可允许的语言列表
+	// 数据库
+	'DB_VRL' => array(
+    	'DB_TYPE'    => 'mysql',
+	    'DB_USER'    => 'root',
+    	'DB_PWD'     => 'pwd',
+	    'DB_HOST'    => 'localhost',
+	    'DB_PORT'    => '3306',
+    	'DB_NAME'    => 'bioseqdbvrl',
+		'DB_PREFIX'  => '',
+	),
+	// 分页显示
+	'VAR_PAGE'                  =>  'p',
 );

@@ -1,0 +1,84 @@
+{// 引入标签库 }
+<tagLib name="html" />
+{// 加载头部公共文件 }
+<include file="Public:header" />
+<!-- 菜单区域  -->
+
+<!-- 主页面开始 -->
+<div id="main" class="main" >
+<!-- 主体内容  -->
+<div class="content" >
+<div class="title">{$Think.lang._VRL_SHOW_}</div>
+<!-- form  -->
+<!--
+<form method=post action="__URL__"> 
+-->
+
+<div align="center">[ <a href="__URL__">{$Think.lang._BACK_}</a> ]</div>
+<div align="left"><strong>{$show_bioentry_count} sequence(s): </strong></div>
+
+<table width="100%" class="zebra" id="results-table">
+  <colgroup>
+    <col width="5%">     <!-- Accession -->
+    <col width="20%">    <!-- Virus name -->
+    <col width="10%">    <!-- Date -->
+    <col width="5%">     <!-- Country -->
+    <col width="15%">    <!-- Host -->
+    <col width="5%">     <!-- Type -->
+    <col width="5%">     <!-- SubType -->
+    <col width="5%">     <!-- SubSubType -->
+    <col width="5%">     <!-- SubSubSubType -->
+    <col width="15%">    <!-- Genome info -->
+    <col width="5%">     <!-- Length -->
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Accession</th>
+      <th>Virus name</th>
+      <th>Date</th>
+      <th>Country</th>
+      <th>Host</th>
+      <th>Type</th>
+      <th>SubType</th>
+      <th>SubSubType</th>
+      <th>SubSubSubType</th>
+      <th>Genome info</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <volist name="show_bioentry_info" id="bioentry">
+    <tr>
+      <td align="center"><a href="http://www.ncbi.nlm.nih.gov/nuccore/{$bioentry.accession}{$bioentry.dotversion}">{$bioentry.accession}</a></td>
+      <td align="center">{$bioentry.name}</td>
+      <td align="center">{$bioentry.isolation_year}</td>
+      <td align="center">{$bioentry.isolation_country}</td>
+      <td align="center">{$bioentry.vrl_host}</td>
+      <td align="center">{$bioentry.vrl_type}</td>
+      <td align="center">{$bioentry.vrl_subtype}</td>
+      <td align="center">{$bioentry.vrl_subsubtype}</td>
+      <td align="center">{$bioentry.vrl_subsubsubtype}</td>
+      <td align="center">{$bioentry.gene}</td>
+      <td align="center">{$bioentry.length}</td>
+    </tr>
+	</volist>
+  </tbody>
+</table>
+
+<!--
+</form>
+-->
+<!-- form -->
+<!--  分页显示区域 -->
+<!--
+<div class="page">{$page}</div>
+-->
+
+<if condition="($show_bioentry_count gt 10)">
+<div align="center">[ <a href="__URL__">{$Think.lang._BACK_}</a> ]</div>
+</if>
+
+</div>
+<!-- 主体内容结束 -->
+</div>
+<!-- 主页面结束 -->
