@@ -226,7 +226,7 @@ class QueryAction extends CommonAction {
 			$BioEntry = M('bioentry',null,'DB_VRL');
 			$condition['is_usable'] = 'Y';
 			$BioSequence = M('biosequence',null,'DB_VRL');
-			$query = D('query');
+			$query = D('Query');
 			foreach($query_bioentry_ids as $k=>$v) {
 				$condition['bioentry_id'] = $v;
 				// bioentry
