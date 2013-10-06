@@ -120,54 +120,31 @@ class QueryAction extends CommonAction {
 
 		// bioentry
 		$BioEntry = M('bioentry',null,'DB_VRL');
+		// bioentry->is_usable
+		$condition['is_usable'] = 'Y';
+		// bioentry->biodatabase_id
+		if(count($query_biodatabase_ids)>0) {
+			$condition['biodatabase_id'] = $query_biodatabase_ids[0];
+		}
 		// host => bioentry->vrl_host
 		if($query_fields['host'] != 'any') {
-			$query_hosts[] = $query_fields['host'];
-			//echo 'query hosts:<br />';
-			//dump($query_hosts,1,'<pre>',0);
-			//***** 2 *****//
-			if(count($query_biodatabase_ids)>0) {
-				$condition['biodatabase_id'] = $query_biodatabase_ids[0];
-			}
-			foreach($query_hosts as $k=>$v) {
-				$condition['vrl_host'] = $v;
-				$condition['is_usable'] = 'Y';
-				$query_bioentry_ids = $BioEntry->where($condition)->field('bioentry_id')->select();
-				foreach($query_bioentry_ids as $kk=>$vv) {
-					$query_bioentry_ids_by_host[] = $query_bioentry_ids[$kk]['bioentry_id'];
-				}
-			}
-			unset($condition);
-			$query_bioentry_ids_by_host = array_unique($query_bioentry_ids_by_host);
-			sort($query_bioentry_ids_by_host);
+			$condition['vrl_host'] = $query_fields['host'];
 		}
-		//echo 'query bioentry_ids by host:<br />';
-		//dump($query_bioentry_ids_by_host,1,'<pre>',0);
-		//-----//
 		// country => bioentry->isolation_country
 		if($query_fields['country'] != 'any') {
-			$query_countries[] = $query_fields['country'];
-			//echo 'query countries:<br />';
-			//dump($query_countries,1,'<pre>',0);
-			//***** 2 *****//
-			if(count($query_biodatabase_ids)>0) {
-				$condition['biodatabase_id'] = $query_biodatabase_ids[0];
-			}
-			foreach($query_countries as $k=>$v) {
-				$condition['isolation_country'] = $v;
-				$condition['is_usable'] = 'Y';
-				$query_bioentry_ids = $BioEntry->where($condition)->field('bioentry_id')->select();
-				foreach($query_bioentry_ids as $kk=>$vv) {
-					$query_bioentry_ids_by_country[] = $query_bioentry_ids[$kk]['bioentry_id'];
-				}
-			}
-			unset($condition);
-			$query_bioentry_ids_by_country = array_unique($query_bioentry_ids_by_country);
-			sort($query_bioentry_ids_by_country);
+			$condition['isolation_country'] = $query_fields['country'];
 		}
-		//echo 'query bioentry_ids by country:<br />';
-		//dump($query_bioentry_ids_by_country,1,'<pre>',0);
-		//-----//
+		//
+		$query_bioentry_ids = $BioEntry->where($condition)->field('bioentry_id')->select();
+		unset($condition);
+		foreach($query_bioentry_ids as $kk=>$vv) {
+			$query_bioentry_ids_by_host_country[] = $query_bioentry_ids[$kk]['bioentry_id'];
+		}
+		$query_bioentry_ids_by_host_country = array_unique($query_bioentry_ids_by_host_country);
+		sort($query_bioentry_ids_by_host_country);
+		//echo 'query bioentry_ids by host_country:<br />';
+		//dump($query_bioentry_ids_by_host_country,1,'<pre>',0);
+
 		// biosequence->length
 		if(($query_fields['flen'] != '') || ($query_fields['tlen'] != '')) {
 			$flen = $query_fields['flen'];
@@ -193,10 +170,8 @@ class QueryAction extends CommonAction {
 		//$query_bioentry_ids = array();
 		if(count($query_bioentry_ids_by_gene)>0) {echo 'gene';
 			$query_bioentry_ids = $query_bioentry_ids_by_gene;
-		} elseif(count($query_bioentry_ids_by_host)>0) {
-			$query_bioentry_ids = $query_bioentry_ids_by_host;
-		} elseif(count($query_bioentry_ids_by_country)>0) {
-			$query_bioentry_ids = $query_bioentry_ids_by_country;
+		} elseif(count($query_bioentry_ids_by_host_country)>0) {
+			$query_bioentry_ids = $query_bioentry_ids_by_host_country;
 		} elseif(count($query_bioentry_ids_by_length)>0) {
 			$query_bioentry_ids = $query_bioentry_ids_by_length;
 		}
@@ -204,11 +179,8 @@ class QueryAction extends CommonAction {
 		if(count($query_bioentry_ids_by_gene)>0) {
 			$query_bioentry_ids = array_intersect($query_bioentry_ids_by_gene,$query_bioentry_ids);
 		}
-		if(count($query_bioentry_ids_by_host)>0) {
-			$query_bioentry_ids = array_intersect($query_bioentry_ids_by_host,$query_bioentry_ids);
-		}
-		if(count($query_bioentry_ids_by_country)>0) {
-			$query_bioentry_ids = array_intersect($query_bioentry_ids_by_country,$query_bioentry_ids);
+		if(count($query_bioentry_ids_by_host_country)>0) {
+			$query_bioentry_ids = array_intersect($query_bioentry_ids_by_host_country,$query_bioentry_ids);
 		}
 		if(count($query_bioentry_ids_by_length)>0) {
 			$query_bioentry_ids = array_intersect($query_bioentry_ids_by_length,$query_bioentry_ids);
