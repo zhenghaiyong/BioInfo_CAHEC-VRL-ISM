@@ -10,13 +10,13 @@ class QueryAction extends CommonAction {
 		$condition['is_usable'] = 'Y';
 		// host
 		$host = $BioEntry->Distinct(true)->where($condition)->field('vrl_host')->select();
-		foreach($host as $k=>$v){ $host_filter[$k] = array_filter($host[$k]);}
+		foreach($host as $k=>$v){ $host_filter[$k] = array_filter($host[$k]); }
 		$host = array_filter($host_filter);
 		sort($host);
 		$this->assign("host",$host);
 		// country
 		$country = $BioEntry->Distinct(true)->where($condition)->field('isolation_country')->select();
-		foreach($country as $k=>$v){ $country_filter[$k] = array_filter($country[$k]);}
+		foreach($country as $k=>$v){ $country_filter[$k] = array_filter($country[$k]); }
 		$country = array_filter($country_filter);
 		sort($country);
 		$this->assign("country",$country);
@@ -87,6 +87,9 @@ class QueryAction extends CommonAction {
 		// gene => gene->gene_id => bioentry_gene->gene_id
 		if($query_fields['gene'] != 'any') {
 			$Gene = M('gene',null,'DB_VRL');
+			$gene = $Gene->field('gene_id,name,parent_id')->select();
+			//echo 'gene:<br />';
+			//dump($gene,1,'<pre>',0);
 			$condition['name'] = $query_fields['gene'];
 			if(count($query_biodatabase_ids)>0) {
 				$condition['biodatabase_id'] = $query_biodatabase_ids[0];
@@ -95,28 +98,23 @@ class QueryAction extends CommonAction {
 			unset($condition);
 			//echo 'query gene_id:<br />';
 			//dump($query_gene_id,1,'<pre>',0);
-			$gene = $Gene->field('gene_id,name,parent_id')->select();
-			//echo 'gene:<br />';
-			//dump($gene,1,'<pre>',0);
 			findAdjacencyListLeaves($gene,'gene_id','parent_id',$query_gene_id[0]['gene_id'],$query_gene_ids);
 			//echo 'query gene_ids (all leaves of query gene_id):<br />';
 			//dump($query_gene_ids,1,'<pre>',0);
 			//***** 2 *****//
 			$BioentryGene = M('bioentry_gene',null,'DB_VRL');
 			foreach($query_gene_ids as $k=>$v) {
-				$condition['gene_id'] = $v;
-				$query_bioentry_ids = $BioentryGene->where($condition)->field('bioentry_id')->select();
-				foreach($query_bioentry_ids as $kk=>$vv) {
-					$query_bioentry_ids_by_gene[] = $query_bioentry_ids[$kk]['bioentry_id'];
-				}
+				$condition['gene_id'][] = array('eq',$v);
 			}
+			$condition['gene_id'][] = 'or';
+			$query_bioentry_ids = $BioentryGene->Distinct(true)->where($condition)->field('bioentry_id')->select();
 			unset($condition);
-			$query_bioentry_ids_by_gene = array_unique($query_bioentry_ids_by_gene);
-			sort($query_bioentry_ids_by_gene);
-			//$query_bioentry_ids_by_gene = array_flip(array_flip($query_bioentry_ids_by_gene));
+			foreach($query_bioentry_ids as $kk=>$vv) {
+				$query_bioentry_ids_by_gene[] = $query_bioentry_ids[$kk]['bioentry_id'];
+			}
 		}
 		//echo 'query bioentry_ids by gene:<br />';
-		//dump($query_bioentry_ids_by_gene,1,'<pre>',0);
+		//dump($query_bioentry_ids_by_gene,1,'<pre>',0);die;
 
 		// bioentry
 		$BioEntry = M('bioentry',null,'DB_VRL');
@@ -135,13 +133,11 @@ class QueryAction extends CommonAction {
 			$condition['isolation_country'] = $query_fields['country'];
 		}
 		//
-		$query_bioentry_ids = $BioEntry->where($condition)->field('bioentry_id')->select();
+		$query_bioentry_ids = $BioEntry->Distinct(true)->where($condition)->field('bioentry_id')->select();
 		unset($condition);
 		foreach($query_bioentry_ids as $kk=>$vv) {
 			$query_bioentry_ids_by_host_country[] = $query_bioentry_ids[$kk]['bioentry_id'];
 		}
-		$query_bioentry_ids_by_host_country = array_unique($query_bioentry_ids_by_host_country);
-		sort($query_bioentry_ids_by_host_country);
 		//echo 'query bioentry_ids by host_country:<br />';
 		//dump($query_bioentry_ids_by_host_country,1,'<pre>',0);
 
@@ -153,13 +149,11 @@ class QueryAction extends CommonAction {
 			if(($flen != '') && ($tlen == '')) { $map['length'] = array('egt',$flen); }
 			elseif(($flen == '') && ($tlen != '')) { $map['length'] = array('elt',$tlen); }
 			elseif(($flen != '') && ($tlen != '')) { $map['length'] = array(array('egt',$flen),array('elt',$tlen)); }
-			$query_bioentry_ids = $BioSequence->where($map)->field('bioentry_id')->select();
+			$query_bioentry_ids = $BioSequence->Distinct(true)->where($map)->field('bioentry_id')->select();
+			unset($map);
 			foreach($query_bioentry_ids as $kk=>$vv) {
 				$query_bioentry_ids_by_length[] = $query_bioentry_ids[$kk]['bioentry_id'];
 			}
-			unset($map);
-			$query_bioentry_ids_by_length = array_unique($query_bioentry_ids_by_length);
-			sort($query_bioentry_ids_by_length);
 		}
 		//echo 'query bioentry_ids by length:<br />';
 		//dump($query_bioentry_ids_by_length,1,'<pre>',0);
@@ -168,7 +162,7 @@ class QueryAction extends CommonAction {
 		// 交集
 		//unset($query_bioentry_ids);
 		//$query_bioentry_ids = array();
-		if(count($query_bioentry_ids_by_gene)>0) {echo 'gene';
+		if(count($query_bioentry_ids_by_gene)>0) {
 			$query_bioentry_ids = $query_bioentry_ids_by_gene;
 		} elseif(count($query_bioentry_ids_by_host_country)>0) {
 			$query_bioentry_ids = $query_bioentry_ids_by_host_country;
