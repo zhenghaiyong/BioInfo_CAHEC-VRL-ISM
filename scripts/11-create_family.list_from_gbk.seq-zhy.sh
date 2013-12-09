@@ -1,8 +1,8 @@
 #!/bin/bash
 if [ $# != 2 ]; then
-    echo -ne "Create family list from GenBank files.\n"
+    echo -ne "Create family list from GenBank (.seq) files.\n"
     echo -ne "Usage:\n"
-    echo -ne "\t$0 <directory path> <family name>\n"
+    echo -ne "\t$0 <GenBank .seq directory path> <family name>\n"
     exit 7
 fi
 

@@ -4,7 +4,7 @@
 Haiyong Zheng <zhenghaiyong@gmail.com>
 
 Usage:
-    extract_family.gbk_from_gbk.seq.gz <GenBank .seq.gz directory path> <family name>
+    extract_family.gbk_from_gbk.seq <GenBank .seq directory path> <family name>
 """
 
 from __future__ import with_statement
@@ -25,19 +25,18 @@ def sort_nicely( l ):
 
 
 import os, sys
-import gzip
 from Bio import SeqIO
 
 def main(gbdirpath,familyname):
     gbdir = os.listdir(gbdirpath)
-    gbfiles = [file for file in gbdir if (".seq.gz" in file)]
+    gbfiles = [file for file in gbdir if (".seq" in file)]
     sort_nicely(gbfiles)
     print "Starting Batch Extracting: %s" % (gbfiles)
     familyrecords = []
     for gbfile in gbfiles:
 	gbdirpathfile = gbdirpath + "/" + gbfile
         print "Parsing GenBank file sequence file: %s" % (gbdirpathfile)
-	with gzip.open(gbdirpathfile, "r") as gb_handle:
+	with open(gbdirpathfile, "r") as gb_handle:
 	    records = list(SeqIO.parse(gb_handle, "genbank"))
 	for record in records:
 	    if "taxonomy" in record.annotations and isinstance(record.annotations['taxonomy'], list):
