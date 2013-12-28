@@ -1,7 +1,7 @@
 <?php
 return array(
     'URL_MODEL'                 =>  2, // 如果你的环境不支持PATHINFO 请设置为3
-	'URL_PATHINFO_DEPR'         =>  '/',
+    'URL_PATHINFO_DEPR'         =>  '/',
     'DB_TYPE'                   =>  'mysql',
     'DB_HOST'                   =>  'localhost',
     'DB_NAME'                   =>  'cahecvrl',
@@ -14,9 +14,9 @@ return array(
     'TMPL_ACTION_ERROR'         =>  'Public:success', // 默认错误跳转对应的模板文件
     'TMPL_ACTION_SUCCESS'       =>  'Public:success', // 默认成功跳转对应的模板文件
     'USER_AUTH_ON'              =>  true,
-    'USER_AUTH_TYPE'			=>  2,		// 默认认证类型 1 登录认证 2 实时认证
+    'USER_AUTH_TYPE'		=>  2,		// 默认认证类型 1 登录认证 2 实时认证
     'USER_AUTH_KEY'             =>  'authId',	// 用户认证SESSION标记
-    'ADMIN_AUTH_KEY'			=>  'administrator',
+    'ADMIN_AUTH_KEY'		=>  'administrator',
     'USER_AUTH_MODEL'           =>  'User',	// 默认验证数据表模型
     'AUTH_PWD_ENCODER'          =>  'md5',	// 用户认证密码加密方式
     'USER_AUTH_GATEWAY'         =>  '/Public/login',// 默认认证网关
@@ -40,13 +40,13 @@ return array(
 	// 数据库
 	'DB_VRL' => array(
     	'DB_TYPE'    => 'mysql',
-	    'DB_USER'    => 'root',
+	'DB_USER'    => 'root',
     	'DB_PWD'     => 'pwd',
-	    'DB_HOST'    => 'localhost',
-	    'DB_PORT'    => '3306',
+	'DB_HOST'    => 'localhost',
+	'DB_PORT'    => '3306',
     	'DB_NAME'    => 'bioseqdbvrl',
-		'DB_PREFIX'  => '',
+	'DB_PREFIX'  => '',
 	),
 	// 分页显示
-	'VAR_PAGE'                  =>  'p',
+    'VAR_PAGE'                  =>  'p',
 );

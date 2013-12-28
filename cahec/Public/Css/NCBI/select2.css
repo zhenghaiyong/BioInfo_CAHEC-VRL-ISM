@@ -941,7 +941,6 @@ table.zebra tr.group { background-color: #e4ecf6 }
 
 
 
-
 /*.js-on #builder-table tbody.highlight { background-color: #ff9 }
 .js-on #builder-table tbody.altrow.highlight { background-color: #ff6 }*/
 .js-on #builder-table tbody.altrow tr { background-color: transparent }
@@ -994,6 +993,7 @@ table.zebra tr.group { background-color: #e4ecf6 }
 #results-table tbody tr.highlight a {
 	color: Blue;
 }
+#results-table { border-collapse:collapse; border:2px #000;}
 
 
 

@@ -1,283 +1,119 @@
+<!--  "<!--gzh " 是郭宗辉注释掉的内容，将其替换掉即可-->
+
+
 {// 引入标签库 }
 <tagLib name="html" />
 {// 加载头部公共文件 }
 <include file="Public:header" />
-<load href="__PUBLIC__/Css/NCBI/select2.css" />
-<load href="__PUBLIC__/Js/NCBI/notify.1.js" />
-<load href="__PUBLIC__/Js/NCBI/select_query.js" />
+<load href="__PUBLIC__/Js/seach.js" />
 <!-- 菜单区域  -->
-
+<script src="__PUBLIC__/Js/jquery.bgiframe.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Js/jquery.multiSelect.js" type="text/javascript"></script>
+<link type="text/css" href="__PUBLIC__/Js/jdpicker_1.1/jdpicker.css" rel="stylesheet" />
+<link href="__PUBLIC__/Css/jquery.multiSelect.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jdpicker_1.1/jquery.jdpicker.js"></script>
 <!-- 主页面开始 -->
 <div id="main" class="main" >
 <!-- 主体内容  -->
 <div class="content" >
 <div class="title">{$Think.lang._VRL_QUERY_}</div>
 <!-- form  -->
-<form method=post action="__URL__/result">
+<script type="text/javascript">
+ var URL = __URL__;
+</script>
+
 <fieldset class="nolegend" id="viruses">
 <legend>Define search set:</legend>
-<fieldset class="nolegend formline" id="selects">
-<!-- Family -->
-<span class="field" id="field_family"><label>
-	<span><strong>Family</strong></span>
-	<select size="4" name="family" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<volist name="family" id="vo">
-		<option value="{$vo.name}">{$vo.name}</option>
-		</volist>
-	</select>
-</label></span>
-<!-- Gene -->
-<span class="field" id="field_gene"><label>
-	<span><strong>Gene</strong></span>
-	<select size="4" name="gene" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<optgroup label="Genome">
-		<option value="Segment A">Segment A</option>
-		<option value="Segment B">Segment B</option>
-		</optgroup>
-		<optgroup label="Segment A">
-		<option value="Ployprotein">Ployprotein</option>
-		<option value="Others">Others</option>
-		</optgroup>
-		<optgroup label="Segment B">
-		<option value="VP1">VP1</option>
-		<option value="Others">Others</option>
-		</optgroup>
-		<optgroup label="Ployprotein">
-		<option value="VP2">VP2</option>
-		<option value="VP3">VP3</option>
-		<option value="VP4">VP4</option>
-		<option value="VP4">Others</option>
-		</optgroup>
-	</select>
-</label></span>
-<!-- Host -->
-<span class="field" id="field_host"><label>
-	<span><strong>Host</strong></span>
-	<select size="4" name="host" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<volist name="host" id="vo">
-		<option value="{$vo.vrl_host}">{$vo.vrl_host}</option>
-		</volist>
-	</select>
-</label></span>
-<!-- County -->
-<span class="field" id="field_country"><label>
-	<span><strong>Country</strong></span>
-	<select size="4" name="country" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<volist name="country" id="vo">
-		<option value="{$vo.isolation_country}">{$vo.isolation_country}</option>
-		</volist>
-        <!-- 
-		<optgroup label="regions">
-			<option value="N">Northern temperate</option>
-			<option value="S">Southern temperate</option>
-			<option value="T">Tropical</option>
-		</optgroup>
-		<optgroup label="continents">
-			<option value="1">Africa</option>
-			<option value="2">Asia</option>
-			<option value="0">Europe</option>
-			<option value="3">North America</option>
-			<option value="5">Oceania</option>
-			<option value="4">South America</option>
-		</optgroup>
-		<optgroup label="countries">
-			<option value="Afghanistan">Afghanistan</option>
-			<option value="Albania">Albania</option>
-		</optgroup>
-        -->
-	</select>
-</label></span>
-<!-- Protein -->
-<!--
-<script type="text/javascript">segment={p:{any:[{v:"PB2",t:"PB2"},{v:"PB1",t:"PB1"},{v:"PB1-F2",t:"PB1-F2"},{v:"PA",t:"PA"},{v:"PA-X",t:"PA-X"},{v:"P3",t:"P3"},{v:"HA",t:"HA"},{v:"HE",t:"HE"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"M1",t:"M1"},{v:"M2",t:"M2"},{v:"BM2",t:"BM2"},{v:"CM2",t:"CM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],a:[{v:"PB2",t:"PB2"},{v:"PB1",t:"PB1"},{v:"PB1-F2",t:"PB1-F2"},{v:"PA",t:"PA"},{v:"PA-X",t:"PA-X"},{v:"HA",t:"HA"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"M1",t:"M1"},{v:"M2",t:"M2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],b:[{v:"PB1",t:"PB1"},{v:"PB2",t:"PB2"},{v:"PA",t:"PA"},{v:"HA",t:"HA"},{v:"NP",t:"NP"},{v:"NA",t:"NA"},{v:"NB",t:"NB"},{v:"M1",t:"M1"},{v:"BM2",t:"BM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}],c:[{v:"PB1",t:"PB1"},{v:"PB2",t:"PB2"},{v:"P3",t:"P3"},{v:"HE",t:"HE"},{v:"NP",t:"NP"},{v:"M1",t:"M1"},{v:"CM2",t:"CM2"},{v:"NS1",t:"NS1"},{v:"NS2",t:"NS2"}]}, n:{any:[{v:"1",t:"1 (PB1/PB2)"},{v:"2",t:"2 (PB2/PB1)"},{v:"3",t:"3 (PA/PA-X/P3)"},{v:"4",t:"4 (HA/HE)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA/NP)"},{v:"7",t:"7 (MP/NS)"},{v:"8",t:"8 (NS)"}],a:[{v:"1",t:"1 (PB2)"},{v:"2",t:"2 (PB1)"},{v:"3",t:"3 (PA/PA-X)"},{v:"4",t:"4 (HA)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA)"},{v:"7",t:"7 (MP)"},{v:"8",t:"8 (NS)"}],b:[{v:"1",t:"1 (PB1)"},{v:"2",t:"2 (PB2)"},{v:"3",t:"3 (PA)"},{v:"4",t:"4 (HA)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (NA)"},{v:"7",t:"7 (MP)"},{v:"8",t:"8 (NS)"}],c:[{v:"1",t:"1 (PB2)"},{v:"2",t:"2 (PB1)"},{v:"3",t:"3 (P3)"},{v:"4",t:"4 (HE)"},{v:"5",t:"5 (NP)"},{v:"6",t:"6 (MP)"},{v:"7",t:"7 (NS)"}]}};</script>
-<span class="field" id="field_protein"><label>
-	<span><strong>Protein</strong></span>
-	<select size="4" name="segment" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any">any</option>
-		<option value="PB2" class="a">PB2</option>
-		<option value="PB1" class="a">PB1</option>
-		<option value="PB1-F2" class="a">PB1-F2</option>
-		<option value="PA" class="a">PA</option>
-		<option value="PA-X" class="a">PA-X</option>
-		<option value="HA" class="a">HA</option>
-		<option value="NP" class="a">NP</option>
-		<option value="NA" class="a">NA</option>
-		<option value="M1" class="a">M1</option>
-		<option value="M2" class="a">M2</option>
-		<option value="NS1" class="a">NS1</option>
-		<option value="NS2" class="a">NS2</option>
-	</select>
-</label></span>
--->
-<!-- Type -->
-<span class="field" id="field_type"><label>
-	<span><strong>Type</strong></span>
-    <select size="4" name="type" onchange="VirusChanged(this, 'P')">
-		<option value="any" selected>any</option>
-    	<option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-	</select>
-</label></span>
-<!-- Subtype -->
-<!--
-<span class="field" id="field_subtype"><strong>Subtype</strong> <br />
-<label id="field_subtypeh"><strong>H</strong>
-	<select size="4" name="subtype_h" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-	</select>
-</label>
-<label id="field_subtypen"><strong>N</strong>
-	<select size="4" name="subtype_n" onclick="this.focus()" onblur="fixSelectFocus(this)" multiple onchange="oNotifier.Notify(this, 'multiselect_change')">
-		<option value="any" selected>any</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-	</select>
-</label>
-</span>
--->
-<span class="field" id="field_subtype"><label>
-	<span><strong>Subtype</strong></span>
-    <select size="4" name="subtype" onchange="VirusChanged(this, 'P')">
-		<option value="any" selected>any</option>
-    	<option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-	</select>
-</label></span>
-<!-- Subsubtype -->
-<span class="field" id="field_subsubtype"><label>
-	<span><strong>Subsubtype</strong></span>
-    <select size="4" name="subsubtype" onchange="VirusChanged(this, 'P')">
-		<option value="any" selected>any</option>
-    	<option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-	</select>
-</label></span>
-<!-- Subsubsubtype -->
-<span class="field" id="field_subsubsubtype"><label>
-	<span><strong>Subsubsubtype</strong></span>
-    <select size="4" name="subsubsubtype" onchange="VirusChanged(this, 'P')">
-		<option value="any" selected>any</option>
-    	<option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-	</select>
-</label></span>
-</fieldset>
+<table>
+    <tr>
+    	<th><strong>Family</strong></th>
+        <th><strong>Gene</strong></th>
+        <th colspan="2"><span>Collection date</span></th>
+        <th colspan="2"><strong>Sequence length</strong></th>
+	</tr>
+    <tr>
+    	<td>
+        	<select name="family" id="family">
+    			<volist name="family" id="vo">	
+                	<option value="{$vo.biodatabase_id}" <eq name="i" value="1">selected</eq>>{$vo.name}</option>
+                </volist>
+   		 	</select>
+      	 </td>
+       	<td rowspan="2">
+            <select size="4" name="gene" id="gene" multiple="multiple">
+                <option value="0" >any</option>
+            </select>
+       	</td>
+    	<th><label for="fyear">From:</label></th><td><input type="text" name="from" id="from" value="" readonly></td>
+        <th><label for="flen">Min.:</label></th><td><input type="text" name="flen" id="flen" size="6" maxlength="6" value=""></td>
+    </tr>
+    <tr>
+    	<td></td>
+    	<th><label for="tyear">To:</label></th><td><input type="text" name="to" id="to" value="" readonly></td>
+        <th><label for="tlen">Max.:</label></th><td><input type="text" name="tlen" id="tlen" size="6" maxlength="6" value=""></td>
+    </tr>
+</table>
+<table>
+	<tr>
+        <th><strong><a href="#" id="subfamily_a" class="condition">SubFamily</a></strong></th>
+        <th><strong><a href="#" id="genus_a" class="condition">Genus</a></strong></th>
+        <th><strong><a href="#" id="species_a" class="condition">Species</a></strong></th>
+        <th><strong><a href="#" id="virus_name_a" class="condition">Virus name</a></strong></th>
+        <th><strong><a href="#" id="host_a" class="condition">Host</a></strong></th>
+        <th><strong><a href="#" id="continent_a" class="condition">Continent</a></strong></th>
+        <th><strong><a href="#" id="typeA_a" class="condition">TypeA</a></strong></th>
+        <th><strong><a href="#" id="typeB_a" class="condition">TypeB</a></strong></th>
+        <th><strong><a href="#" id="subType_a" class="condition">SubType</a></strong></th>
+        <th><strong><a href="#" id="subsubType_a" class="condition">SubsubType</a></strong></th>
+        <th><strong><a href="#" id="subsubsubType_a" class="condition">SubsubsubType</a></strong></th>
+    </tr>
 
+</table>
+    <div id="subfamily" class="display_condition"><table><tr></tr></table></div>
+    <div id="genus" class="display_condition"></div>
+    <div id="species" class="display_condition"></div>
+    <div id="virus_name" class="display_condition"></div>
+    <!--<table><tbody><tr id="virus_name" class="display_condition"></tr></tbody></table>-->
+    <div id="host" class="display_condition"></div>
+    <div id="typeA" class="display_condition"></div>
+    <div id="typeB" class="display_condition"></div>
+    <div id="subType" class="display_condition"></div>
+    <div id="subsubType" class="display_condition"></div>
+    <div id="subsubsubType" class="display_condition"></div>
+    <div id="continent" style="display:none" class="display_condition">
+    	<input type="checkbox" value="0" id="country_any" name="country" checked="checked" />any
+    	<a href="#" id="Africa_a" class="continent_choose">Africa</a>
+        <a href="#" id="Asia_a" class="continent_choose">Asia</a>
+        <a href="#" id="North_America_a" class="continent_choose">North America</a>
+        <a href="#" id="South_America_a" class="continent_choose">South America</a>
+        <a href="#" id="Oceania_a" class="continent_choose">Oceania</a>
+        <a href="#" id="Central_America_and_the_Antilles_a" class="continent_choose">Central America and the Antilles</a>
+        <a href="#" id="Europe_a" class="continent_choose">Europe</a>
+     	<div id="Africa" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Algeria' name='country' value='Algeria' /><label for='Algeria'>Algeria</label></td><td><input type='checkbox' id='Angola' name='country' value='Angola' /><label for='Angola'>Angola</label></td><td><input type='checkbox' id='Benin' name='country' value='Benin' /><label for='Benin'>Benin</label></td><td><input type='checkbox' id='Botswana' name='country' value='Botswana' /><label for='Botswana'>Botswana</label></td><td><input type='checkbox' id='Burkina Faso' name='country' value='Burkina Faso' /><label for='Burkina Faso'>Burkina Faso</label></td><td><input type='checkbox' id='Burundi' name='country' value='Burundi' /><label for='Burundi'>Burundi</label></td><td><input type='checkbox' id='Cameroon' name='country' value='Cameroon' /><label for='Cameroon'>Cameroon</label></td></tr><tr><td><input type='checkbox' id='Cape Verde' name='country' value='Cape Verde' /><label for='Cape Verde'>Cape Verde</label></td><td><input type='checkbox' id='Central African Republic' name='country' value='Central African Republic' /><label for='Central African Republic'>Central African Republic</label></td><td><input type='checkbox' id='Chad' name='country' value='Chad' /><label for='Chad'>Chad</label></td><td><input type='checkbox' id='Comoros' name='country' value='Comoros' /><label for='Comoros'>Comoros</label></td><td><input type='checkbox' id='Republic of the Congo' name='country' value='Republic of the Congo' /><label for='Republic of the Congo'>Republic of the Congo</label></td><td><input type='checkbox' id='Democratic Republic of the Congo' name='country' value='Democratic Republic of the Congo' /><label for='Democratic Republic of the Congo'>Democratic Republic of the Congo</label></td><td><input type='checkbox' id='Ivory Coast' name='country' value='Ivory Coast' /><label for='Ivory Coast'>Ivory Coast</label></td></tr><tr><td><input type='checkbox' id='Djibouti' name='country' value='Djibouti' /><label for='Djibouti'>Djibouti</label></td><td><input type='checkbox' id='Egypt' name='country' value='Egypt' /><label for='Egypt'>Egypt</label></td><td><input type='checkbox' id='Equatorial Guinea' name='country' value='Equatorial Guinea' /><label for='Equatorial Guinea'>Equatorial Guinea</label></td><td><input type='checkbox' id='Eritrea' name='country' value='Eritrea' /><label for='Eritrea'>Eritrea</label></td><td><input type='checkbox' id='Ethiopia' name='country' value='Ethiopia' /><label for='Ethiopia'>Ethiopia</label></td><td><input type='checkbox' id='Gabon' name='country' value='Gabon' /><label for='Gabon'>Gabon</label></td><td><input type='checkbox' id='The Gambia' name='country' value='The Gambia' /><label for='The Gambia'>The Gambia</label></td></tr><tr><td><input type='checkbox' id='Ghana' name='country' value='Ghana' /><label for='Ghana'>Ghana</label></td><td><input type='checkbox' id='Guinea' name='country' value='Guinea' /><label for='Guinea'>Guinea</label></td><td><input type='checkbox' id='Guinea' name='country' value='Guinea' /><label for='Guinea'>Guinea</label></td><td><input type='checkbox' id='Kenya' name='country' value='Kenya' /><label for='Kenya'>Kenya</label></td><td><input type='checkbox' id='Lesotho' name='country' value='Lesotho' /><label for='Lesotho'>Lesotho</label></td><td><input type='checkbox' id='Liberia' name='country' value='Liberia' /><label for='Liberia'>Liberia</label></td><td><input type='checkbox' id='Libya' name='country' value='Libya' /><label for='Libya'>Libya</label></td></tr><tr><td><input type='checkbox' id='Madagascar' name='country' value='Madagascar' /><label for='Madagascar'>Madagascar</label></td><td><input type='checkbox' id='Malawi' name='country' value='Malawi' /><label for='Malawi'>Malawi</label></td><td><input type='checkbox' id='Mali' name='country' value='Mali' /><label for='Mali'>Mali</label></td><td><input type='checkbox' id='Mauritania' name='country' value='Mauritania' /><label for='Mauritania'>Mauritania</label></td><td><input type='checkbox' id='Mauritius' name='country' value='Mauritius' /><label for='Mauritius'>Mauritius</label></td><td><input type='checkbox' id='Morocco' name='country' value='Morocco' /><label for='Morocco'>Morocco</label></td><td><input type='checkbox' id='Mozambique' name='country' value='Mozambique' /><label for='Mozambique'>Mozambique</label></td></tr><tr><td><input type='checkbox' id='Namibia' name='country' value='Namibia' /><label for='Namibia'>Namibia</label></td><td><input type='checkbox' id='Niger' name='country' value='Niger' /><label for='Niger'>Niger</label></td><td><input type='checkbox' id='Nigeria' name='country' value='Nigeria' /><label for='Nigeria'>Nigeria</label></td><td><input type='checkbox' id='Rwanda' name='country' value='Rwanda' /><label for='Rwanda'>Rwanda</label></td><td><input type='checkbox' id='Senegal' name='country' value='Senegal' /><label for='Senegal'>Senegal</label></td><td><input type='checkbox' id='Seychelles' name='country' value='Seychelles' /><label for='Seychelles'>Seychelles</label></td><td><input type='checkbox' id='Sierra Leone' name='country' value='Sierra Leone' /><label for='Sierra Leone'>Sierra Leone</label></td></tr><tr><td><input type='checkbox' id='Somalia' name='country' value='Somalia' /><label for='Somalia'>Somalia</label></td><td><input type='checkbox' id='South Africa' name='country' value='South Africa' /><label for='South Africa'>South Africa</label></td><td><input type='checkbox' id='South Sudan' name='country' value='South Sudan' /><label for='South Sudan'>South Sudan</label></td><td><input type='checkbox' id='Sudan' name='country' value='Sudan' /><label for='Sudan'>Sudan</label></td><td><input type='checkbox' id='Swaziland' name='country' value='Swaziland' /><label for='Swaziland'>Swaziland</label></td><td><input type='checkbox' id='Tanzania  es Salaam, Dodoma' name='country' value='Tanzania  es Salaam, Dodoma' /><label for='Tanzania  es Salaam, Dodoma'>Tanzania  es Salaam, Dodoma</label></td><td><input type='checkbox' id='Togo' name='country' value='Togo' /><label for='Togo'>Togo</label></td></tr><tr><td><input type='checkbox' id='Tunisia' name='country' value='Tunisia' /><label for='Tunisia'>Tunisia</label></td><td><input type='checkbox' id='Uganda' name='country' value='Uganda' /><label for='Uganda'>Uganda</label></td><td><input type='checkbox' id='Western Sahara' name='country' value='Western Sahara' /><label for='Western Sahara'>Western Sahara</label></td><td><input type='checkbox' id='Zambia' name='country' value='Zambia' /><label for='Zambia'>Zambia</label></td><td><input type='checkbox' id='Zaire' name='country' value='Zaire' /><label for='Zaire'>Zaire</label></td><td><input type='checkbox' id='Zimbabwe' name='country' value='Zimbabwe' /><label for='Zimbabwe'>Zimbabwe</label></td></tr></table></div>
+        <div id="Asia" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Afghanistan' name='country' value='Afghanistan' /><label for='Afghanistan'>Afghanistan</label></td><td><input type='checkbox' id='Armenia' name='country' value='Armenia' /><label for='Armenia'>Armenia</label></td><td><input type='checkbox' id='Azerbaijan' name='country' value='Azerbaijan' /><label for='Azerbaijan'>Azerbaijan</label></td><td><input type='checkbox' id='Bahrain' name='country' value='Bahrain' /><label for='Bahrain'>Bahrain</label></td><td><input type='checkbox' id='Bangladesh' name='country' value='Bangladesh' /><label for='Bangladesh'>Bangladesh</label></td><td><input type='checkbox' id='Bhutan' name='country' value='Bhutan' /><label for='Bhutan'>Bhutan</label></td><td><input type='checkbox' id='Brunei' name='country' value='Brunei' /><label for='Brunei'>Brunei</label></td></tr><tr><td><input type='checkbox' id='Cambodia' name='country' value='Cambodia' /><label for='Cambodia'>Cambodia</label></td><td><input type='checkbox' id='China' name='country' value='China' /><label for='China'>China</label></td><td><input type='checkbox' id='Taiwan' name='country' value='Taiwan' /><label for='Taiwan'>China (Taiwan)</label></td><td><input type='checkbox' id='Hong Kong' name='country' value='Hong Kong' /><label for='Hong Kong'>China (Hong Kong)</label></td><td><input type='checkbox' id='Macao' name='country' value='Macao' /><label for='Macao'>China (Macao)</label></td><td><input type='checkbox' id='East Timor' name='country' value='East Timor' /><label for='East Timor'>East Timor</label></td><td><input type='checkbox' id='India' name='country' value='India' /><label for='India'>India</label></td></tr><tr><td><input type='checkbox' id='Indonesia' name='country' value='Indonesia' /><label for='Indonesia'>Indonesia</label></td><td><input type='checkbox' id='Iran' name='country' value='Iran' /><label for='Iran'>Iran</label></td><td><input type='checkbox' id='Iraq' name='country' value='Iraq' /><label for='Iraq'>Iraq</label></td><td><input type='checkbox' id='Israel' name='country' value='Israel' /><label for='Israel'>Israel</label></td><td><input type='checkbox' id='Palestine' name='country' value='Palestine' /><label for='Palestine'>Palestine</label></td><td><input type='checkbox' id='Japan' name='country' value='Japan' /><label for='Japan'>Japan</label></td><td><input type='checkbox' id='Jordan' name='country' value='Jordan' /><label for='Jordan'>Jordan</label></td></tr><tr><td><input type='checkbox' id='Kazakhstan' name='country' value='Kazakhstan' /><label for='Kazakhstan'>Kazakhstan</label></td><td><input type='checkbox' id='Kuwait' name='country' value='Kuwait' /><label for='Kuwait'>Kuwait</label></td><td><input type='checkbox' id='Kyrgyzstan' name='country' value='Kyrgyzstan' /><label for='Kyrgyzstan'>Kyrgyzstan</label></td><td><input type='checkbox' id='Laos' name='country' value='Laos' /><label for='Laos'>Laos</label></td><td><input type='checkbox' id='Lebanon' name='country' value='Lebanon' /><label for='Lebanon'>Lebanon</label></td><td><input type='checkbox' id='Malaysia' name='country' value='Malaysia' /><label for='Malaysia'>Malaysia</label></td><td><input type='checkbox' id='Maldives' name='country' value='Maldives' /><label for='Maldives'>Maldives</label></td></tr><tr><td><input type='checkbox' id='Mongolia' name='country' value='Mongolia' /><label for='Mongolia'>Mongolia</label></td><td><input type='checkbox' id='Myanmar' name='country' value='Myanmar' /><label for='Myanmar'>Myanmar</label></td><td><input type='checkbox' id='Nepal' name='country' value='Nepal' /><label for='Nepal'>Nepal</label></td><td><input type='checkbox' id='North Korea' name='country' value='North Korea' /><label for='North Korea'>North Korea</label></td><td><input type='checkbox' id='Oman' name='country' value='Oman' /><label for='Oman'>Oman</label></td><td><input type='checkbox' id='Pakistan' name='country' value='Pakistan' /><label for='Pakistan'>Pakistan</label></td><td><input type='checkbox' id='Philippines' name='country' value='Philippines' /><label for='Philippines'>Philippines</label></td></tr><tr><td><input type='checkbox' id='Qatar' name='country' value='Qatar' /><label for='Qatar'>Qatar</label></td><td><input type='checkbox' id='Russia' name='country' value='Russia' /><label for='Russia'>Russia</label></td><td><input type='checkbox' id='Saudi Arabia' name='country' value='Saudi Arabia' /><label for='Saudi Arabia'>Saudi Arabia</label></td><td><input type='checkbox' id='Singapore' name='country' value='Singapore' /><label for='Singapore'>Singapore</label></td><td><input type='checkbox' id='South Korea' name='country' value='South Korea' /><label for='South Korea'>South Korea</label></td><td><input type='checkbox' id='Sri Lanka' name='country' value='Sri Lanka' /><label for='Sri Lanka'>Sri Lanka</label></td><td><input type='checkbox' id='Syria' name='country' value='Syria' /><label for='Syria'>Syria</label></td></tr><tr><td><input type='checkbox' id='Tajikistan' name='country' value='Tajikistan' /><label for='Tajikistan'>Tajikistan</label></td><td><input type='checkbox' id='Thailand' name='country' value='Thailand' /><label for='Thailand'>Thailand</label></td><td><input type='checkbox' id='Tibet' name='country' value='Tibet' /><label for='Tibet'>Tibet</label></td><td><input type='checkbox' id='Turkey' name='country' value='Turkey' /><label for='Turkey'>Turkey</label></td><td><input type='checkbox' id='Turkmenistan' name='country' value='Turkmenistan' /><label for='Turkmenistan'>Turkmenistan</label></td><td><input type='checkbox' id='United Arab Emirates' name='country' value='United Arab Emirates' /><label for='United Arab Emirates'>United Arab Emirates</label></td><td><input type='checkbox' id='Uzbekistan' name='country' value='Uzbekistan' /><label for='Uzbekistan'>Uzbekistan</label></td></tr><tr><td><input type='checkbox' id='Vietnam' name='country' value='Vietnam' /><label for='Vietnam'>Vietnam</label></td><td><input type='checkbox' id='Yemen' name='country' value='Yemen' /><label for='Yemen'>Yemen</label></td></tr></table></div>
+        <div id="North_America" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='United States' name='country' value='United States' /><label for='United States'>United States</label></td><td><input type='checkbox' id='Mexico' name='country' value='Mexico' /><label for='Mexico'>Mexico</label></td><td><input type='checkbox' id='Canada' name='country' value='Canada' /><label for='Canada'>Canada</label></td><td><input type='checkbox' id='Greenland' name='country' value='Greenland' /><label for='Greenland'>Greenland</label></td></tr></table></div>
+        <div id="South_America" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Argentina' name='country' value='Argentina' /><label for='Argentina'>Argentina</label></td><td><input type='checkbox' id='Bolivia' name='country' value='Bolivia' /><label for='Bolivia'>Bolivia</label></td><td><input type='checkbox' id='Brazil' name='country' value='Brazil' /><label for='Brazil'>Brazil</label></td><td><input type='checkbox' id='Chile' name='country' value='Chile' /><label for='Chile'>Chile</label></td><td><input type='checkbox' id='Colombia' name='country' value='Colombia' /><label for='Colombia'>Colombia</label></td><td><input type='checkbox' id='Ecuador' name='country' value='Ecuador' /><label for='Ecuador'>Ecuador</label></td><td><input type='checkbox' id='French Guiana' name='country' value='French Guiana' /><label for='French Guiana'>French Guiana</label></td></tr><tr><td><input type='checkbox' id='Guyana' name='country' value='Guyana' /><label for='Guyana'>Guyana</label></td><td><input type='checkbox' id='Paraguay' name='country' value='Paraguay' /><label for='Paraguay'>Paraguay</label></td><td><input type='checkbox' id='Peru' name='country' value='Peru' /><label for='Peru'>Peru</label></td><td><input type='checkbox' id='Suriname' name='country' value='Suriname' /><label for='Suriname'>Suriname</label></td><td><input type='checkbox' id='Uruguay' name='country' value='Uruguay' /><label for='Uruguay'>Uruguay</label></td><td><input type='checkbox' id='Venezuela' name='country' value='Venezuela' /><label for='Venezuela'>Venezuela</label></td></tr></table></div>
+        <div id="Oceania" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Australia' name='country' value='Australia' /><label for='Australia'>Australia</label></td><td><input type='checkbox' id='New Zealand' name='country' value='New Zealand' /><label for='New Zealand'>New Zealand</label></td><td><input type='checkbox' id='Fiji' name='country' value='Fiji' /><label for='Fiji'>Fiji</label></td><td><input type='checkbox' id='Papua New Guinea' name='country' value='Papua New Guinea' /><label for='Papua New Guinea'>Papua New Guinea</label></td><td><input type='checkbox' id='Solomon Islands' name='country' value='Solomon Islands' /><label for='Solomon Islands'>Solomon Islands</label></td><td><input type='checkbox' id='Vanuatu' name='country' value='Vanuatu' /><label for='Vanuatu'>Vanuatu</label></td><td><input type='checkbox' id='Kiribati' name='country' value='Kiribati' /><label for='Kiribati'>Kiribati</label></td></tr><tr><td><input type='checkbox' id='Marshall Islands' name='country' value='Marshall Islands' /><label for='Marshall Islands'>Marshall Islands</label></td><td><input type='checkbox' id='Micronesia' name='country' value='Micronesia' /><label for='Micronesia'>Micronesia</label></td><td><input type='checkbox' id='Nauru' name='country' value='Nauru' /><label for='Nauru'>Nauru</label></td><td><input type='checkbox' id='Palau' name='country' value='Palau' /><label for='Palau'>Palau</label></td><td><input type='checkbox' id='Samoa' name='country' value='Samoa' /><label for='Samoa'>Samoa</label></td><td><input type='checkbox' id='Tonga' name='country' value='Tonga' /><label for='Tonga'>Tonga</label></td><td><input type='checkbox' id='Tuvalu' name='country' value='Tuvalu' /><label for='Tuvalu'>Tuvalu</label></td></tr></table></div>
+        <div id="Central_America_and_the_Antilles" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Antigua and Barbuda' name='country' value='Antigua and Barbuda' /><label for='Antigua and Barbuda'>Antigua and Barbuda</label></td><td><input type='checkbox' id='Bahamas' name='country' value='Bahamas' /><label for='Bahamas'>Bahamas</label></td><td><input type='checkbox' id='Barbados' name='country' value='Barbados' /><label for='Barbados'>Barbados</label></td><td><input type='checkbox' id='Belize' name='country' value='Belize' /><label for='Belize'>Belize</label></td><td><input type='checkbox' id='Cayman Islands' name='country' value='Cayman Islands' /><label for='Cayman Islands'>Cayman Islands</label></td><td><input type='checkbox' id='Costa Rica' name='country' value='Costa Rica' /><label for='Costa Rica'>Costa Rica</label></td><td><input type='checkbox' id='Cuba' name='country' value='Cuba' /><label for='Cuba'>Cuba</label></td></tr><tr><td><input type='checkbox' id='Dominica' name='country' value='Dominica' /><label for='Dominica'>Dominica</label></td><td><input type='checkbox' id='Dominican Republic' name='country' value='Dominican Republic' /><label for='Dominican Republic'>Dominican Republic</label></td><td><input type='checkbox' id='El Salvador' name='country' value='El Salvador' /><label for='El Salvador'>El Salvador</label></td><td><input type='checkbox' id='Grenada' name='country' value='Grenada' /><label for='Grenada'>Grenada</label></td><td><input type='checkbox' id='Guatemala' name='country' value='Guatemala' /><label for='Guatemala'>Guatemala</label></td><td><input type='checkbox' id='Haiti' name='country' value='Haiti' /><label for='Haiti'>Haiti</label></td><td><input type='checkbox' id='Honduras' name='country' value='Honduras' /><label for='Honduras'>Honduras</label></td></tr><tr><td><input type='checkbox' id='Jamaica' name='country' value='Jamaica' /><label for='Jamaica'>Jamaica</label></td><td><input type='checkbox' id='Nicaragua' name='country' value='Nicaragua' /><label for='Nicaragua'>Nicaragua</label></td><td><input type='checkbox' id='Panama' name='country' value='Panama' /><label for='Panama'>Panama</label></td><td><input type='checkbox' id='Puerto Rico' name='country' value='Puerto Rico' /><label for='Puerto Rico'>Puerto Rico</label></td><td><input type='checkbox' id='Saint Kitts and Nevis' name='country' value='Saint Kitts and Nevis' /><label for='Saint Kitts and Nevis'>Saint Kitts and Nevis</label></td><td><input type='checkbox' id='Saint Lucia' name='country' value='Saint Lucia' /><label for='Saint Lucia'>Saint Lucia</label></td><td><input type='checkbox' id='Saint Vincent and the Grenadines' name='country' value='Saint Vincent and the Grenadines' /><label for='Saint Vincent and the Grenadines'>Saint Vincent and the Grenadines</label></td></tr><tr><td><input type='checkbox' id='Trinidad and Tobago' name='country' value='Trinidad and Tobago' /><label for='Trinidad and Tobago'>Trinidad and Tobago</label></td><td><input type='checkbox' id='Turks and Caicos' name='country' value='Turks and Caicos' /><label for='Turks and Caicos'>Turks and Caicos</label></td></tr></table></div>
+        <div id="Europe" style="display:none" class="country_hide"><table><tr><td><input type='checkbox' id='Albania' name='country' value='Albania' /><label for='Albania'>Albania</label></td><td><input type='checkbox' id='Andorra' name='country' value='Andorra' /><label for='Andorra'>Andorra</label></td><td><input type='checkbox' id='Austria' name='country' value='Austria' /><label for='Austria'>Austria</label></td><td><input type='checkbox' id='Belarus' name='country' value='Belarus' /><label for='Belarus'>Belarus</label></td><td><input type='checkbox' id='Belgium' name='country' value='Belgium' /><label for='Belgium'>Belgium</label></td><td><input type='checkbox' id='Bosnia and Herzegovina' name='country' value='Bosnia and Herzegovina' /><label for='Bosnia and Herzegovina'>Bosnia and Herzegovina</label></td><td><input type='checkbox' id='Bulgaria' name='country' value='Bulgaria' /><label for='Bulgaria'>Bulgaria</label></td></tr><tr><td><input type='checkbox' id='Croatia' name='country' value='Croatia' /><label for='Croatia'>Croatia</label></td><td><input type='checkbox' id='Cyprus' name='country' value='Cyprus' /><label for='Cyprus'>Cyprus</label></td><td><input type='checkbox' id='Czech Republic' name='country' value='Czech Republic' /><label for='Czech Republic'>Czech Republic</label></td><td><input type='checkbox' id='Denmark' name='country' value='Denmark' /><label for='Denmark'>Denmark</label></td><td><input type='checkbox' id='Estonia' name='country' value='Estonia' /><label for='Estonia'>Estonia</label></td><td><input type='checkbox' id='Finland' name='country' value='Finland' /><label for='Finland'>Finland</label></td><td><input type='checkbox' id='France' name='country' value='France' /><label for='France'>France</label></td></tr><tr><td><input type='checkbox' id='Georgia' name='country' value='Georgia' /><label for='Georgia'>Georgia</label></td><td><input type='checkbox' id='Germany' name='country' value='Germany' /><label for='Germany'>Germany</label></td><td><input type='checkbox' id='Greece' name='country' value='Greece' /><label for='Greece'>Greece</label></td><td><input type='checkbox' id='Hungary' name='country' value='Hungary' /><label for='Hungary'>Hungary</label></td><td><input type='checkbox' id='Iceland' name='country' value='Iceland' /><label for='Iceland'>Iceland</label></td><td><input type='checkbox' id='Republic of Ireland' name='country' value='Republic of Ireland' /><label for='Republic of Ireland'>Republic of Ireland</label></td><td><input type='checkbox' id='Italy' name='country' value='Italy' /><label for='Italy'>Italy</label></td></tr><tr><td><input type='checkbox' id='Latvia' name='country' value='Latvia' /><label for='Latvia'>Latvia</label></td><td><input type='checkbox' id='Liechtenstein' name='country' value='Liechtenstein' /><label for='Liechtenstein'>Liechtenstein</label></td><td><input type='checkbox' id='Lithuania' name='country' value='Lithuania' /><label for='Lithuania'>Lithuania</label></td><td><input type='checkbox' id='Luxembourg' name='country' value='Luxembourg' /><label for='Luxembourg'>Luxembourg</label></td><td><input type='checkbox' id='Republic of Macedonia' name='country' value='Republic of Macedonia' /><label for='Republic of Macedonia'>Republic of Macedonia</label></td><td><input type='checkbox' id='Malta' name='country' value='Malta' /><label for='Malta'>Malta</label></td><td><input type='checkbox' id='Moldova' name='country' value='Moldova' /><label for='Moldova'>Moldova</label></td></tr><tr><td><input type='checkbox' id='Monaco' name='country' value='Monaco' /><label for='Monaco'>Monaco</label></td><td><input type='checkbox' id='Montenegro' name='country' value='Montenegro' /><label for='Montenegro'>Montenegro</label></td><td><input type='checkbox' id='Netherlands' name='country' value='Netherlands' /><label for='Netherlands'>Netherlands</label></td><td><input type='checkbox' id='Norway' name='country' value='Norway' /><label for='Norway'>Norway</label></td><td><input type='checkbox' id='Poland' name='country' value='Poland' /><label for='Poland'>Poland</label></td><td><input type='checkbox' id='Portugal' name='country' value='Portugal' /><label for='Portugal'>Portugal</label></td><td><input type='checkbox' id='Romania' name='country' value='Romania' /><label for='Romania'>Romania</label></td></tr><tr><td><input type='checkbox' id='Russia' name='country' value='Russia' /><label for='Russia'>Russia</label></td><td><input type='checkbox' id='San Marino' name='country' value='San Marino' /><label for='San Marino'>San Marino</label></td><td><input type='checkbox' id='Serbia' name='country' value='Serbia' /><label for='Serbia'>Serbia</label></td><td><input type='checkbox' id='Slovakia' name='country' value='Slovakia' /><label for='Slovakia'>Slovakia</label></td><td><input type='checkbox' id='Slovenia' name='country' value='Slovenia' /><label for='Slovenia'>Slovenia</label></td><td><input type='checkbox' id='Spain' name='country' value='Spain' /><label for='Spain'>Spain</label></td><td><input type='checkbox' id='Sweden' name='country' value='Sweden' /><label for='Sweden'>Sweden</label></td></tr><tr><td><input type='checkbox' id='Switzerland' name='country' value='Switzerland' /><label for='Switzerland'>Switzerland</label></td><td><input type='checkbox' id='Turkey' name='country' value='Turkey' /><label for='Turkey'>Turkey</label></td><td><input type='checkbox' id='Ukraine' name='country' value='Ukraine' /><label for='Ukraine'>Ukraine</label></td><td><input type='checkbox' id='United Kingdom' name='country' value='United Kingdom' /><label for='United Kingdom'>United Kingdom</label></td><td><input type='checkbox' id='Vatican City' name='country' value='Vatican City' /><label for='Vatican City'>Vatican City</label></td></tr></table></div>
+   </div>
+   <a href="#" id="hide_condition" style="display:none">hide</a>
+</fieldset>
 <div id="block0">
-<!-- Collection date -->
-<fieldset class="nolegend" id="cdate-from-to">
-<table class="fields">
-<thead>
-<tr>
-	<th></th>
-	<th colspan="3"><span>Collection date</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<th><label for="fyear">From:</label></th>
-    <td><input type="text" name="fyear" id="fyear" size="3" maxlength="4" value=""></td>
-	<td><input type="text" name="fmonth" id="fmonth" size="1" maxlength="2" value=""></td>
-    <td><input type="text" name="fday" id="fday" size="1" maxlength="2" value=""></td>
-</tr>
-<tr>
-	<th><label for="tyear">To:</label></th>
-	<td><input type="text" name="tyear" id="tyear" size="3" maxlength="4" value=""></td>
-    <td><input type="text" name="tmonth" id="tmonth" size="1" maxlength="2" value=""></td>
-    <td><input type="text" name="tday" id="tday" size="1" maxlength="2" value=""></td>
-</tr>
-<tr class="labels">
-	<th></th>
-    <th><label for="fyear">Year</label></th>
-    <th><label for="fmonth">Month</label></th>
-    <th><label for="fday">Day</label></th>
-</tr>
-</tbody>
-</table>
-</fieldset>
-<!-- Release date -->
-<!--
-<fieldset class="nolegend daterange" id="pdate-from-to">
-<table class="fields">
-<thead>
-<tr>
-	<th colspan="3"><span>Release date </span><a href="/genomes/FLU/help.html#release_date" class="helper" title="What is the release date date range?"><span> </span><em>What is the release date date range?</em></a>
-	</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td><input type="text" name="fpyear" id="fpyear" size="3" maxlength="4" value=""></td>
-    <td><input type="text" name="fpmonth" id="fpmonth" size="1" maxlength="2" value=""></td>
-    <td><input type="text" name="fpday" id="fpday" size="1" maxlength="2" value=""></td>
-</tr>
-<tr>
-	<td><input type="text" name="tpyear" id="tpyear" size="3" maxlength="4" value=""></td>
-    <td><input type="text" name="tpmonth" id="tpmonth" size="1" maxlength="2" value=""></td>
-    <td><input type="text" name="tpday" id="tpday" size="1" maxlength="2" value=""></td>
-</tr>
-<tr class="labels">
-	<th><label for="fpyear">Year</label></th>
-    <th><label for="fpmonth">Month</label></th>
-    <th><label for="fpday">Day</label></th>
-</tr>
-</tbody>
-</table>
-</fieldset>
--->
-<!-- Sequence length -->
-<fieldset class="nolegend" id="length-min-max">
-<table class="fields">
-<thead><tr><th colspan="2"><label for="flen"><strong>Sequence length</strong></label></th></tr></thead>
-<tbody>
-<tr>
-	<th><label for="flen">Min.:</label></th>
-	<td><input type="text" name="flen" id="flen" size="6" maxlength="6" value=""></td>
-</tr>
-<tr>
-	<th><label for="tlen">Max.:</label></th>
-	<td><input type="text" name="tlen" id="tlen" size="6" maxlength="6" value=""></td>
-</tr>
-</tbody>
-</table>
-<!--
-<div id="full-length-div">
-<label id="full-length-only"><input type="checkbox" name="sonly" onclick="oNotifier.Notify(this,'check-splus-sonly')"><strong>Full-length</strong> only <a href="/genomes/FLU/help.html#fulllength" class="helper" title="What is full-length sequences?"><span> </span><em>What is full-length sequences?</em></a></label><br><label id="full-length-plus"><input type="checkbox" name="splus" onclick="oNotifier.Notify(this,'check-splus-sonly')"><strong>Full-length</strong> plus <a href="/genomes/FLU/help.html#fulllength" class="helper" title="What is full-length sequences?"><span> </span><em>What is full-length sequences?</em></a></label>
 </div>
--->
-</fieldset>
-</div>
-
-<!-- Buttons -->
+<form id="form" method=post action="__URL__/result">
+<input type="hidden" id="post_data" name="post_data"/>
 <div class="buttons">
-<span class="action" style="float:left"><input type="button" name="cmd_qb" value="Add query" onclick="oNotifier.Notify(this, 'cmd_add', 'add_query')"></span>
-<!--
-<span class="default combined" id="cmd_get_query_group" style="float:left"><input type="button" name="cmd_get_query" value="Show results" onclick="oNotifier.Notify(this, 'cmd_show', 'show_query')"></span>
--->
-<span class="default combined" id="cmd_get_query_group" style="float:left"><input type="submit" value="Show results"></span>
+	<span class="action" style="float:left">
+    	<input type="button" name="cmd_qb" value="Add query">
+    </span>
+    <span class="default combined" id="cmd_get_query_group" style="float:left">
+        <input type="button" id="show_result_button" value="Show results">
+    </span>
 </div>
-<!--
-<span class="cancel" style="float:right"><input type="button" name="cmd_clear" value="Clear form" onclick="oNotifier.Notify(this, 'cmd_add', 'clear')"></span>
--->
-<span class="cancel" style="float:right"><input type="reset" value="Clear form"></span>
-
-</fieldset>
+<span class="cancel" style="float:right">
+	<!--<input type="reset" id="clear_form" value="Clear form">-->
+</span>
 </form>
 <!-- form -->
 </div>

@@ -3,76 +3,97 @@
 {// 加载头部公共文件 }
 <include file="Public:header" />
 <!-- 菜单区域  -->
+<load href="__PUBLIC__/Js/result.js" />
 
 <!-- 主页面开始 -->
 <div id="main" class="main" >
 <!-- 主体内容  -->
 <div class="content" >
 <div class="title">{$Think.lang._VRL_SHOW_}</div>
-<!-- form  -->
-<!--
-<form method=post action="__URL__"> 
--->
 
 <div align="center">[ <a href="__URL__">{$Think.lang._BACK_}</a> ]</div>
+<div id="downloadFormat"  style="display:none">
+<form action="" id="downLoadForm" method="post">
+	<input type="button" id="download" value="Download"/>
+	<select name="format" id="format">
+    	<optgroup label="FASTA">
+            <option selected="selected" value="fP">Protein (FASTA)</option>
+<!--
+            <option value="fR">Coding region (FASTA)</option>
+            <option value="fN">Nucleotide (FASTA)</option>
+-->
+	</optgroup>
+<!--
+        <optgroup label="Accession List">
+            <option value="aP">Protein accession list</option>
+            <option value="aN">Nucleotide accesion list</option>
+	</optgroup>
+        <optgroup label="Result Set">
+            <option value="xml">Result set (XML)</option>
+            <option value="csv">Result set (CSV)</option>
+            <option value="tab">Result set (Tab delimited)</option>
+        </optgroup>
+-->
+    </select>
+	<a href="#" id="customize">Customize FASTA define</a>
+    <p style="display:none">
+    	Defline<input type="text" id="defline" name="defline" size="110%" value=">{accession} {genus} {year} {virus_name}" />
+        <input type="button" id="clear" value="clear" />
+        <input type="button" id="reset" value="reset" />
+    </p>
+    <p style="display:none">
+    	Click to insert:
+        <span id="de_gi" class="click_insert"><a href="#">Gi</a></span>
+        <span id="de_accession" class="click_insert"><a href="#">Accession</a></span>
+        <span id="de_subfamily" class="click_insert"><a href="#">Subfamily</a></span>
+        <span id="de_genus" class="click_insert"><a href="#">Genus</a></span>
+        <span id="de_species" class="click_insert"><a href="#">Species</a></span>
+        <span id="de_virus_name" class="click_insert"><a href="#">Virus name</a></span>
+        <span id="de_year" class="click_insert"><a href="#">Year</a></span>
+        <span id="de_country" class="click_insert"><a href="#">Country</a></span>
+        <span id="de_host" class="click_insert"><a href="#">Host</a></span>
+        <span id="de_typeA" class="click_insert"><a href="#">TypeA</a></span>
+        <span id="de_typeB" class="click_insert"><a href="#">TypeB</a></span>
+        <span id="de_subType" class="click_insert"><a href="#">SubType</a></span>
+        <span id="de_subsubType" class="click_insert"><a href="#">SubsubType</a></span>
+        <span id="de_subsubsubType" class="click_insert"><a href="#">SubsubsubType</a></span>
+        <span id="de_gene" class="click_insert"><a href="#">Genome info</a></span>
+        <span id="de_length" class="click_insert"><a href="#">Length</a></span>
+    </p>
+</div>
 <div align="left"><strong>{$show_bioentry_count} sequence(s): </strong></div>
 
+<input type="hidden" id="display_count" value="{$show_bioentry_count}"/>
+<input type="hidden" name="post_data" id="post_data" value="{$post_data}"/>
+<input type="hidden" id="order" name="order" value="bioentry_id" />
+<input type="hidden" id="order_line" name="order_line" value="asc" />
+<input type="hidden" id="check_list_hidden" name="check_list" value="" />
+</form>
 <table width="100%" class="zebra" id="results-table">
-  <colgroup>
-    <col width="5%">     <!-- Accession -->
-    <col width="20%">    <!-- Virus name -->
-    <col width="10%">    <!-- Date -->
-    <col width="5%">     <!-- Country -->
-    <col width="15%">    <!-- Host -->
-    <col width="5%">     <!-- Type -->
-    <col width="5%">     <!-- SubType -->
-    <col width="5%">     <!-- SubSubType -->
-    <col width="5%">     <!-- SubSubSubType -->
-    <col width="15%">    <!-- Genome info -->
-    <col width="5%">     <!-- Length -->
-  </colgroup>
   <thead>
     <tr>
-      <th>Accession</th>
-      <th>Virus name</th>
-      <th>Date</th>
-      <th>Country</th>
-      <th>Host</th>
-      <th>Type</th>
-      <th>SubType</th>
-      <th>SubSubType</th>
-      <th>SubSubSubType</th>
-      <th>Genome info</th>
-      <th>Length</th>
+      <th><input type="checkbox" id="choose_all"/></th>
+      <th id="accession" class="display_order"><a href="#">Accession<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="subfamily" class="display_order"><a href="#">SubFamily<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="genus" class="display_order"><a href="#">Genus<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="species" class="display_order"><a href="#">Species<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="virus_name" class="display_order"><a href="#">Virus name<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="isolation_year" class="display_order"><a href="#">Date<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="isolation_country" class="display_order"><a href="#">Country<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="host" class="display_order"><a href="#">Host<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="typeA" class="display_order"><a href="#">TypeA<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="typeB" class="display_order"><a href="#">TypeB<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="subtype" class="display_order"><a href="#">SubType<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="subsubtype" class="display_order"><a href="#">SubSubType<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="subsubsubtype" class="display_order"><a href="#">SubSubSubType<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="gene" class="display_order"><a href="#">Genome info<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
+      <th id="length" class="display_order"><a href="#">Length<img class="desc" src="__PUBLIC__/Images/desc.gif" style="display:none" /><img class="asc" src="__PUBLIC__/Images/asc.gif" style="display:none" /></a></th>
     </tr>
   </thead>
   <tbody>
-    <volist name="show_bioentry_info" id="bioentry">
-    <tr>
-      <td align="center"><a href="http://www.ncbi.nlm.nih.gov/nuccore/{$bioentry.accession}{$bioentry.dotversion}">{$bioentry.accession}</a></td>
-      <td align="center">{$bioentry.name}</td>
-      <td align="center">{$bioentry.isolation_year}</td>
-      <td align="center">{$bioentry.isolation_country}</td>
-      <td align="center">{$bioentry.vrl_host}</td>
-      <td align="center">{$bioentry.vrl_type}</td>
-      <td align="center">{$bioentry.vrl_subtype}</td>
-      <td align="center">{$bioentry.vrl_subsubtype}</td>
-      <td align="center">{$bioentry.vrl_subsubsubtype}</td>
-      <td align="center">{$bioentry.gene}</td>
-      <td align="center">{$bioentry.length}</td>
-    </tr>
-	</volist>
+    <tr></tr>
   </tbody>
 </table>
-
-<!--
-</form>
--->
-<!-- form -->
-<!--  分页显示区域 -->
-<!--
-<div class="page">{$page}</div>
--->
 
 <if condition="($show_bioentry_count gt 10)">
 <div align="center">[ <a href="__URL__">{$Think.lang._BACK_}</a> ]</div>
